@@ -63,3 +63,4 @@ local.properties
 
 # End of https://mrkandreev.name/snippets/gitignore-generator/#Eclipse 
 target/
+.ds

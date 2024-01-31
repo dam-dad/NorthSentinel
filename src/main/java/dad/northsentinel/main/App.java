@@ -1,6 +1,6 @@
 package dad.northsentinel.main;
 
-import dad.northsentinel.mainmenu.ControllerMenu;
+import dad.northsentinel.mainmenu.MainController;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -9,7 +9,7 @@ public class App extends Application {
 	
 	public void start(Stage primaryStage) throws Exception {
 		
-        ControllerMenu controller = new ControllerMenu();
+        MainController controller = new MainController();
 
         Scene scene = new Scene(controller.getView(), 600, 400);
 

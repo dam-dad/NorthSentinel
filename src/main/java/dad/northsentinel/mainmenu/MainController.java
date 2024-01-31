@@ -3,35 +3,21 @@ package dad.northsentinel.mainmenu;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.layout.BorderPane;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 
-public class ControllerMenu implements Initializable {
+public class MainController implements Initializable {
+
+	private MenuController menuController;
 
 	@FXML
 	private BorderPane view;
 
-	@FXML
-	void onGoHowToPlay(ActionEvent event) {
-
-	}
-
-	@FXML
-	void onGoPlay(ActionEvent event) {
-
-	}
-
-	@FXML
-	void onGoSettings(ActionEvent event) {
-
-	}
-
-	public ControllerMenu() {
+	public MainController() {
 		try {
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/MainMenu.fxml"));
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/MainView.fxml"));
 			loader.setController(this);
 			loader.load();
 		} catch (IOException e) {
@@ -43,10 +29,14 @@ public class ControllerMenu implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 
+		menuController = new MenuController();
+
+		view.setCenter(menuController.getView());
+
 	}
 
 	public BorderPane getView() {
 		return view;
 	}
-	
+
 }

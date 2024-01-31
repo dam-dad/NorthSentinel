@@ -1,0 +1,25 @@
+/* menuview.css */
+
+#view {
+    -fx-spacing: 20; /* Espaciado entre los botones */
+    -fx-padding: 50; /* Relleno alrededor de la caja de botones */
+    -fx-background-image: url('/images/background.jpg'); /* Imagen de fondo */
+    -fx-background-size: cover; /* Ajusta el tamaño de la imagen para cubrir completamente el contenedor */
+}
+
+.button {
+    -fx-font-size: 10pt; /* Tamaño de la fuente de los botones */
+    -fx-font-family: "Comic Sans MS", cursive, sans-serif; /* Tipo de letra */
+    -fx-background-color: #FFFFE4B5; /* Color de fondo */
+    -fx-text-fill: black; /* Color del texto */
+    -fx-background-radius: 25; /* Radio de esquina para bordes redondeados */
+}
+
+.button:hover {
+    -fx-background-color: #E0D2A9; /* Cambia el color de fondo al pasar el ratón */
+}
+
+.button:pressed {
+    -fx-background-color: #cebd8d; /* Cambia el color de fondo al presionar el botón */
+}
+/*Autores: Iván Garrido, Feliciano Pérez y Samuel Padrón*/

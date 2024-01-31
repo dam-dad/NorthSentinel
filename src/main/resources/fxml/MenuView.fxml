@@ -7,24 +7,23 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 
-
-<BorderPane fx:id="view" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" stylesheets="/css/menuview.css" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane fx:id="view" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="/css/menuview.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
    <center>
       <VBox alignment="CENTER" BorderPane.alignment="CENTER">
          <children>
-            <Button alignment="CENTER" maxWidth="125.0" mnemonicParsing="false" onAction="#onGoPlay" prefHeight="50.0" text="Play">
+            <Button alignment="CENTER" maxWidth="150.0" mnemonicParsing="false" onAction="#onGoPlay" prefHeight="50.0" text="Play">
                <VBox.margin>
                   <Insets bottom="20.0" left="5.0" right="5.0" top="5.0" />
                </VBox.margin>
                <graphic>
-                  <ImageView fitHeight="30.0" fitWidth="50.0">
+                  <ImageView fitHeight="30.0" fitWidth="40.0">
                      <image>
                         <Image url="@../Images/play.png" />
                      </image>
                   </ImageView>
                </graphic>
             </Button>
-            <Button alignment="CENTER" maxWidth="125.0" mnemonicParsing="false" onAction="#onGoSettings" prefHeight="50.0" text="Settings">
+            <Button alignment="CENTER" maxWidth="150.0" mnemonicParsing="false" onAction="#onGoSettings" prefHeight="50.0" text="Settings">
                <VBox.margin>
                   <Insets bottom="20.0" left="5.0" right="5.0" top="5.0" />
                </VBox.margin>
@@ -41,7 +40,7 @@
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </VBox.margin>
                <graphic>
-                  <ImageView fitHeight="30.0" fitWidth="40.0">
+                  <ImageView fitHeight="30.0" fitWidth="35.0">
                      <image>
                         <Image url="@../Images/howtoplay.png" />
                      </image>

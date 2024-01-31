@@ -11,7 +11,8 @@ import javafx.fxml.Initializable;
 public class MainController implements Initializable {
 
 	private MenuController menuController;
-
+	private SettingsController settingsController;
+	
 	@FXML
 	private BorderPane view;
 
@@ -30,7 +31,15 @@ public class MainController implements Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
 
 		menuController = new MenuController();
-
+		menuController.setOnSettings(e -> {
+			view.setCenter(settingsController.getView());
+		});
+		
+		settingsController = new SettingsController();
+		settingsController.setOnGoBack(e -> {
+			view.setCenter(menuController.getView());
+		});
+		
 		view.setCenter(menuController.getView());
 
 	}

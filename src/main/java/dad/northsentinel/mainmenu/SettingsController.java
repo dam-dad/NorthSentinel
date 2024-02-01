@@ -11,6 +11,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 
@@ -18,8 +19,8 @@ import javafx.fxml.Initializable;
 
 public class SettingsController implements Initializable {
 
-    private EventHandler<ActionEvent> onGoBack;
-	
+	private EventHandler<ActionEvent> onGoBack;
+
 	@FXML
 	private BorderPane view;
 
@@ -42,22 +43,32 @@ public class SettingsController implements Initializable {
 		}
 	}
 
-    @FXML
-    void onGoBack(ActionEvent event) {
-        if (onGoBack != null) {
-            onGoBack.handle(event);
-        }
-    }
+	@FXML
+	void onGoBack(ActionEvent event) {
+		if (onGoBack != null) {
+			onGoBack.handle(event);
+		}
+	}
 
-    public void setOnGoBack(EventHandler<ActionEvent> onGoBack) {
-        this.onGoBack = onGoBack;
-    }
+	public void setOnGoBack(EventHandler<ActionEvent> onGoBack) {
+		this.onGoBack = onGoBack;
+	}
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		
-        volumeLabel.textProperty().bind(Bindings.format("%.0f", volumeSlider.valueProperty()));
-		
+		volumeLabel.textProperty().bind(Bindings.format("%.0f", volumeSlider.valueProperty()));
+
+		volumeSlider.valueProperty().addListener((o, ov, nv) -> {
+			if (nv.doubleValue() > 1) {
+				volumeImage.setImage(new Image(getClass().getResource("/images/altavoz1.png").toExternalForm()));
+			} if (nv.doubleValue() > 25) {
+				volumeImage.setImage(new Image(getClass().getResource("/images/altavoz2.png").toExternalForm()));
+			} if (nv.doubleValue() > 75) {
+				volumeImage.setImage(new Image(getClass().getResource("/images/musica.png").toExternalForm()));
+			} if (nv.doubleValue() == 0) {
+				volumeImage.setImage(new Image(getClass().getResource("/images/nomusica.png").toExternalForm()));
+			}
+		});
 	}
 
 	public BorderPane getView() {

@@ -25,7 +25,7 @@
 
 /* Estilo para labels */
 .label {
-    -fx-font-size: 20pt;
+    -fx-font-size: 14pt;
     -fx-font-family: "Comic Sans MS", cursive, sans-serif;
     -fx-text-fill: white; /* Color de texto que resalte sobre tu fondo */
 }

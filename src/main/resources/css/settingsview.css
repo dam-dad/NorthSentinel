@@ -1,0 +1,42 @@
+/* menuview.css */
+
+#view {
+    -fx-spacing: 20;
+    -fx-padding: 50;
+    -fx-background-image: url('/images/settingsbackground.png');
+    -fx-background-size: cover;
+}
+
+.button {
+    -fx-font-size: 10pt;
+    -fx-font-family: "Comic Sans MS", cursive, sans-serif;
+    -fx-background-color: #FFFFE4B5;
+    -fx-text-fill: black;
+    -fx-background-radius: 25;
+}
+
+.button:hover {
+    -fx-background-color: #E0D2A9;
+}
+
+.button:pressed {
+    -fx-background-color: #cebd8d;
+}
+
+/* Estilo para labels */
+.label {
+    -fx-font-size: 20pt;
+    -fx-font-family: "Comic Sans MS", cursive, sans-serif;
+    -fx-text-fill: white; /* Color de texto que resalte sobre tu fondo */
+}
+
+/* Estilo para sliders */
+.slider {
+    -fx-control-inner-background: #FFFFE4B5; /* Fondo del slider */
+    -fx-accent: white; /* Color de la barra del slider */
+}
+
+/* Estilo para imágenes que no son botones */
+.image-view {
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0); /* Sombra para resaltar la imagen */
+}

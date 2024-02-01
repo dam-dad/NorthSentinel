@@ -12,6 +12,7 @@ public class MainController implements Initializable {
 
 	private MenuController menuController;
 	private SettingsController settingsController;
+	private HowToPlayController howToPlayController;
 	
 	@FXML
 	private BorderPane view;
@@ -35,8 +36,17 @@ public class MainController implements Initializable {
 			view.setCenter(settingsController.getView());
 		});
 		
+		menuController.setOnHowToPlay(e -> {
+			view.setCenter(howToPlayController.getView());
+		});
+		
 		settingsController = new SettingsController();
 		settingsController.setOnGoBack(e -> {
+			view.setCenter(menuController.getView());
+		});
+		
+		howToPlayController = new HowToPlayController();
+		howToPlayController.setOnGoBack(e -> {
 			view.setCenter(menuController.getView());
 		});
 		

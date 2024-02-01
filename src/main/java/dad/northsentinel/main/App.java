@@ -3,6 +3,7 @@ package dad.northsentinel.main;
 import dad.northsentinel.mainmenu.MainController;
 import javafx.application.Application;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 public class App extends Application {
@@ -13,6 +14,7 @@ public class App extends Application {
 
         Scene scene = new Scene(controller.getView(), 600, 400);
 
+		primaryStage.getIcons().add(new Image("/images/icono_ventana.png"));
         primaryStage.setTitle("NorthSentinel");
         primaryStage.setScene(scene);
         primaryStage.show();
@@ -20,5 +22,6 @@ public class App extends Application {
 	}
 
 }
+
 //Autores: Iván Garrido, Feliciano Pérez y Samuel Padrón.
 

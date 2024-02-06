@@ -1,7 +1,5 @@
 package dad.northsentinel.main;
 
-import java.io.File;
-
 import dad.northsentinel.mainmenu.MainController;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -20,7 +18,7 @@ public class App extends Application {
 
         Scene scene = new Scene(controller.getView(), 800, 600);
         
-        mediaPlayer = createMediaPlayer("C:\\2023-2024\\NorthSentinel\\src\\main\\resources\\soundTrack\\musicamenu.mp3");
+        mediaPlayer = createMediaPlayer("/soundTrack/musicamenu.mp3");
         mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
         mediaPlayer.play();
         
@@ -38,7 +36,7 @@ public class App extends Application {
 	}
 	
 	private MediaPlayer createMediaPlayer(String musicFilePath) {
-        Media media = new Media(new File(musicFilePath).toURI().toString());
+        Media media = new Media(getClass().getResource(musicFilePath).toExternalForm()); // Cambiada la forma de cargar la música
         return new MediaPlayer(media);
     }
 
@@ -50,7 +48,9 @@ public class App extends Application {
 		this.mediaPlayer = mediaPlayer;
 	}
 	
+	public static void main(String[] args) {
+        launch(args);
+    }
 }
 
-//Autores: Iván Garrido, Feliciano Pérez y Samuel Padrón.
 

@@ -1,24 +1,16 @@
 /* menuview.css */
 
-/* .root {
-	-fx-font-size: 16pt;
-	-fx-background-image: url('/images/background.png');
-	-fx-background-size: cover;
-}*/
-
 #view {
-    -fx-spacing: 20; /* Espaciado entre los botones */
-    -fx-padding: 50; /* Relleno alrededor de la caja de botones */
     -fx-background-image: url('/images/background.png'); /* Imagen de fondo */
     -fx-background-size: cover; /* Ajusta el tamaño de la imagen para cubrir completamente el contenedor */
 }
 
 .button {
-    -fx-font-size: 10pt; /* Tamaño de la fuente de los botones */
+    -fx-font-size: 1.5em; /* Tamaño de la fuente */
     -fx-font-family: "Comic Sans MS", cursive, sans-serif; /* Tipo de letra */
     -fx-background-color: #FFFFE4B5; /* Color de fondo */
     -fx-text-fill: black; /* Color del texto */
-    -fx-background-radius: 25; /* Radio de esquina para bordes redondeados */
+    -fx-background-radius: 5px; /* Radio de esquina para bordes redondeados */
 }
 
 .button:hover {
@@ -28,4 +20,17 @@
 .button:pressed {
     -fx-background-color: #cebd8d; /* Cambia el color de fondo al presionar el botón */
 }
-/*Autores: Iván Garrido, Feliciano Pérez y Samuel Padrón*/
+
+/* Este estilo hace que el BorderPane se ajuste al tamaño de la ventana */
+#view > * {
+    -fx-alignment: center; /* Centra los elementos dentro del BorderPane */
+    -fx-padding: 10px; /* Espaciado entre los elementos y el borde del BorderPane */
+    -fx-max-width: Infinity; /* Permite que los elementos se expandan horizontalmente */
+    -fx-max-height: Infinity; /* Permite que los elementos se expandan verticalmente */
+}
+
+/* Este estilo ajusta el tamaño máximo de los botones */
+.button {
+    -fx-max-width: 200px; /* Ancho máximo */
+    -fx-max-height: 80px; /* Altura máxima */
+}

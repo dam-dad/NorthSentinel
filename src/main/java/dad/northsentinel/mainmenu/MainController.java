@@ -31,7 +31,6 @@ public class MainController implements Initializable {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
     }
 
     @Override
@@ -59,18 +58,18 @@ public class MainController implements Initializable {
             mediaPlayerJuego = new MediaPlayer(mediaJuego);
             mediaPlayerJuego.play();
             view.setCenter(playController.getView());
-
         });
-        
+
+        // Aquí es donde hacemos la modificación para inicializar SettingsController
         settingsController = new SettingsController();
+        settingsController.setMainController(this); // Importante: Establecemos la referencia aquí
         settingsController.setOnGoBack(e -> {
-         
             view.setCenter(menuController.getView());
         });
-        
+
+        // Asumiendo que las instancias de HowToPlayController y PlayController se inicializan de manera similar
         howToPlayController = new HowToPlayController();
         howToPlayController.setOnGoBack(e -> {
-            
             view.setCenter(menuController.getView());
         });
         
@@ -79,7 +78,6 @@ public class MainController implements Initializable {
             mediaPlayerJuego.stop();
             mediaPlayerMenu.play();
             view.setCenter(menuController.getView());
-            
         });
         
         view.setCenter(menuController.getView());
@@ -98,4 +96,5 @@ public class MainController implements Initializable {
     }
 
 }
+
 

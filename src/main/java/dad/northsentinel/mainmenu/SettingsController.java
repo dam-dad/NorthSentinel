@@ -20,6 +20,8 @@ import javafx.fxml.Initializable;
 public class SettingsController implements Initializable {
 
 	private EventHandler<ActionEvent> onGoBack;
+	
+	private MainController mainController;
 
 	@FXML
 	private BorderPane view;
@@ -32,7 +34,7 @@ public class SettingsController implements Initializable {
 
 	@FXML
 	private Slider volumeSlider;
-
+	
 	public SettingsController() {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/SettingsView.fxml"));
 		loader.setController(this);
@@ -56,19 +58,23 @@ public class SettingsController implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		volumeLabel.textProperty().bind(Bindings.format("%.0f", volumeSlider.valueProperty()));
-
-		volumeSlider.valueProperty().addListener((o, ov, nv) -> {
-			if (nv.doubleValue() > 1) {
-				volumeImage.setImage(new Image(getClass().getResource("/images/altavoz1.png").toExternalForm()));
-			} if (nv.doubleValue() > 25) {
-				volumeImage.setImage(new Image(getClass().getResource("/images/altavoz2.png").toExternalForm()));
-			} if (nv.doubleValue() > 75) {
-				volumeImage.setImage(new Image(getClass().getResource("/images/musica.png").toExternalForm()));
-			} if (nv.doubleValue() == 0) {
-				volumeImage.setImage(new Image(getClass().getResource("/images/nomusica.png").toExternalForm()));
-			}
-		});
+	    volumeLabel.textProperty().bind(Bindings.format("%.0f", volumeSlider.valueProperty()));
+	    
+	    volumeSlider.valueProperty().addListener((observable, oldValue, newValue) -> {
+	        double volume = newValue.doubleValue() / 100;
+	        System.out.println(volume);
+	        mainController.getMediaPlayerMenu().setVolume(volume);
+	        
+	        if (newValue.doubleValue() > 75) {
+	            volumeImage.setImage(new Image(getClass().getResource("/images/musica.png").toExternalForm()));
+	        } else if (newValue.doubleValue() > 25) {
+	            volumeImage.setImage(new Image(getClass().getResource("/images/altavoz2.png").toExternalForm()));
+	        } else if (newValue.doubleValue() > 1) {
+	            volumeImage.setImage(new Image(getClass().getResource("/images/altavoz1.png").toExternalForm()));
+	        } else if (newValue.doubleValue() == 0) {
+	            volumeImage.setImage(new Image(getClass().getResource("/images/nomusica.png").toExternalForm()));
+	        }
+	    });
 	}
 
 	public BorderPane getView() {

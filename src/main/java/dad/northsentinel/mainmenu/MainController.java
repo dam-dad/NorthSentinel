@@ -37,11 +37,10 @@ public class MainController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         
-        // Iniciar la música del menú
         String menuMusicPath = new File("src/main/resources/soundTrack/musicamenu.mp3").toURI().toString();
         Media mediaMenu = new Media(menuMusicPath);
         mediaPlayerMenu = new MediaPlayer(mediaMenu);
-        mediaPlayerMenu.setCycleCount(MediaPlayer.INDEFINITE); // Repetir la música del menú
+        mediaPlayerMenu.setCycleCount(MediaPlayer.INDEFINITE);
         mediaPlayerMenu.play();
 
         menuController = new MenuController();
@@ -54,9 +53,7 @@ public class MainController implements Initializable {
         });
         
         menuController.setOnPlay(e -> {
-            // Detener la música del menú
             mediaPlayerMenu.stop();
-            // Iniciar la música del juego
             String juegoMusicPath = new File("src/main/resources/soundTrack/musicajuego.mp3").toURI().toString();
             Media mediaJuego = new Media(juegoMusicPath);
             mediaPlayerJuego = new MediaPlayer(mediaJuego);
@@ -79,7 +76,7 @@ public class MainController implements Initializable {
         
         playController = new PlayController();
         playController.setOnGoBack(e -> {
-            mediaPlayerJuego.stop(); //Detener la música del juego si está reproduciéndose.
+            mediaPlayerJuego.stop();
             mediaPlayerMenu.play();
             view.setCenter(menuController.getView());
             
@@ -87,9 +84,16 @@ public class MainController implements Initializable {
         
         view.setCenter(menuController.getView());
     }
-
     
-    public BorderPane getView() {
+    public MediaPlayer getMediaPlayerMenu() {
+		return mediaPlayerMenu;
+	}
+
+	public MediaPlayer getMediaPlayerJuego() {
+		return mediaPlayerJuego;
+	}
+
+	public BorderPane getView() {
         return view;
     }
 

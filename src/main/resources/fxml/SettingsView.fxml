@@ -21,7 +21,7 @@
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </HBox.margin>
                      <image>
-                        <Image url="@../images/nomusica.png" />
+                        <Image url="@../images/musica.png" />
                      </image>
                   </ImageView>
                   <Slider fx:id="volumeSlider" value="100.0">

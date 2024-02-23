@@ -1,34 +1,35 @@
 package dad.northsentinel.model;
 
 import javafx.geometry.Point2D;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 
 public class Bala extends Entidad {
 	
-	private int damage;
-	private Point2D pos;
+	private int daño;
 	private Point2D destino;
 	private double velocidad;
-	private Vector2D normal;
+	private Point2D normal;
 	
-	private static final Image imagen = new Image("/assets/bala.png");
-
 	public Bala(Point2D origen, Point2D destino) {
-		super(new ImageView(imagen));
-		this.pos = origen;
+		super("/assets/bala.png");
+		setPos(origen);
 		this.destino = destino;
-		this.normal = Vector2D.normalizar(origen, destino); 
+		this.normal = origen.subtract(destino).normalize(); 
+	}
+	
+	public int getDaño() {
+		return daño;
+	}
+	
+	public Point2D getDestino() {
+		return destino;
 	}
 	
 	@Override
-	public void actualizar(double seconds) {
+	public void actualizar(double segundos) {
 		// e = v / t
-		double ix = (velocidad / seconds) * normal.x;
-		double iy = (velocidad / seconds) * normal.y;
-		pos = new Point2D(pos.getX() + ix, pos.getY() + iy);
-		getView().setLayoutX(pos.getX());
-		getView().setLayoutY(pos.getY());		
+		double ix = (velocidad / segundos) * normal.getX();
+		double iy = (velocidad / segundos) * normal.getY();
+		setPos(getX() + ix, getY() + iy);
 	}
 
 }

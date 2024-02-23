@@ -1,17 +1,22 @@
 package dad.northsentinel.model;
 
+import javafx.geometry.Point2D;
 import javafx.scene.image.ImageView;
 
-public abstract class Entidad {
+public abstract class Entidad extends ImageView {
 	
-	private ImageView view;
-	
-	public Entidad(ImageView view) {
-		this.view = view;
+	public Entidad(String url) {
+		super(url);
 	}
 	
-	public ImageView getView() {
-		return view;
+	public void setPos(Point2D pos) {
+		setPos(pos.getX(), pos.getY());
+	}
+
+	
+	public void setPos(double x, double y) {
+		setLayoutX(x);
+		setLayoutY(y);
 	}
 	
 	public abstract void actualizar(double seconds);

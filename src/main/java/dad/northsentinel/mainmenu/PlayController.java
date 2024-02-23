@@ -45,6 +45,11 @@ public class PlayController implements Initializable {
 	}
 
 	@FXML
+    void onGoSettings(ActionEvent event) {
+
+    }
+	
+	@FXML
 	void onGoBack(ActionEvent event) {
 		if (onGoBack != null) {
 			juego.stop();
@@ -65,7 +70,7 @@ public class PlayController implements Initializable {
 		
 		viewPlay.setCenter(juego.getMapa());
 		juego.start();
-
+		
 	}
 
 	public BorderPane getView() {

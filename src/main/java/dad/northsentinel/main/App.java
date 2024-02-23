@@ -14,7 +14,7 @@ public class App extends Application {
 		
         MainController controller = new MainController();
 
-        Scene scene = new Scene(controller.getView(), 600, 400);
+        Scene scene = new Scene(controller.getView(), 800, 600);
         
         
 		primaryStage.getIcons().add(new Image("/images/logo.png"));

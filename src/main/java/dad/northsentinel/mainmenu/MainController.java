@@ -60,14 +60,12 @@ public class MainController implements Initializable {
             view.setCenter(playController.getView());
         });
 
-        // Aquí es donde hacemos la modificación para inicializar SettingsController
         settingsController = new SettingsController();
-        settingsController.setMainController(this); // Importante: Establecemos la referencia aquí
+        settingsController.setMainController(this);
         settingsController.setOnGoBack(e -> {
             view.setCenter(menuController.getView());
         });
 
-        // Asumiendo que las instancias de HowToPlayController y PlayController se inicializan de manera similar
         howToPlayController = new HowToPlayController();
         howToPlayController.setOnGoBack(e -> {
             view.setCenter(menuController.getView());

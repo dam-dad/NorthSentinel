@@ -106,6 +106,11 @@ public class PlayController implements Initializable {
 	}
 
 	@FXML
+    void onGoSettings(ActionEvent event) {
+
+    }
+	
+	@FXML
 	void onGoBack(ActionEvent event) {
 		if (onGoBack != null) {
 			onGoBack.handle(event);
@@ -120,7 +125,6 @@ public class PlayController implements Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
 
 		stackPane.getChildren().addAll(agua, suelo, camino);
-
 		viewPlay.setCenter(stackPane);
 
 	}

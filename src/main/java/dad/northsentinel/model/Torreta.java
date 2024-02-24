@@ -4,21 +4,25 @@ import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
+import javafx.geometry.Point2D;
 
-public class Torreta {
+public class Torreta extends Entidad{
 
-	private double timeShoot = 0;
-
-	private double lifeTime = 0;
-
-	private int numberDirections;
-
+	private double tiempoDisparo;
 	private IntegerProperty cost = new SimpleIntegerProperty();
+	private DoubleProperty rango = new SimpleDoubleProperty();
+	private Point2D pos;
+	
+	public Torreta() {
+		super("/assets/torreta.png");
+	}
 
-	private IntegerProperty numberShots = new SimpleIntegerProperty();
-
-	private IntegerProperty maxNumberShots = new SimpleIntegerProperty();
-	private IntegerProperty damage = new SimpleIntegerProperty();
-	private DoubleProperty fireRate = new SimpleDoubleProperty();
+	@Override
+	public void actualizar(double seconds) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	
 	
 }

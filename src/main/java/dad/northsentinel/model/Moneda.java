@@ -5,11 +5,11 @@ import javafx.beans.property.SimpleDoubleProperty;
 
 //Clase que representa el elemento "Moneda", se establece su valor inicial y los get y set para obtener los valores necesarios.
 
-public class Coins {
+public class Moneda {
 	
 private DoubleProperty	moneda = new SimpleDoubleProperty();
 	
-	public Coins(){
+	public Moneda(){
 		setMoneda(100);	
 	}
 	

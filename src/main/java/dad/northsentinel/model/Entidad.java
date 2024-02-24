@@ -12,7 +12,6 @@ public abstract class Entidad extends ImageView {
 	public void setPos(Point2D pos) {
 		setPos(pos.getX(), pos.getY());
 	}
-
 	
 	public void setPos(double x, double y) {
 		setLayoutX(x);

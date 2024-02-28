@@ -24,8 +24,6 @@ import javafx.util.Duration;
 
 public class Mapa extends StackPane {
 	
-	
-	
 	public static Mapa supermapa;
 	
 	private static final int VACIO = 10;

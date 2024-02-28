@@ -3,8 +3,15 @@
 #view {
     -fx-spacing: 20;
     -fx-padding: 50;
-    -fx-background-image: url('/images/settingsbackground.png');
+    -fx-background-image: url('../images/settingsbackground.png');
     -fx-background-size: cover;
+}
+
+#view > * {
+    -fx-alignment: center; 
+    -fx-padding: 10px; 
+    -fx-max-width: Infinity; 
+    -fx-max-height: Infinity; 
 }
 
 .button {

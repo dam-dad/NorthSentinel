@@ -18,6 +18,14 @@ public abstract class Entidad extends ImageView {
 		setLayoutY(y);
 	}
 	
+	public Point2D getPos() {
+		return new Point2D(getLayoutX(), getLayoutY());
+	}
+	
+	public void destruir() {
+		Mapa.supermapa.destruir(this);
+	}
+	
 	public abstract void actualizar(double seconds);
 
 }

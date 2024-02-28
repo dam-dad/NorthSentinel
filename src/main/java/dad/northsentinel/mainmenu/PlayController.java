@@ -64,9 +64,9 @@ public class PlayController implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		
-		juego.fpsProperty().addListener((o, ov, nv) -> {
-			System.out.println("fps=" + nv);
-		});
+//		juego.fpsProperty().addListener((o, ov, nv) -> {
+//			System.out.println("fps=" + nv);
+//		});
 		
 		viewPlay.setCenter(juego.getMapa());
 		juego.start();

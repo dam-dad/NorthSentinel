@@ -3,6 +3,9 @@ package dad.northsentinel.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import javafx.animation.Interpolator;
+import javafx.animation.PathTransition;
+import javafx.geometry.Point2D;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.ColumnConstraints;
@@ -10,8 +13,15 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.RowConstraints;
 import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.LineTo;
+import javafx.scene.shape.MoveTo;
+import javafx.scene.shape.Path;
+import javafx.util.Duration;
 
 public class Mapa extends StackPane {
+	
+	public static Mapa supermapa;
 	
 	private static final int VACIO = 10;
 	
@@ -102,14 +112,51 @@ public class Mapa extends StackPane {
 	private GridPane mapa;
 	private GridPane camino;
 	private Pane area;
+	private Path path;
 	
 	public Mapa() {
 		super();
 		fondo = crearCapa(capa1, assets_agua);
 		mapa = crearCapa(capa, assets);
 		camino = crearCapa(capa3, assets_camino);
+		
+		// path del camino que siguen los enemigos
+		
+		// Crea el Path para el camino
+		path = new Path();
+		path.setStroke(Color.RED); // Puedes personalizar el color y el grosor del camino
+		path.setStrokeWidth(3);
+
+		// Añade segmentos al Path, aquí un ejemplo simple
+		path.getElements().add(new MoveTo(50, 575)); // Ejemplo: mueve el lápiz a (50, 50)
+		path.getElements().add(new LineTo(525, 575));
+		path.getElements().add(new LineTo(525, 375));
+		path.getElements().add(new LineTo(175, 375));
+		path.getElements().add(new LineTo(175, 175));
+		path.getElements().add(new LineTo(600, 175));
+		
 		area = new Pane(); // aquí es donde se mueven las entidades (balas, torres, enemigos)
+		area.getChildren().add(path);
+		
 		getChildren().addAll(fondo, mapa, camino, area);
+		
+		setOnMouseClicked(e -> {
+			System.out.println(e.getX() + "-" + e.getY());
+			
+			Point2D target = new Point2D(e.getX(), e.getY());
+			
+			Bala bala = new Bala(new Point2D(150, 150));
+			bala.disparar(target);
+
+			area.getChildren().add(bala);
+						
+		});
+		
+		supermapa = this;
+	}
+	
+	public void destruir(Entidad entidad) {
+		area.getChildren().remove(entidad);
 	}
 	
 	public GridPane getFondo() {
@@ -126,6 +173,10 @@ public class Mapa extends StackPane {
 	
 	public Pane getArea() {
 		return area;
+	}
+	
+	public Path getPath() {
+		return path;
 	}
 	
 	private GridPane crearCapa(int[][] capa, Image[] assets) {
@@ -155,4 +206,7 @@ public class Mapa extends StackPane {
 		}
 		return pane;
 	}
+	
+	
+	
 }

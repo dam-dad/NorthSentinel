@@ -188,14 +188,27 @@ public class Mapa extends StackPane {
 	}
 	
 	private boolean esPosicionValida(Point2D target) {
-	    double x = target.getX();
-	    double y = target.getY();
-	    double centroX = 576; // Coordenada X del centro
-	    double centroY = 576; // Coordenada Y del centro
-	    double margenError = 3;
+	    // Lista de todas las posiciones centrales válidas para colocar torretas
+	    List<Point2D> posicionesValidas = List.of(
+	        new Point2D(576, 576),
+	        new Point2D(175, 127), 
+	        new Point2D(574, 376),  
+	        new Point2D(524, 327),
+	        new Point2D(124, 176), 
+	        new Point2D(525, 626),
+	        new Point2D(175, 428), 
+	        new Point2D(125, 378)
+	    );
+	    double margenError = 5; // Tolerancia alrededor de cada posición válida
 
-	    return x >= centroX - margenError && x <= centroX + margenError &&
-	           y >= centroY - margenError && y <= centroY + margenError;
+	    // Verifica si el punto de clic está dentro del margen de error de alguna posición válida
+	    for (Point2D pos : posicionesValidas) {
+	        if (target.getX() >= pos.getX() - margenError && target.getX() <= pos.getX() + margenError &&
+	            target.getY() >= pos.getY() - margenError && target.getY() <= pos.getY() + margenError) {
+	            return true; // El punto de clic está dentro de una posición válida
+	        }
+	    }
+	    return false; // El punto de clic no está dentro de ninguna posición válida
 	}
 
 	

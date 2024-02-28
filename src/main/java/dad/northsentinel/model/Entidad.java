@@ -19,8 +19,7 @@ public abstract class Entidad extends ImageView {
 		return pos;
 	}
 	
-	
-	
+
 	public void destruir() {
 		Mapa.supermapa.destruir(this);
 	}

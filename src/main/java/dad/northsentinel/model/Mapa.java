@@ -6,6 +6,7 @@ import java.util.List;
 import javafx.animation.Interpolator;
 import javafx.animation.PathTransition;
 import javafx.geometry.Point2D;
+import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.ColumnConstraints;
@@ -46,17 +47,17 @@ public class Mapa extends StackPane {
 	int[][] capa = { 
 			{ 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10 },
 			{ 10,  1,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  3, 10 }, 
-			{ 10,  0,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  4, 10 },
+			{ 10,  0,  8,  9,  8,  8,  8,  8,  8,  8,  8,  8,  8,  4, 10 },
+			{ 10,  0,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  8,  4, 10 }, 
+			{ 10,  0,  8,  9,  9,  9,  9,  9,  9,  9,  9,  9,  8,  4, 10 },
 			{ 10,  0,  8,  9,  9,  9,  9,  9,  9,  9,  9,  9,  8,  4, 10 }, 
+			{ 10,  0,  8,  9,  9,  9,  9,  9,  9,  9,  9,  9,  8,  4, 10 },
+			{ 10,  0,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  8,  4, 10 }, 
 			{ 10,  0,  8,  9,  9,  9,  9,  9,  9,  9,  9,  9,  8,  4, 10 },
 			{ 10,  0,  8,  9,  9,  9,  9,  9,  9,  9,  9,  9,  8,  4, 10 }, 
 			{ 10,  0,  8,  9,  9,  9,  9,  9,  9,  9,  9,  9,  8,  4, 10 },
 			{ 10,  0,  8,  9,  9,  9,  9,  9,  9,  9,  9,  9,  8,  4, 10 }, 
-			{ 10,  0,  8,  9,  9,  9,  9,  9,  9,  9,  9,  9,  8,  4, 10 },
-			{ 10,  0,  8,  9,  9,  9,  9,  9,  9,  9,  9,  9,  8,  4, 10 }, 
-			{ 10,  0,  8,  9,  9,  9,  9,  9,  9,  9,  9,  9,  8,  4, 10 },
-			{ 10,  0,  8,  9,  9,  9,  9,  9,  9,  9,  9,  9,  8,  4, 10 }, 
-			{ 10,  0,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  4, 10 },
+			{ 10,  0,  8,  8,  8,  8,  8,  8,  8,  8,  9,  8,  8,  4, 10 },
 			{ 10,  7,  6,  6,  6,  6,  6,  6,  6,  6,  6,  6,  6,  5, 10 },
 			{ 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10 }, 
 	};
@@ -64,21 +65,21 @@ public class Mapa extends StackPane {
 	int[][] capa3 = { 
 			{ 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10 },
 			{ 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10 },
-			{ 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10 },
-			{ 10, 10, 10,  7,  1,  1,  1,  1,  1,  1,  1,  1,  8, 10, 10 },
+			{ 10, 10, 10, 9, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10 },
+			{ 10, 10, 9,  7,  1,  1,  1,  1,  1,  1,  1,  1,  8, 10, 10 },
 			{ 10, 10, 10,  2, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10 },
 			{ 10, 10, 10,  2, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10 },
-			{ 10, 10, 10,  2, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10 },
-			{ 10, 10, 10,  6,  1,  1,  1,  1,  1,  1,  5, 10, 10, 10, 10 },
+			{ 10, 10, 10,  2, 10, 10, 10, 10, 10, 10, 9, 10, 10, 10, 10 },
+			{ 10, 10, 9,  6,  1,  1,  1,  1,  1,  1,  5, 9, 10, 10, 10 },
+			{ 10, 10, 10, 9, 10, 10, 10, 10, 10, 10,  2, 10, 10, 10, 10 },
 			{ 10, 10, 10, 10, 10, 10, 10, 10, 10, 10,  2, 10, 10, 10, 10 },
 			{ 10, 10, 10, 10, 10, 10, 10, 10, 10, 10,  2, 10, 10, 10, 10 },
-			{ 10, 10, 10, 10, 10, 10, 10, 10, 10, 10,  2, 10, 10, 10, 10 },
-			{  0,  3,  1,  1,  1,  1,  1,  1,  1,  1,  4, 10, 10, 10, 10 },
-			{ 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10 },
+			{  0,  3,  1,  1,  1,  1,  1,  1,  1,  1,  4, 9, 10, 10, 10 },
+			{ 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 9, 10, 10, 10, 10 },
 			{ 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10 },
 			{ 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10 }, 
 	};
-
+	
 	private static final Image[] assets_camino = { 
 			new Image("img/camino/barco.png"), 
 			new Image("img/camino/camino_central.png"),
@@ -88,11 +89,12 @@ public class Mapa extends StackPane {
 			new Image("img/camino/esquina_2.png"),
 			new Image("img/camino/esquina_3.png"), 
 			new Image("img/camino/esquina_4.png"),
-			new Image("img/camino/base.png"), 
+			new Image("img/camino/base.png"),
+			new Image("img/terreno/suelo_torreta.png"),
 	};
 
 	private static final Image[] assets_agua = { 
-			new Image("img/agua/agua.png"), 
+			new Image("img/agua/agua.png"),
 	};
 
 	private static final Image [] assets = { 
@@ -108,6 +110,8 @@ public class Mapa extends StackPane {
 			new Image("img/terreno/suelo_verde.png"),
 	};
 	
+	Button klk = new Button();
+	
 	private GridPane fondo;
 	private GridPane mapa;
 	private GridPane camino;
@@ -120,16 +124,14 @@ public class Mapa extends StackPane {
 		mapa = crearCapa(capa, assets);
 		camino = crearCapa(capa3, assets_camino);
 		
-		
 		// path del camino que siguen los enemigos
 		
 		// Crea el Path para el camino
 		path = new Path();
-		path.setStroke(Color.RED); // Puedes personalizar el color y el grosor del camino
+		path.setStroke(Color.RED);
 		path.setStrokeWidth(3);
 
-		// Añade segmentos al Path, aquí un ejemplo simple
-		path.getElements().add(new MoveTo(50, 575)); // Ejemplo: mueve el lápiz a (50, 50)
+		path.getElements().add(new MoveTo(50, 575));
 		path.getElements().add(new LineTo(525, 575));
 		path.getElements().add(new LineTo(525, 375));
 		path.getElements().add(new LineTo(175, 375));
@@ -157,7 +159,7 @@ public class Mapa extends StackPane {
 		
 		supermapa = this;
 	}
-	
+
 	public void destruir(Entidad entidad) {
 		area.getChildren().remove(entidad);
 	}
@@ -205,12 +207,12 @@ public class Mapa extends StackPane {
 				ImageView view = (capa[j][i] != VACIO) ? new ImageView(assets[capa[j][i]]) : new ImageView();
 				view.setFitHeight(50);
 				view.setFitWidth(50);
+				int x = i; // Guardar la posición x del ImageView
+	            int y = j; // Guardar la posición y del ImageView
 				pane.add(view, i, j);
 			}
 		}
 		return pane;
 	}
-	
-	
 	
 }

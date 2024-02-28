@@ -7,6 +7,13 @@
     -fx-background-size: cover; /* Ajusta el tamaño de la imagen para cubrir completamente el contenedor */
 }
 
+#view > * {
+    -fx-alignment: center; 
+    -fx-padding: 10px; 
+    -fx-max-width: Infinity; 
+    -fx-max-height: Infinity; 
+}
+
 .button {
     -fx-font-size: 10pt; /* Tamaño de la fuente de los botones */
     -fx-font-family: "Comic Sans MS", cursive, sans-serif; /* Tipo de letra */

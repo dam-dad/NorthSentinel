@@ -4,9 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javafx.animation.Interpolator;
+import javafx.animation.KeyFrame;
 import javafx.animation.PathTransition;
+import javafx.animation.Timeline;
 import javafx.geometry.Point2D;
-import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.ColumnConstraints;
@@ -109,9 +110,7 @@ public class Mapa extends StackPane {
 			new Image("img/terreno/suelo_arena.png"),
 			new Image("img/terreno/suelo_verde.png"),
 	};
-	
-	Button klk = new Button();
-	
+		
 	private GridPane fondo;
 	private GridPane mapa;
 	private GridPane camino;
@@ -141,8 +140,6 @@ public class Mapa extends StackPane {
 		area = new Pane(); // aquí es donde se mueven las entidades (balas, torres, enemigos)
 		area.getChildren().add(path);
 		
-		
-		
 		getChildren().addAll(fondo, mapa, camino, area);
 		
 		setOnMouseClicked(e -> {
@@ -159,6 +156,27 @@ public class Mapa extends StackPane {
 		
 		supermapa = this;
 	}
+	
+    // Método para crear los enemigos en intervalos de tiempo
+    public void crearEnemigos() {
+        Path path = getPath();
+        if (path.getElements().size() > 0 && path.getElements().get(0) instanceof MoveTo) {
+            MoveTo primerPunto = (MoveTo) path.getElements().get(0);
+            Timeline timeline = new Timeline();
+            for (int i = 0; i < 5; i++) {
+                Enemigo enemigo = new Enemigo();
+                enemigo.setPos(new Point2D(primerPunto.getX(), primerPunto.getY()));
+                getArea().getChildren().add(enemigo);
+                KeyFrame keyFrame = new KeyFrame(Duration.seconds(i + 1), event -> {
+                    enemigo.iniciarMovimiento();
+                });
+                timeline.getKeyFrames().add(keyFrame);
+            }
+            timeline.play();
+        } else {
+            System.out.println("No se pudo obtener el primer punto del camino.");
+        }
+    }
 
 	public void destruir(Entidad entidad) {
 		area.getChildren().remove(entidad);

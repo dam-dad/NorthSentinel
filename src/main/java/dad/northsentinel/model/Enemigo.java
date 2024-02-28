@@ -2,6 +2,7 @@ package dad.northsentinel.model;
 
 import javafx.animation.Interpolator;
 import javafx.animation.PathTransition;
+import javafx.animation.Timeline;
 import javafx.geometry.Point2D;
 import javafx.scene.image.ImageView;
 import javafx.util.Duration;
@@ -27,14 +28,16 @@ public class Enemigo extends Entidad {
         // Por ahora, el movimiento se maneja completamente a través de PathTransition
     }
 
-    private void iniciarMovimiento() {
+    public void iniciarMovimiento() {
         transition = new PathTransition();
-        transition.setNode(this); // 'this' es el ImageView del Enemigo
-        transition.setDuration(Duration.seconds(10)); // Ajusta la duración según sea necesario
-        transition.setPath(Mapa.supermapa.getPath()); // Utiliza el Path de la instancia de Mapa
-        transition.setInterpolator(Interpolator.LINEAR); // Movimiento lineal
-        transition.setCycleCount(PathTransition.INDEFINITE); // O cambia a 1 si deseas que solo recorra el camino una vez
-        transition.play(); // Inicia el movimiento
+        transition.setNode(this);
+        transition.setDuration(Duration.seconds(10));
+        transition.setPath(Mapa.supermapa.getPath());
+        transition.setOrientation(PathTransition.OrientationType.ORTHOGONAL_TO_TANGENT);
+        transition.setInterpolator(Interpolator.LINEAR);
+        transition.setCycleCount(Timeline.INDEFINITE);
+        transition.setAutoReverse(false);
+        transition.play();
     }
 
     public void detenerMovimiento() {

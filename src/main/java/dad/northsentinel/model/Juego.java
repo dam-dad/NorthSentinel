@@ -20,6 +20,7 @@ public class Juego extends AnimationTimer {
 	@Override
 	public void start() {
 		ultimoTiempo = System.nanoTime();
+	    mapa.crearEnemigos();
 		super.start();
 	}
 

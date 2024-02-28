@@ -47,6 +47,10 @@ public class Bala extends Entidad {
 		Duration duracion = Duration.seconds(distancia / getVelocidad());
 		System.out.println("velocidad=" + getVelocidad() + ", duracion=" + duracion.toSeconds() + ", distancia=" + distancia);
 		
+		Path ruta = getRuta(target);
+		
+		Mapa.supermapa.getArea().getChildren().add(ruta);
+		
 		PathTransition transition = new PathTransition();
 		transition.setInterpolator(Interpolator.LINEAR);
 		transition.setPath(getRuta(target));
@@ -55,6 +59,7 @@ public class Bala extends Entidad {
 		transition.setOnFinished(e -> {
 			System.out.println("boom!");
 			destruir();
+			Mapa.supermapa.getArea().getChildren().remove(ruta);
 		});
 		transition.play();
 		

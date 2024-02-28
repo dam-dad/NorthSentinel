@@ -32,8 +32,7 @@ public class SettingsController implements Initializable {
     @FXML
     private Label volumeLabel;
 
-    @FXML
-    private Slider volumeSlider;
+    @FXML Slider volumeSlider;
     
     public SettingsController() {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/SettingsView.fxml"));

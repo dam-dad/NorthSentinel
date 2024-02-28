@@ -1,11 +1,13 @@
 package dad.northsentinel.model;
 
+import javafx.animation.AnimationTimer;
 import javafx.animation.Interpolator;
 import javafx.animation.PathTransition;
 import javafx.geometry.Point2D;
 import javafx.scene.shape.LineTo;
 import javafx.scene.shape.MoveTo;
 import javafx.scene.shape.Path;
+import javafx.scene.shape.PathElement;
 import javafx.util.Duration;
 
 public class Bala extends Entidad {
@@ -41,6 +43,7 @@ public class Bala extends Entidad {
 //		setPos(getX() + ix, getY() + iy);
 	}
 
+	
 	public void disparar(Point2D target) {
 		double distancia = getPos().distance(target);
 		

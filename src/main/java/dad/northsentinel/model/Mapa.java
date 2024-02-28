@@ -120,6 +120,7 @@ public class Mapa extends StackPane {
 		mapa = crearCapa(capa, assets);
 		camino = crearCapa(capa3, assets_camino);
 		
+		
 		// path del camino que siguen los enemigos
 		
 		// Crea el Path para el camino
@@ -137,6 +138,8 @@ public class Mapa extends StackPane {
 		
 		area = new Pane(); // aquí es donde se mueven las entidades (balas, torres, enemigos)
 		area.getChildren().add(path);
+		
+		
 		
 		getChildren().addAll(fondo, mapa, camino, area);
 		
@@ -173,6 +176,7 @@ public class Mapa extends StackPane {
 	
 	public Pane getArea() {
 		return area;
+		
 	}
 	
 	public Path getPath() {

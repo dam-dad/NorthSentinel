@@ -148,7 +148,7 @@ public class Mapa extends StackPane {
 			
 			Point2D target = new Point2D(e.getX(), e.getY());
 			
-			Bala bala = new Bala(new Point2D(150, 150));
+			Bala bala = new Bala(new Point2D(300, 300));
 			bala.disparar(target);
 
 			area.getChildren().add(bala);

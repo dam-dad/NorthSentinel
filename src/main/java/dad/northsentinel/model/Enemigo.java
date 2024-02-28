@@ -5,6 +5,9 @@ import javafx.animation.PathTransition;
 import javafx.animation.Timeline;
 import javafx.geometry.Point2D;
 import javafx.scene.image.ImageView;
+import javafx.scene.shape.LineTo;
+import javafx.scene.shape.MoveTo;
+import javafx.scene.shape.Path;
 import javafx.util.Duration;
 
 public class Enemigo extends Entidad {
@@ -46,6 +49,13 @@ public class Enemigo extends Entidad {
         }
     }
 
+    //Método para obtener la posición del enemigo
+    public Path getPosEnemigo() {
+		Path posEnemigo = new Path();
+		posEnemigo.getElements().add(new MoveTo(getPos().getX() ,getPos().getY()));
+		return posEnemigo;
+	}    
+    
     // Métodos getters y setters para vida, destino, origen, velocidad, etc., según sea necesario
     public int getVida() {
         return vida;

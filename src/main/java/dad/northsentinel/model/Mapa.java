@@ -19,9 +19,12 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.LineTo;
 import javafx.scene.shape.MoveTo;
 import javafx.scene.shape.Path;
+import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 
 public class Mapa extends StackPane {
+	
+	
 	
 	public static Mapa supermapa;
 	
@@ -149,13 +152,55 @@ public class Mapa extends StackPane {
 			
 			Bala bala = new Bala(new Point2D(300, 300));
 			bala.disparar(target);
+			System.out.println(target);
 
 			area.getChildren().add(bala);
+			
+			
+			if (esPosicionValida(target)) {
+		        
+		        colocarTorretaConFondo(target); // Usa el nuevo método para posicionar la torreta
+		        System.out.println("Torreta colocada en posición válida: " + target);
+		    } else {
+		        System.out.println("Posición no válida para colocar torreta.");
+		    }
 						
 		});
 		
 		supermapa = this;
 	}
+	
+	public void colocarTorretaConFondo(Point2D pos) {
+	    Torreta nuevaTorreta = new Torreta();
+	    nuevaTorreta.setTorretaPos(pos);
+
+	    // Crea un rectángulo para el fondo
+	    Rectangle fondoVerde = new Rectangle(50, 50, Color.GREEN);
+
+	    // Crea un StackPane para contener el fondo y la torreta
+	    StackPane torretaConFondo = new StackPane();
+	    torretaConFondo.getChildren().addAll(fondoVerde, nuevaTorreta);
+
+	    // Ajusta la posición del StackPane, no de la torreta individualmente
+	    torretaConFondo.setLayoutX(pos.getX() - 25); // Ajusta según sea necesario
+	    torretaConFondo.setLayoutY(pos.getY() - 25);
+
+	    // Agrega el StackPane al área de juego
+	    area.getChildren().add(torretaConFondo);
+	}
+	
+	private boolean esPosicionValida(Point2D target) {
+	    double x = target.getX();
+	    double y = target.getY();
+	    double centroX = 576; // Coordenada X del centro
+	    double centroY = 576; // Coordenada Y del centro
+	    double margenError = 3;
+
+	    return x >= centroX - margenError && x <= centroX + margenError &&
+	           y >= centroY - margenError && y <= centroY + margenError;
+	}
+
+	
 	
     // Método para crear los enemigos en intervalos de tiempo
     public void crearEnemigos() {
@@ -202,6 +247,7 @@ public class Mapa extends StackPane {
 	public Path getPath() {
 		return path;
 	}
+	
 	
 	private GridPane crearCapa(int[][] capa, Image[] assets) {
 		GridPane pane = new GridPane();

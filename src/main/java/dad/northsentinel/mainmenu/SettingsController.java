@@ -69,6 +69,7 @@ public class SettingsController implements Initializable {
                 double volume = newValue.doubleValue() / 100;
                 //System.out.println(volume); Depuración por consola.
                 mainController.getMediaPlayerMenu().setVolume(volume);
+                mainController.getMediaPlayerJuego().setVolume(volume); // Ajustar volumen del juego también.
                 
                 if (newValue.doubleValue() > 75) {
                     volumeImage.setImage(new Image(getClass().getResource("/images/musica.png").toExternalForm()));
@@ -82,6 +83,7 @@ public class SettingsController implements Initializable {
             }
         });
     }
+
 
     public BorderPane getView() {
         return view;

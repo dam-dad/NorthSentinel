@@ -172,7 +172,10 @@ public class Mapa extends StackPane {
 
 	    // Agrega el StackPane al área de juego
 	    area.getChildren().add(torretaConFondo);
+	    
 	}
+	
+	
 	
 	private boolean esPosicionValida(Point2D target) {
 	    // Lista de todas las posiciones centrales válidas para colocar torretas
@@ -205,7 +208,7 @@ public class Mapa extends StackPane {
 	    Path path = getPath();
 	    if (!path.getElements().isEmpty() && path.getElements().get(0) instanceof MoveTo) {
 	        MoveTo primerPunto = (MoveTo) path.getElements().get(0);
-	        for (int i = 0; i < 2; i++) {
+	        for (int i = 0; i < 1; i++) {
 	            Enemigo enemigo = new Enemigo();
 	            enemigo.setPos(new Point2D(primerPunto.getX(), primerPunto.getY()));
 	            getArea().getChildren().add(enemigo);
@@ -216,6 +219,8 @@ public class Mapa extends StackPane {
 	        System.out.println("No se pudo obtener el primer punto del camino.");
 	    }
 	}
+	
+	
 
 	public void destruir(Entidad entidad) {
 		area.getChildren().remove(entidad);

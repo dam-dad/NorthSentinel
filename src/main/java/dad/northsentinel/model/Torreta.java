@@ -1,5 +1,7 @@
 package dad.northsentinel.model;
 
+import java.util.List;
+
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleDoubleProperty;
@@ -42,6 +44,8 @@ public class Torreta extends Entidad {
 		posTorreta.getElements().add(new MoveTo(getPos().getX() ,getPos().getY()));
 		return posTorreta;
 	}
+    
+    
 
     @Override
     public void actualizar(double seconds) {

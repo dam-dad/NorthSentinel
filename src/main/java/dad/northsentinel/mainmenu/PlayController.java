@@ -10,8 +10,8 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
 
 public class PlayController implements Initializable {
 	
@@ -27,12 +27,15 @@ public class PlayController implements Initializable {
 
 	@FXML
 	private BorderPane view;
-	
-	@FXML
-    private GridPane viewMenu;
 
     @FXML
     private BorderPane viewPlay;
+    
+    @FXML
+    private Label monedaLabel;
+
+    @FXML
+    private Label videLabel;
 
 	public PlayController() {
 		try {
@@ -43,11 +46,6 @@ public class PlayController implements Initializable {
 			throw new RuntimeException(e);
 		}
 	}
-
-	@FXML
-    void onGoSettings(ActionEvent event) {
-
-    }
 	
 	@FXML
 	void onGoBack(ActionEvent event) {
@@ -57,6 +55,11 @@ public class PlayController implements Initializable {
 		}
 	}
 
+	@FXML
+    void onStartWave(ActionEvent event) {
+
+    }
+	
 	public void setOnGoBack(EventHandler<ActionEvent> onGoBack) {
 		this.onGoBack = onGoBack;
 	}

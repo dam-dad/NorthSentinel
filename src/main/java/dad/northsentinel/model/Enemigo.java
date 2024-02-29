@@ -2,6 +2,7 @@ package dad.northsentinel.model;
 
 import javafx.animation.Interpolator;
 import javafx.animation.PathTransition;
+import javafx.animation.PauseTransition;
 import javafx.animation.Timeline;
 import javafx.geometry.Point2D;
 import javafx.scene.shape.MoveTo;
@@ -20,7 +21,8 @@ public class Enemigo extends Entidad {
         super("/assets/enemigos/enemigo1.png");
         this.vida = 100; // Ejemplo de vida inicial, ajusta según sea necesario
         this.velocidad = 1.0; // Ejemplo de velocidad, ajusta según sea necesario
-        iniciarMovimiento();
+        //iniciarMovimiento();
+           
     }
 
     @Override
@@ -29,16 +31,32 @@ public class Enemigo extends Entidad {
         // Por ahora, el movimiento se maneja completamente a través de PathTransition
     }
 
-    public void iniciarMovimiento() {
-        transition = new PathTransition();
+    public void iniciarMovimiento(int delay) {
+        transition = new PathTransition(); // Usa la variable de instancia
         transition.setNode(this);
-        transition.setDuration(Duration.seconds(10));
-        transition.setPath(Mapa.supermapa.getPath());
+        transition.setDuration(Duration.seconds(10)); // Ajusta según la duración deseada
+        transition.setPath(Mapa.supermapa.getPath()); // Usa el path del mapa
         transition.setOrientation(PathTransition.OrientationType.ORTHOGONAL_TO_TANGENT);
         transition.setInterpolator(Interpolator.LINEAR);
-        transition.setCycleCount(Timeline.INDEFINITE);
-        transition.setAutoReverse(false);
-        transition.play();
+        transition.setCycleCount(1); // Ejecuta solo una vez
+        transition.setOnFinished(event -> this.destruir());
+
+        // Aplica el retraso antes de iniciar el movimiento
+        if (delay > 0) {
+            PauseTransition pause = new PauseTransition(Duration.seconds(delay));
+            pause.setOnFinished(event -> transition.play());
+            pause.play();
+        } else {
+            transition.play(); // Inicia inmediatamente si no hay retraso
+        }
+    }
+
+
+    // Suponiendo que ya tienes implementado el método destruir()
+    @Override
+    public void destruir() {
+        // Elimina este enemigo de la pantalla o del contenedor padre
+        Mapa.supermapa.destruir(this);
     }
 
     public void detenerMovimiento() {

@@ -43,7 +43,6 @@ public class Bala extends Entidad {
 
 	public void disparar(Point2D target) {
 		if (target == null) {
-	        System.out.println("El destino proporcionado es null, disparo cancelado.");
 	        return; // Termina la ejecución del método si target es null
 	    }
 
@@ -62,11 +61,14 @@ public class Bala extends Entidad {
 		transition.setDuration(duracion);
 		transition.setOnFinished(e -> {
 			//System.out.println("boom!");
+		
 			destruir();
 			Mapa.supermapa.getArea().getChildren().remove(ruta);
 		});
 		transition.play();
 		
 	}
+	
+
 
 }

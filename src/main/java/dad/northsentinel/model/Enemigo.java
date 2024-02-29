@@ -19,7 +19,7 @@ public class Enemigo extends Entidad {
 
     public Enemigo() {
         super("/assets/enemigos/enemigo1.png");
-        this.vida = 100; // Ejemplo de vida inicial, ajusta según sea necesario
+        //this.vida = 100; // Ejemplo de vida inicial, ajusta según sea necesario
         this.velocidad = 0.25; // Ejemplo de velocidad, ajusta según sea necesario
         //iniciarMovimiento();
            

@@ -23,6 +23,7 @@ import javafx.util.Duration;
 
 public class Mapa extends StackPane {
 	
+    	
 	
 	private List<Torreta> torretas = new ArrayList<>();
 
@@ -208,20 +209,21 @@ public class Mapa extends StackPane {
 		
 
 	public void crearEnemigos() {
-
-		Path path = getPath();
-		if (!path.getElements().isEmpty() && path.getElements().get(0) instanceof MoveTo) {
-			MoveTo primerPunto = (MoveTo) path.getElements().get(0);
-			for (int i = 0; i < 1; i++) {
-				Enemigo enemigo = new Enemigo();
-				enemigo.setPos(new Point2D(primerPunto.getX(), primerPunto.getY()));
-				getArea().getChildren().add(enemigo);
-				enemigo.iniciarMovimiento(i * 2); // Asegura pasar el retraso como argumento
-			}
-		} else {
-			System.out.println("No se pudo obtener el primer punto del camino.");
-		}
+	    Path path = getPath(); // Asegúrate de que este método devuelve el Path correcto.
+	    if (!path.getElements().isEmpty() && path.getElements().get(0) instanceof MoveTo) {
+	        MoveTo moveTo = (MoveTo) path.getElements().get(0);
+	        for (int i = 0; i < 1; i++) {
+	            Enemigo enemigo = new Enemigo();
+	            // Ajusta la posición inicial del enemigo al inicio de la ruta.
+	            enemigo.setPos(new Point2D(moveTo.getX(), moveTo.getY()));
+	            getArea().getChildren().add(enemigo);
+	            enemigo.iniciarMovimiento(i * 2); // Inicia el movimiento con el posible retraso
+	        }
+	    } else {
+	        System.out.println("La ruta está vacía o no comienza con MoveTo");
+	    }
 	}
+
 
 	public void destruir(Entidad entidad) {
 		area.getChildren().remove(entidad);

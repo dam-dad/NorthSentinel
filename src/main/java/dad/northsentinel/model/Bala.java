@@ -42,12 +42,16 @@ public class Bala extends Entidad {
 	}
 
 	public void disparar(Point2D target) {
-		double distancia = getPos().distance(target);
-		
-		Duration duracion = Duration.seconds(distancia / getVelocidad());
-		//System.out.println("velocidad=" + getVelocidad() + ", duracion=" + duracion.toSeconds() + ", distancia=" + distancia);
-		
-		Path ruta = getRuta(target);
+		if (target == null) {
+	        System.out.println("El destino proporcionado es null, disparo cancelado.");
+	        return; // Termina la ejecución del método si target es null
+	    }
+
+	    double distancia = getPos().distance(target);
+	    
+	    Duration duracion = Duration.seconds(distancia / getVelocidad());
+	    
+	    Path ruta = getRuta(target);
 		
 		Mapa.supermapa.getArea().getChildren().add(ruta);
 		

@@ -6,6 +6,7 @@ import java.util.List;
 import javafx.animation.AnimationTimer;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
+import javafx.geometry.Point2D;
 
 public class Juego extends AnimationTimer {
 
@@ -16,12 +17,22 @@ public class Juego extends AnimationTimer {
 	private long ultimoTiempo;
 	private Mapa mapa = new Mapa();
 	private List<Entidad> entidades = new ArrayList<>();
+	
 
 	@Override
 	public void start() {
 		ultimoTiempo = System.nanoTime();
 	   // mapa.crearEnemigos();
 		super.start();
+		
+		
+		mapa.getArea().setOnMouseClicked(e -> {
+	        // Obtiene la posición donde se hizo clic
+	        Point2D target = new Point2D(e.getX(), e.getY());
+	        
+	        // Dispara desde todas las torretas existentes
+	        mapa.getTorretas().forEach(torreta -> torreta.dispararBala(target, mapa.getArea()));
+	    });
 	}
 
 	@Override

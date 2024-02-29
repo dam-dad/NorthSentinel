@@ -22,6 +22,10 @@ import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 
 public class Mapa extends StackPane {
+	
+	
+	private List<Torreta> torretas = new ArrayList<>();
+
 
 	public static Mapa supermapa;
 
@@ -125,44 +129,69 @@ public class Mapa extends StackPane {
 //
 //			area.getChildren().add(bala);
 
-			Torreta nuevaTorreta = new Torreta(new Point2D(275, 525));
+			//Torreta nuevaTorreta = new Torreta(new Point2D(275, 525));
 //			
-			Bala bala = new Bala(nuevaTorreta.getPos());
-			bala.disparar(target);
-			area.getChildren().add(bala);
+			//Bala bala = new Bala(nuevaTorreta.getPos());
+			//bala.disparar(target);
+			//area.getChildren().add(bala);
 //
-			if (esPosicionValida(target)) {
-				colocarTorreta(target, nuevaTorreta, area);
-				System.out.println("Torreta colocada en posición válida: " + target);
-			} else {
-				//System.out.println("Posición no válida para colocar torreta.");
-			}
+			boolean torretaColocada = false;
 
+		    if (esPosicionValida(target)) {
+		        Torreta torretaExistente = obtenerTorretaEnPosicion(target);
+		        if (torretaExistente == null) {
+		            // No hay una torreta en esta posición, así que colocamos una nueva
+		            Torreta nuevaTorreta = new Torreta(target);
+		            colocarTorreta(target, nuevaTorreta, area);
+		            System.out.println("Torreta colocada en posición válida: " + target);
+		            torretaColocada = true;
+		        }
+		    }
+
+		    // Disparar balas desde todas las torretas, incluida la nueva si se colocó
+		    for (Torreta torreta : torretas) {
+		        torreta.dispararBala(torretaColocada ? target : null, area);
+		    }
 		});
 
 		supermapa = this;
 	}
+	
+	private Torreta obtenerTorretaEnPosicion(Point2D posicion) {
+	    for (Torreta torreta : torretas) {
+	        if (torreta.getPos().equals(posicion)) {
+	            return torreta;
+	        }
+	    }
+	    return null; // No se encontró ninguna torreta en la posición especificada
+	}
 
+
+	
 	public void colocarTorreta(Point2D pos, Torreta nuevaTorreta, Pane area) {
-        // Ajusta la posición de la torreta dentro del área de juego
-        nuevaTorreta.setPos(pos);
+	    // Ajusta la posición de la torreta dentro del área de juego
+	    nuevaTorreta.setPos(pos);
 
-        // Agrega la torreta al área de juego
-        area.getChildren().add(nuevaTorreta);
-    }
+	    // Agrega la torreta al área de juego
+	    area.getChildren().add(nuevaTorreta);
+	    
+	    // Agrega la torreta a la lista de torretas del mapa
+	    torretas.add(nuevaTorreta);
+	}
+
 
 	private boolean esPosicionValida(Point2D target) {
 		// Lista de todas las posiciones centrales válidas para colocar torretas
 		List<Point2D> posicionesValidas = List.of(
-						new Point2D(275 , 525)
-//						new Point2D(775, 525), 
-//						new Point2D(575, 375),
-//						new Point2D(1125, 575), 
-//						new Point2D(775, 375), 
-//						new Point2D(375, 375), 
-//						new Point2D(75  , 375), 
-//						new Point2D(975, 425), 
-//						new Point2D(675, 225)
+						new Point2D(275 , 525),
+						new Point2D(775, 525), 
+						new Point2D(575, 375),
+						new Point2D(1125, 575), 
+						new Point2D(775, 375), 
+						new Point2D(375, 375), 
+						new Point2D(75  , 375), 
+						new Point2D(975, 425), 
+						new Point2D(675, 225)
 		);
 		double margenError = 25; // Tolerancia alrededor de cada posición válida
 
@@ -176,6 +205,7 @@ public class Mapa extends StackPane {
 		}
 		return false; // El punto de clic no está dentro de ninguna posición válida
 	}
+		
 
 	public void crearEnemigos() {
 
@@ -260,5 +290,15 @@ public class Mapa extends StackPane {
 	public Path getPath() {
 		return path;
 	}
+
+	public List<Torreta> getTorretas() {
+		return torretas;
+	}
+
+	public void setTorretas(List<Torreta> torretas) {
+		this.torretas = torretas;
+	}
+	
+	
 
 }

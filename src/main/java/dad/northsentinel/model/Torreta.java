@@ -44,6 +44,13 @@ public class Torreta extends Entidad {
         
 		this.pos = pos;
 	}
+	
+	public void dispararBala(Point2D target, Pane area) {
+	    Bala bala = new Bala(this.getPos());
+	    bala.disparar(target);
+	    area.getChildren().add(bala);
+	}
+
     
     public double getTiempoDisparo() {
         return tiempoDisparo;

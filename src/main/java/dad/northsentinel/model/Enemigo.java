@@ -55,6 +55,7 @@ public class Enemigo extends Entidad {
     public void destruir() {
         // Elimina este enemigo de la pantalla o del contenedor padre
         Mapa.supermapa.destruir(this);
+        
     }
 
     public void detenerMovimiento() {

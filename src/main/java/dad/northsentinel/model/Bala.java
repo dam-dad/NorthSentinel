@@ -1,5 +1,7 @@
 package dad.northsentinel.model;
 
+import java.util.List;
+
 import javafx.animation.Interpolator;
 import javafx.animation.PathTransition;
 import javafx.geometry.Point2D;
@@ -39,6 +41,8 @@ public class Bala extends Entidad {
 //		double ix = (velocidad / segundos) * normal.getX();
 //		double iy = (velocidad / segundos) * normal.getY();
 //		setPos(getX() + ix, getY() + iy);
+		
+		
 	}
 
 	public void disparar(Point2D target) {
@@ -63,10 +67,13 @@ public class Bala extends Entidad {
             //System.out.println("boom!");
             destruir();
             Mapa.supermapa.getArea().getChildren().remove(ruta);
+            
+            
         });
         transition.play();
 
     }
+	
 	
 
 

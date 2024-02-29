@@ -23,7 +23,7 @@ import javafx.util.Duration;
 
 public class Mapa extends StackPane {
 	
-    	
+	
 	
 	private List<Torreta> torretas = new ArrayList<>();
 
@@ -212,12 +212,14 @@ public class Mapa extends StackPane {
 	    Path path = getPath(); // Asegúrate de que este método devuelve el Path correcto.
 	    if (!path.getElements().isEmpty() && path.getElements().get(0) instanceof MoveTo) {
 	        MoveTo moveTo = (MoveTo) path.getElements().get(0);
-	        for (int i = 0; i < 1; i++) {
+	        for (int i = 0; i < 5; i++) { // Ajusta el número de enemigos según necesites
 	            Enemigo enemigo = new Enemigo();
 	            // Ajusta la posición inicial del enemigo al inicio de la ruta.
 	            enemigo.setPos(new Point2D(moveTo.getX(), moveTo.getY()));
 	            getArea().getChildren().add(enemigo);
 	            enemigo.iniciarMovimiento(i * 2); // Inicia el movimiento con el posible retraso
+
+	            
 	        }
 	    } else {
 	        System.out.println("La ruta está vacía o no comienza con MoveTo");
@@ -271,6 +273,9 @@ public class Mapa extends StackPane {
 		
 		return path;
 	}
+	
+	
+	
 
 	public GridPane getFondo() {
 		return fondo;

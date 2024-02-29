@@ -5,6 +5,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import dad.northsentinel.model.Juego;
+import dad.northsentinel.model.Mapa;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -18,6 +19,7 @@ public class PlayController implements Initializable {
 	// model
 	
 	private Juego juego = new Juego();
+	
 	
 	// actions
 
@@ -57,7 +59,7 @@ public class PlayController implements Initializable {
 
 	@FXML
     void onStartWave(ActionEvent event) {
-
+		juego.getMapa().crearEnemigos(); // Añade esta línea para crear enemigos.
     }
 	
 	public void setOnGoBack(EventHandler<ActionEvent> onGoBack) {

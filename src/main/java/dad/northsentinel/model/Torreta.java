@@ -13,17 +13,25 @@ public class Torreta extends Entidad {
     private double tiempoDisparo;
     private IntegerProperty cost = new SimpleIntegerProperty();
     private DoubleProperty rango = new SimpleDoubleProperty();
+    private Point2D pos;
 
-    public Torreta() {
+    public Torreta(Point2D pos) {
         super("/assets/torretas/torreta1.png");
         // Aquí puedes inicializar las propiedades si es necesario, por ejemplo:
         // cost.set(100); // Ejemplo de coste
         // rango.set(150.0); // Ejemplo de rango
+        setPos(pos);
     }
     
-    public void setTorretaPos(Point2D pos) {
-        // Tamaño fijo deseado para la torreta
-        double anchoDeseado = 50;
+  //Método para obtener la posición de la torreta
+    
+    @Override
+    public void actualizar(double seconds) {
+        // Implementación de la lógica de actualización de la torreta, si es necesaria
+    }
+
+	public void setPos(Point2D pos) {
+		double anchoDeseado = 50;
         double altoDeseado = 50;
 
         // Establece el tamaño fijo de la torreta
@@ -34,20 +42,9 @@ public class Torreta extends Entidad {
         // Asumiendo que pos es el punto donde el usuario hizo clic y queremos que sea el centro de la torreta
         this.setLayoutX(pos.getX() - anchoDeseado / 2);
         this.setLayoutY(pos.getY() - altoDeseado / 2);
-    }
-    
-  //Método para obtener la posición de la torreta
-    public Path getPosTorreta() {
-		Path posTorreta = new Path();
-		posTorreta.getElements().add(new MoveTo(getPos().getX() ,getPos().getY()));
-		return posTorreta;
+        
+		this.pos = pos;
 	}
-
-    @Override
-    public void actualizar(double seconds) {
-        // Implementación de la lógica de actualización de la torreta, si es necesaria
-    }
-
     
     public double getTiempoDisparo() {
         return tiempoDisparo;
@@ -64,7 +61,10 @@ public class Torreta extends Entidad {
     public DoubleProperty rangoProperty() {
         return rango;
     }
-    
+
+	public Point2D getPos() {
+		return pos;
+	}
  
 }
 

@@ -41,7 +41,6 @@ public class Bala extends Entidad {
 //		setPos(getX() + ix, getY() + iy);
 	}
 
-	
 	public void disparar(Point2D target) {
 		double distancia = getPos().distance(target);
 		

@@ -15,7 +15,7 @@ public class Torreta extends Entidad {
     private DoubleProperty rango = new SimpleDoubleProperty();
 
     public Torreta() {
-        super("/img/torretas/torreta1.png");
+        super("/assets/torretas/torreta1.png");
         // Aquí puedes inicializar las propiedades si es necesario, por ejemplo:
         // cost.set(100); // Ejemplo de coste
         // rango.set(150.0); // Ejemplo de rango
@@ -35,7 +35,13 @@ public class Torreta extends Entidad {
         this.setLayoutX(pos.getX() - anchoDeseado / 2);
         this.setLayoutY(pos.getY() - altoDeseado / 2);
     }
-
+    
+  //Método para obtener la posición de la torreta
+    public Path getPosTorreta() {
+		Path posTorreta = new Path();
+		posTorreta.getElements().add(new MoveTo(getPos().getX() ,getPos().getY()));
+		return posTorreta;
+	}
 
     @Override
     public void actualizar(double seconds) {

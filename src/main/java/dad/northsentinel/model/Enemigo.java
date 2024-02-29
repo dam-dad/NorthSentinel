@@ -4,8 +4,6 @@ import javafx.animation.Interpolator;
 import javafx.animation.PathTransition;
 import javafx.animation.Timeline;
 import javafx.geometry.Point2D;
-import javafx.scene.image.ImageView;
-import javafx.scene.shape.LineTo;
 import javafx.scene.shape.MoveTo;
 import javafx.scene.shape.Path;
 import javafx.util.Duration;
@@ -19,7 +17,7 @@ public class Enemigo extends Entidad {
     private PathTransition transition; // Para manejar el movimiento a lo largo del camino
 
     public Enemigo() {
-        super("/img/enemigos/enemigo1.png");
+        super("/assets/enemigos/enemigo1.png");
         this.vida = 100; // Ejemplo de vida inicial, ajusta según sea necesario
         this.velocidad = 1.0; // Ejemplo de velocidad, ajusta según sea necesario
         iniciarMovimiento();
@@ -54,7 +52,7 @@ public class Enemigo extends Entidad {
 		Path posEnemigo = new Path();
 		posEnemigo.getElements().add(new MoveTo(getPos().getX() ,getPos().getY()));
 		return posEnemigo;
-	}    
+	}
     
     // Métodos getters y setters para vida, destino, origen, velocidad, etc., según sea necesario
     public int getVida() {

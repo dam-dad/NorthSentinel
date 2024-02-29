@@ -3,9 +3,7 @@ package dad.northsentinel.model;
 import java.util.ArrayList;
 import java.util.List;
 
-import javafx.animation.Interpolator;
 import javafx.animation.KeyFrame;
-import javafx.animation.PathTransition;
 import javafx.animation.Timeline;
 import javafx.geometry.Point2D;
 import javafx.scene.image.Image;
@@ -29,87 +27,80 @@ public class Mapa extends StackPane {
 	private static final int VACIO = 10;
 	
 	int[][] capa1 = { 
-			{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, 
-			{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-			{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, 
-			{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-			{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, 
-			{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-			{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, 
-			{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-			{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, 
-			{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-			{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, 
-			{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-			{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, 
-			{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-			{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, 
+			{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, 
+			{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+			{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, 
+			{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+			{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, 
+			{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+			{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, 
+			{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+			{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, 
+			{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+			{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, 
+			{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+			{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, 
+			{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+			{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, 
 	};
+	
+	private static final Image[] assets_agua = { 
+			new Image("assets/agua/agua.png"),
+	};
+	
+	int[][] capa2 = { 
+			{ 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10 },
+			{  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2 }, 
+			{  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1 },
+			{  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0 }, 
+			{  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0 },
+			{  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0 }, 
+			{  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0 },
+			{  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0 }, 
+			{  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0 },
+			{  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0 }, 
+			{  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0 },
+			{  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0 },
+			{  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1 },
+			{  3,  3,  3,  3,  3,  3,  3,  3,  3,  3,  3,  3,  3,  3,  3,  3,  3,  3,  3,  3,  3,  3,  3,  3,  3,  3 },
+			{ 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10 }, 
+	};
+	
+	private static final Image [] assets_mapa = { 
+			new Image("assets/terreno/suelo_verde.png"), //0
+			new Image("assets/terreno/suelo_arena.png"), //1
+			new Image("assets/terreno/orilla_arriba.png"), //2
+			new Image("assets/terreno/orilla_abajo.png"), //3	
 
-	int[][] capa = { 
-			{ 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10 },
-			{ 10,  1,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  3, 10 }, 
-			{ 10,  0,  8,  9,  8,  8,  8,  8,  8,  8,  8,  8,  8,  4, 10 },
-			{ 10,  0,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  8,  4, 10 }, 
-			{ 10,  0,  8,  9,  9,  9,  9,  9,  9,  9,  9,  9,  8,  4, 10 },
-			{ 10,  0,  8,  9,  9,  9,  9,  9,  9,  9,  9,  9,  8,  4, 10 }, 
-			{ 10,  0,  8,  9,  9,  9,  9,  9,  9,  9,  9,  9,  8,  4, 10 },
-			{ 10,  0,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  8,  4, 10 }, 
-			{ 10,  0,  8,  9,  9,  9,  9,  9,  9,  9,  9,  9,  8,  4, 10 },
-			{ 10,  0,  8,  9,  9,  9,  9,  9,  9,  9,  9,  9,  8,  4, 10 }, 
-			{ 10,  0,  8,  9,  9,  9,  9,  9,  9,  9,  9,  9,  8,  4, 10 },
-			{ 10,  0,  8,  9,  9,  9,  9,  9,  9,  9,  9,  9,  8,  4, 10 }, 
-			{ 10,  0,  8,  8,  8,  8,  8,  8,  8,  8,  9,  8,  8,  4, 10 },
-			{ 10,  7,  6,  6,  6,  6,  6,  6,  6,  6,  6,  6,  6,  5, 10 },
-			{ 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10 }, 
 	};
 
 	int[][] capa3 = { 
-			{ 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10 },
-			{ 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10 },
-			{ 10, 10, 10, 9, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10 },
-			{ 10, 10, 9,  7,  1,  1,  1,  1,  1,  1,  1,  1,  8, 10, 10 },
-			{ 10, 10, 10,  2, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10 },
-			{ 10, 10, 10,  2, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10 },
-			{ 10, 10, 10,  2, 10, 10, 10, 10, 10, 10, 9, 10, 10, 10, 10 },
-			{ 10, 10, 9,  6,  1,  1,  1,  1,  1,  1,  5, 9, 10, 10, 10 },
-			{ 10, 10, 10, 9, 10, 10, 10, 10, 10, 10,  2, 10, 10, 10, 10 },
-			{ 10, 10, 10, 10, 10, 10, 10, 10, 10, 10,  2, 10, 10, 10, 10 },
-			{ 10, 10, 10, 10, 10, 10, 10, 10, 10, 10,  2, 10, 10, 10, 10 },
-			{  0,  3,  1,  1,  1,  1,  1,  1,  1,  1,  4, 9, 10, 10, 10 },
-			{ 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 9, 10, 10, 10, 10 },
-			{ 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10 },
-			{ 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10 }, 
+			{ 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10 },
+			{ 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10 },
+			{ 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10 },
+			{ 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10 },
+			{ 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10,  6, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10 },
+			{ 10, 10, 10, 10, 10, 10, 10, 10, 10,  5,  0,  0,  0,  0,  0,  0,  0,  3, 10, 10, 10, 10, 10, 10, 10, 10 },
+			{ 10, 10, 10, 10, 10, 10, 10, 10, 10,  1, 10, 10, 10, 10, 10, 10, 10,  1, 10, 10, 10, 10, 10, 10, 10, 10 },
+			{ 10,  6, 10, 10, 10, 10, 10,  6, 10,  1, 10,  6, 10, 10, 10,  6, 10,  1, 10, 10, 10, 10, 10, 10, 10, 10 },
+			{ 10, 10, 10, 10, 10, 10, 10, 10, 10,  1, 10, 10, 10, 10, 10, 10, 10,  1, 10,  6, 10, 10, 10, 10, 10, 10 },
+			{  0,  0,  0,  0,  0,  0,  0,  0,  0,  2, 10, 10, 10, 10, 10, 10, 10,  1, 10, 10, 10, 10, 10, 10, 10, 10 },
+			{ 10, 10, 10, 10, 10,  6, 10, 10, 10, 10, 10, 10, 10, 10, 10,  6, 10,  4,  0,  0,  0,  0,  0,  0,  0,  0 },
+			{ 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10,  6, 10, 10, 10 },
+			{ 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10 },
+			{ 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10 },
+			{ 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10 }, 
+			
 	};
 	
 	private static final Image[] assets_camino = { 
-			new Image("img/camino/barco.png"), 
-			new Image("img/camino/camino_central.png"),
-			new Image("img/camino/camino_arriba.png"), 
-			new Image("img/camino/orilla_camino.png"),
-			new Image("img/camino/esquina_1.png"), 
-			new Image("img/camino/esquina_2.png"),
-			new Image("img/camino/esquina_3.png"), 
-			new Image("img/camino/esquina_4.png"),
-			new Image("img/camino/base.png"),
-			new Image("img/terreno/suelo_torreta.png"),
-	};
-
-	private static final Image[] assets_agua = { 
-			new Image("img/agua/agua.png"),
-	};
-
-	private static final Image [] assets = { 
-			new Image("img/terreno/orilla_izquierda.png"),
-			new Image("img/terreno/orilla_arriba_izquierda.png"), 
-			new Image("img/terreno/orilla_arriba.png"),
-			new Image("img/terreno/orilla_arriba_derecha.png"), 
-			new Image("img/terreno/orilla_derecha.png"),
-			new Image("img/terreno/orilla_abajo_derecha.png"), 
-			new Image("img/terreno/orilla_abajo.png"),
-			new Image("img/terreno/orilla_abajo_izquierda.png"), 
-			new Image("img/terreno/suelo_arena.png"),
-			new Image("img/terreno/suelo_verde.png"),
+			new Image("assets/camino/camino_central.png"), //0
+			new Image("assets/camino/camino_arriba.png"), //1
+			new Image("assets/camino/esquina_1.png"), //3
+			new Image("assets/camino/esquina_2.png"), //4
+			new Image("assets/camino/esquina_3.png"), //5
+			new Image("assets/camino/esquina_4.png"), //6
+			new Image("assets/camino/suelo_torreta.png"), //7
 	};
 		
 	private GridPane fondo;
@@ -121,22 +112,20 @@ public class Mapa extends StackPane {
 	public Mapa() {
 		super();
 		fondo = crearCapa(capa1, assets_agua);
-		mapa = crearCapa(capa, assets);
+		mapa = crearCapa(capa2, assets_mapa);
 		camino = crearCapa(capa3, assets_camino);
-		
-		// path del camino que siguen los enemigos
-		
-		// Crea el Path para el camino
+				
+		// Crea el Path para el camino para los enemigos
 		path = new Path();
 		path.setStroke(Color.RED);
 		path.setStrokeWidth(3);
 
-		path.getElements().add(new MoveTo(50, 575));
-		path.getElements().add(new LineTo(525, 575));
-		path.getElements().add(new LineTo(525, 375));
-		path.getElements().add(new LineTo(175, 375));
-		path.getElements().add(new LineTo(175, 175));
-		path.getElements().add(new LineTo(600, 175));
+		path.getElements().add(new MoveTo(0,  475));
+		path.getElements().add(new LineTo(475, 475));
+		path.getElements().add(new LineTo(475, 275));
+		path.getElements().add(new LineTo(875, 275));
+		path.getElements().add(new LineTo(875, 525));
+		path.getElements().add(new LineTo(1310,525));
 		
 		area = new Pane(); // aquí es donde se mueven las entidades (balas, torres, enemigos)
 		area.getChildren().add(path);
@@ -150,14 +139,11 @@ public class Mapa extends StackPane {
 			
 			Bala bala = new Bala(new Point2D(300, 300));
 			bala.disparar(target);
-			System.out.println(target);
 
 			area.getChildren().add(bala);
 			
-			
 			if (esPosicionValida(target)) {
-		        
-		        colocarTorretaConFondo(target); // Usa el nuevo método para posicionar la torreta
+		        colocarTorretaConFondo(target);
 		        System.out.println("Torreta colocada en posición válida: " + target);
 		    } else {
 		        System.out.println("Posición no válida para colocar torreta.");
@@ -173,7 +159,7 @@ public class Mapa extends StackPane {
 	    nuevaTorreta.setTorretaPos(pos);
 
 	    // Crea un rectángulo para el fondo
-	    Rectangle fondoVerde = new Rectangle(50, 50, Color.GREEN);
+	    Rectangle fondoVerde = new Rectangle(50, 50, Color.BLACK);
 
 	    // Crea un StackPane para contener el fondo y la torreta
 	    StackPane torretaConFondo = new StackPane();
@@ -190,16 +176,18 @@ public class Mapa extends StackPane {
 	private boolean esPosicionValida(Point2D target) {
 	    // Lista de todas las posiciones centrales válidas para colocar torretas
 	    List<Point2D> posicionesValidas = List.of(
-	        new Point2D(576, 576),
-	        new Point2D(175, 127), 
-	        new Point2D(574, 376),  
-	        new Point2D(524, 327),
-	        new Point2D(124, 176), 
-	        new Point2D(525, 626),
-	        new Point2D(175, 428), 
-	        new Point2D(125, 378)
+	        new Point2D(275, 525),
+	        new Point2D(775, 525), 
+	        new Point2D(575, 375),  
+	        new Point2D(1125,575),
+	        new Point2D(775, 375), 
+	        new Point2D(375, 375),
+	        new Point2D(75,  375),
+	        new Point2D(975, 425),
+	        new Point2D(675, 225)
+
 	    );
-	    double margenError = 5; // Tolerancia alrededor de cada posición válida
+	    double margenError = 25; // Tolerancia alrededor de cada posición válida
 
 	    // Verifica si el punto de clic está dentro del margen de error de alguna posición válida
 	    for (Point2D pos : posicionesValidas) {
@@ -210,8 +198,6 @@ public class Mapa extends StackPane {
 	    }
 	    return false; // El punto de clic no está dentro de ninguna posición válida
 	}
-
-	
 	
     // Método para crear los enemigos en intervalos de tiempo
     public void crearEnemigos() {
@@ -238,28 +224,6 @@ public class Mapa extends StackPane {
 		area.getChildren().remove(entidad);
 	}
 	
-	public GridPane getFondo() {
-		return fondo;
-	}
-	
-	public GridPane getMapa() {
-		return mapa;
-	}
-	
-	public GridPane getCamino() {
-		return camino;
-	}
-	
-	public Pane getArea() {
-		return area;
-		
-	}
-	
-	public Path getPath() {
-		return path;
-	}
-	
-	
 	private GridPane crearCapa(int[][] capa, Image[] assets) {
 		GridPane pane = new GridPane();
 		pane.setGridLinesVisible(false);
@@ -282,12 +246,31 @@ public class Mapa extends StackPane {
 				ImageView view = (capa[j][i] != VACIO) ? new ImageView(assets[capa[j][i]]) : new ImageView();
 				view.setFitHeight(50);
 				view.setFitWidth(50);
-				int x = i; // Guardar la posición x del ImageView
-	            int y = j; // Guardar la posición y del ImageView
 				pane.add(view, i, j);
 			}
 		}
 		return pane;
+	}
+	
+	public GridPane getFondo() {
+		return fondo;
+	}
+	
+	public GridPane getMapa() {
+		return mapa;
+	}
+	
+	public GridPane getCamino() {
+		return camino;
+	}
+	
+	public Pane getArea() {
+		return area;
+		
+	}
+	
+	public Path getPath() {
+		return path;
 	}
 	
 }

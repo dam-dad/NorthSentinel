@@ -1,13 +1,11 @@
 package dad.northsentinel.model;
 
-import javafx.animation.AnimationTimer;
 import javafx.animation.Interpolator;
 import javafx.animation.PathTransition;
 import javafx.geometry.Point2D;
 import javafx.scene.shape.LineTo;
 import javafx.scene.shape.MoveTo;
 import javafx.scene.shape.Path;
-import javafx.scene.shape.PathElement;
 import javafx.util.Duration;
 
 public class Bala extends Entidad {
@@ -16,7 +14,7 @@ public class Bala extends Entidad {
 	private double velocidad = 800;
 	
 	public Bala(Point2D origen) {
-		super("/img/enemy.png");
+		super("/assets/balas/bala1.png");
 		setPos(origen);
 	}
 	
@@ -48,7 +46,7 @@ public class Bala extends Entidad {
 		double distancia = getPos().distance(target);
 		
 		Duration duracion = Duration.seconds(distancia / getVelocidad());
-		System.out.println("velocidad=" + getVelocidad() + ", duracion=" + duracion.toSeconds() + ", distancia=" + distancia);
+		//System.out.println("velocidad=" + getVelocidad() + ", duracion=" + duracion.toSeconds() + ", distancia=" + distancia);
 		
 		Path ruta = getRuta(target);
 		
@@ -60,7 +58,7 @@ public class Bala extends Entidad {
 		transition.setNode(this);
 		transition.setDuration(duracion);
 		transition.setOnFinished(e -> {
-			System.out.println("boom!");
+			//System.out.println("boom!");
 			destruir();
 			Mapa.supermapa.getArea().getChildren().remove(ruta);
 		});

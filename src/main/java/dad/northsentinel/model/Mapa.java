@@ -59,8 +59,8 @@ public class Mapa extends StackPane {
 			{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
 			{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
 			{ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 },
-			{ 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 }, { 10, 10, 10, 10, 10, 10,
-					10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10 }, };
+			{ 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 }, 
+			{ 10, 10, 10, 10, 10, 10,10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10 }, };
 
 	private static final Image[] assets_mapa = { new Image("assets/terreno/suelo_verde.png"), // 0
 			new Image("assets/terreno/suelo_arena.png"), // 1
@@ -131,18 +131,19 @@ public class Mapa extends StackPane {
 
 			Point2D target = new Point2D(e.getX(), e.getY());
 
-			// Bala bala = new Bala(new Point2D(300, 300));
-			// bala.disparar(target);
-
-			// area.getChildren().add(bala);
+//			Bala bala = new Bala(new Point2D(300, 300));
+//			bala.disparar(target);
+//
+//			area.getChildren().add(bala);
 
 			Torreta nuevaTorreta = new Torreta(new Point2D(275, 525));
-			Torreta nuevaTorreta1 = new Torreta(new Point2D(775, 525));
-			
+//			
 			Bala bala = new Bala(nuevaTorreta.getPos());
 			bala.disparar(target);
 			area.getChildren().add(bala);
 			
+			Torreta nuevaTorreta1 = new Torreta(new Point2D(775, 525));
+//			
 			Bala bala1 = new Bala(nuevaTorreta1.getPos());
 			bala1.disparar(target);
 			area.getChildren().add(bala1);
@@ -152,7 +153,7 @@ public class Mapa extends StackPane {
 				colocarTorretaConFondo(target, nuevaTorreta1);
 				System.out.println("Torreta colocada en posición válida: " + target);
 			} else {
-				System.out.println("Posición no válida para colocar torreta.");
+				//System.out.println("Posición no válida para colocar torreta.");
 			}
 
 		});
@@ -176,15 +177,15 @@ public class Mapa extends StackPane {
 	private boolean esPosicionValida(Point2D target) {
 		// Lista de todas las posiciones centrales válidas para colocar torretas
 		List<Point2D> posicionesValidas = List.of(
-						new Point2D(275 , 525), 
-						new Point2D(775, 525), 
-						new Point2D(575, 375),
-						new Point2D(1125, 575), 
-						new Point2D(775, 375), 
-						new Point2D(375, 375), 
-						new Point2D(75  , 375), 
-						new Point2D(975, 425), 
-						new Point2D(675, 225)
+						new Point2D(275 , 525),
+						new Point2D(775, 525) 
+//						new Point2D(575, 375),
+//						new Point2D(1125, 575), 
+//						new Point2D(775, 375), 
+//						new Point2D(375, 375), 
+//						new Point2D(75  , 375), 
+//						new Point2D(975, 425), 
+//						new Point2D(675, 225)
 		);
 		double margenError = 25; // Tolerancia alrededor de cada posición válida
 

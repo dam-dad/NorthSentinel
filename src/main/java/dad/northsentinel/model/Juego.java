@@ -23,6 +23,8 @@ public class Juego extends AnimationTimer {
 	   // mapa.crearEnemigos();
 		super.start();
 	}
+	
+	
 
 	@Override
 	public void handle(long ahora) {
@@ -34,6 +36,7 @@ public class Juego extends AnimationTimer {
 	private void actualizar(double segundos) {
 		fps.set(1 / segundos);
 		entidades.forEach(entidad -> entidad.actualizar(segundos));
+		
 	}
 
 	public Mapa getMapa() {

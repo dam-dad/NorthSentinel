@@ -50,6 +50,15 @@ public class Enemigo extends Entidad {
             transition.play(); // Inicia inmediatamente si no hay retraso
         }
     }
+    
+ // Método para detectar impacto de bala
+    public void detectarImpacto(Bala bala) {
+        if (this.getBoundsInParent().intersects(bala.getBoundsInParent())) {
+            System.out.println("¡El enemigo ha sido impactado por la bala!");
+        } else {
+            System.out.println("La bala no ha impactado al enemigo.");
+        }
+    }
 
 
     // Suponiendo que ya tienes implementado el método destruir()

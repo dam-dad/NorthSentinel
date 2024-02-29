@@ -98,6 +98,8 @@ public class MainController implements Initializable {
         view.setCenter(menuController.getView());
     }
     
+    
+    
     public MediaPlayer getMediaPlayerMenu() {
 		return mediaPlayerMenu;
 	}

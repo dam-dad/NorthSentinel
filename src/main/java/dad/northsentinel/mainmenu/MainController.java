@@ -35,6 +35,8 @@ public class MainController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+    	
+    	
         
         String menuMusicPath = new File("src/main/resources/soundTrack/musicamenu.mp3").toURI().toString();
         Media mediaMenu = new Media(menuMusicPath);
@@ -58,6 +60,8 @@ public class MainController implements Initializable {
             mediaPlayerJuego = new MediaPlayer(mediaJuego);
             mediaPlayerJuego.play();
             view.setCenter(playController.getView());
+                        
+
         });
 
         settingsController = new SettingsController();
@@ -76,6 +80,19 @@ public class MainController implements Initializable {
             mediaPlayerJuego.stop();
             mediaPlayerMenu.play();
             view.setCenter(menuController.getView());
+            
+            
+        });
+
+        // Listener para el control de volumen
+        settingsController.volumeSlider.valueProperty().addListener((observable, oldValue, newValue) -> {
+            double volume = newValue.doubleValue() / 100;
+            if (mediaPlayerMenu != null) {
+                mediaPlayerMenu.setVolume(volume);
+            }
+            if (mediaPlayerJuego != null) {
+                mediaPlayerJuego.setVolume(volume);
+            }
         });
         
         view.setCenter(menuController.getView());
@@ -94,5 +111,6 @@ public class MainController implements Initializable {
     }
 
 }
+
 
 

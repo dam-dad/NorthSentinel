@@ -42,32 +42,31 @@ public class Bala extends Entidad {
 	}
 
 	public void disparar(Point2D target) {
-		if (target == null) {
-	        return; // Termina la ejecución del método si target es null
-	    }
+        if (target == null) {
+            return; // Termina la ejecución del método si target es null
+        }
 
-	    double distancia = getPos().distance(target);
-	    
-	    Duration duracion = Duration.seconds(distancia / getVelocidad());
-	    
-	    Path ruta = getRuta(target);
-		
-		Mapa.supermapa.getArea().getChildren().add(ruta);
-		
-		PathTransition transition = new PathTransition();
-		transition.setInterpolator(Interpolator.LINEAR);
-		transition.setPath(getRuta(target));
-		transition.setNode(this);
-		transition.setDuration(duracion);
-		transition.setOnFinished(e -> {
-			//System.out.println("boom!");
-		
-			destruir();
-			Mapa.supermapa.getArea().getChildren().remove(ruta);
-		});
-		transition.play();
-		
-	}
+        double distancia = getPos().distance(target);
+
+        Duration duracion = Duration.seconds(distancia / getVelocidad());
+
+        Path ruta = getRuta(target);
+
+        Mapa.supermapa.getArea().getChildren().add(ruta);
+
+        PathTransition transition = new PathTransition();
+        transition.setInterpolator(Interpolator.LINEAR);
+        transition.setPath(getRuta(target));
+        transition.setNode(this);
+        transition.setDuration(duracion);
+        transition.setOnFinished(e -> {
+            //System.out.println("boom!");
+            destruir();
+            Mapa.supermapa.getArea().getChildren().remove(ruta);
+        });
+        transition.play();
+
+    }
 	
 
 

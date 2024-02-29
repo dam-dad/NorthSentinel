@@ -46,10 +46,28 @@ public class Torreta extends Entidad {
 	}
 	
 	public void dispararBala(Point2D target, Pane area) {
-	    Bala bala = new Bala(this.getPos());
-	    bala.disparar(target);
-	    area.getChildren().add(bala);
-	}
+        Bala bala = new Bala(this.getPos());
+        bala.disparar(target);
+        area.getChildren().add(bala);
+
+        if (target != null) { // Verificar si target no es nulo
+            // Calcular el ángulo entre la posición actual de la torreta y el destino de la bala
+            double deltaX = target.getX() - this.getPos().getX();
+            double deltaY = target.getY() - this.getPos().getY();
+
+            // Calcular el ángulo en radianes
+            double angleRad = Math.atan2(deltaY, deltaX);
+
+            // Convertir el ángulo a grados y ajustar la orientación
+            double angleDegrees = Math.toDegrees(angleRad) + 90;
+
+            // Asegurarse de que el ángulo esté en el rango [0, 360)
+            angleDegrees = (angleDegrees + 360) % 360;
+
+            // Girar la torreta hacia el ángulo calculado
+            this.setRotate(angleDegrees);
+        }
+    }
 
     
     public double getTiempoDisparo() {

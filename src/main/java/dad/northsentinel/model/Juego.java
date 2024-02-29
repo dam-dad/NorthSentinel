@@ -23,8 +23,6 @@ public class Juego extends AnimationTimer {
 	   // mapa.crearEnemigos();
 		super.start();
 	}
-	
-	
 
 	@Override
 	public void handle(long ahora) {

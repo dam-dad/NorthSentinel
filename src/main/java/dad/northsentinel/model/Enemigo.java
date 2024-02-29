@@ -20,7 +20,7 @@ public class Enemigo extends Entidad {
     public Enemigo() {
         super("/assets/enemigos/enemigo1.png");
         this.vida = 100; // Ejemplo de vida inicial, ajusta según sea necesario
-        this.velocidad = 1.0; // Ejemplo de velocidad, ajusta según sea necesario
+        this.velocidad = 0.25; // Ejemplo de velocidad, ajusta según sea necesario
         //iniciarMovimiento();
            
     }
@@ -40,7 +40,6 @@ public class Enemigo extends Entidad {
         transition.setInterpolator(Interpolator.LINEAR);
         transition.setCycleCount(1); // Ejecuta solo una vez
         transition.setOnFinished(event -> this.destruir());
-
         // Aplica el retraso antes de iniciar el movimiento
         if (delay > 0) {
             PauseTransition pause = new PauseTransition(Duration.seconds(delay));
@@ -50,16 +49,6 @@ public class Enemigo extends Entidad {
             transition.play(); // Inicia inmediatamente si no hay retraso
         }
     }
-    
- // Método para detectar impacto de bala
-    public void detectarImpacto(Bala bala) {
-        if (this.getBoundsInParent().intersects(bala.getBoundsInParent())) {
-            System.out.println("¡El enemigo ha sido impactado por la bala!");
-        } else {
-            System.out.println("La bala no ha impactado al enemigo.");
-        }
-    }
-
 
     // Suponiendo que ya tienes implementado el método destruir()
     @Override

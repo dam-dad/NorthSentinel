@@ -17,7 +17,7 @@ public class Torreta extends Entidad {
     public Torreta(Point2D pos) {
         super("/assets/torretas/torreta1.png");
         // Aquí puedes inicializar las propiedades si es necesario, por ejemplo:
-        // cost.set(100); // Ejemplo de coste
+        cost.set(100);
         // rango.set(150.0); // Ejemplo de rango
         setPos(pos);
     }

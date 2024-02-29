@@ -2,11 +2,15 @@ package dad.northsentinel.model;
 
 import java.util.ArrayList;
 import java.util.List;
-
+import java.util.Optional;
+import javafx.scene.control.ButtonBar;
+import dad.northsentinel.main.App;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.geometry.Point2D;
 import javafx.scene.Node;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.ColumnConstraints;
@@ -19,6 +23,7 @@ import javafx.scene.shape.LineTo;
 import javafx.scene.shape.MoveTo;
 import javafx.scene.shape.Path;
 import javafx.scene.shape.Rectangle;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 
 public class Mapa extends StackPane {
@@ -121,39 +126,49 @@ public class Mapa extends StackPane {
 		getChildren().addAll(fondo, mapa, camino, area);
 
 		setOnMouseClicked(e -> {
-			// System.out.println(e.getX() + "-" + e.getY());
+            // System.out.println(e.getX() + "-" + e.getY());
 
-			Point2D target = new Point2D(e.getX(), e.getY());
+            Point2D target = new Point2D(e.getX(), e.getY());
 
-//			Bala bala = new Bala(new Point2D(300, 300));
-//			bala.disparar(target);
+//            Bala bala = new Bala(new Point2D(300, 300));
+//            bala.disparar(target);
 //
-//			area.getChildren().add(bala);
+//            area.getChildren().add(bala);
 
-			//Torreta nuevaTorreta = new Torreta(new Point2D(275, 525));
-//			
-			//Bala bala = new Bala(nuevaTorreta.getPos());
-			//bala.disparar(target);
-			//area.getChildren().add(bala);
+            // Torreta nuevaTorreta = new Torreta(new Point2D(275, 525));
 //
-			boolean torretaColocada = false;
+            // Bala bala = new Bala(nuevaTorreta.getPos());
+            // bala.disparar(target);
+            // area.getChildren().add(bala);
 
-		    if (esPosicionValida(target)) {
-		        Torreta torretaExistente = obtenerTorretaEnPosicion(target);
-		        if (torretaExistente == null) {
-		            // No hay una torreta en esta posición, así que colocamos una nueva
-		            Torreta nuevaTorreta = new Torreta(target);
-		            colocarTorreta(target, nuevaTorreta, area);
-		            System.out.println("Torreta colocada en posición válida: " + target);
-		            torretaColocada = true;
-		        }
-		    }
+            if (esPosicionValida(target)) {
+                boolean confirmado = mostrarDialogoColocarTorreta(App.primarySatge, "¿Estás seguro de realizar esta acción? Te costará 100 monedas.");
 
-		    // Disparar balas desde todas las torretas, incluida la nueva si se colocó
-		    for (Torreta torreta : torretas) {
-		        torreta.dispararBala(torretaColocada ? target : null, area);
-		    }
-		});
+                boolean torretaColocada = false;
+
+                if (confirmado) {
+                    System.out.println("El usuario ha confirmado la acción.");
+
+                    Torreta torretaExistente = obtenerTorretaEnPosicion(target);
+                    if (torretaExistente == null) {
+                        Torreta nuevaTorreta = new Torreta(target);
+                        colocarTorreta(target, nuevaTorreta, area);
+                        System.out.println("Torreta colocada en posición válida: " + target);
+                        torretaColocada = true;
+                    }
+
+                    // Disparar balas desde todas las torretas, incluida la nueva si se colocó
+                    for (Torreta torreta : torretas) {
+                        torreta.dispararBala(torretaColocada ? target : null, area);
+                    }
+                } else {
+                    System.out.println("El usuario ha cancelado la acción.");
+                }
+            } else {
+                System.out.println("Posición no válida para colocar torreta.");
+            }
+
+        });
 
 		supermapa = this;
 	}
@@ -273,6 +288,22 @@ public class Mapa extends StackPane {
 		
 		return path;
 	}
+	
+	//Método diálogo de Torretas.
+	public static boolean mostrarDialogoColocarTorreta(Stage stage, String mensaje) {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmar acción");
+        alert.setHeaderText("¿Colocar torreta aquí?");
+        alert.setContentText(mensaje);
+
+        ButtonType botonSi = new ButtonType("Sí", ButtonBar.ButtonData.YES);
+        ButtonType botonNo = new ButtonType("No", ButtonBar.ButtonData.NO);
+        alert.getButtonTypes().setAll(botonSi, botonNo);
+
+        Optional<ButtonType> resultado = alert.showAndWait();
+
+        return resultado.isPresent() && resultado.get() == botonSi;
+    }
 	
 	
 	

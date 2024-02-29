@@ -66,7 +66,6 @@ public class Mapa extends StackPane {
 			new Image("assets/terreno/suelo_arena.png"), // 1
 			new Image("assets/terreno/orilla_arriba.png"), // 2
 			new Image("assets/terreno/orilla_abajo.png"), // 3
-
 	};
 
 	int[][] capa3 = {
@@ -85,7 +84,6 @@ public class Mapa extends StackPane {
 			{ 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10 },
 			{ 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10 },
 			{ 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10 },
-
 	};
 
 	private static final Image[] assets_camino = { new Image("assets/camino/camino_central.png"), // 0
@@ -110,17 +108,8 @@ public class Mapa extends StackPane {
 		camino = crearCapa(capa3, assets_camino);
 
 		// Crea el Path para el camino para los enemigos
-		path = new Path();
-		path.setStroke(Color.RED);
-		path.setStrokeWidth(3);
-
-		path.getElements().add(new MoveTo(0, 475));
-		path.getElements().add(new LineTo(475, 475));
-		path.getElements().add(new LineTo(475, 275));
-		path.getElements().add(new LineTo(875, 275));
-		path.getElements().add(new LineTo(875, 525));
-		path.getElements().add(new LineTo(1310, 525));
-
+		path = crearRuta();
+		
 		area = new Pane(); // aquí es donde se mueven las entidades (balas, torres, enemigos)
 		area.getChildren().add(path);
 
@@ -141,16 +130,9 @@ public class Mapa extends StackPane {
 			Bala bala = new Bala(nuevaTorreta.getPos());
 			bala.disparar(target);
 			area.getChildren().add(bala);
-			
-			Torreta nuevaTorreta1 = new Torreta(new Point2D(775, 525));
-//			
-			Bala bala1 = new Bala(nuevaTorreta1.getPos());
-			bala1.disparar(target);
-			area.getChildren().add(bala1);
-
+//
 			if (esPosicionValida(target)) {
-				colocarTorretaConFondo(target, nuevaTorreta);
-				colocarTorretaConFondo(target, nuevaTorreta1);
+				colocarTorreta(target, nuevaTorreta, area);
 				System.out.println("Torreta colocada en posición válida: " + target);
 			} else {
 				//System.out.println("Posición no válida para colocar torreta.");
@@ -161,24 +143,19 @@ public class Mapa extends StackPane {
 		supermapa = this;
 	}
 
-	public void colocarTorretaConFondo(Point2D pos, Torreta nuevaTorreta) {
-		StackPane torretaConFondo = new StackPane();
-		torretaConFondo.getChildren().addAll(new Rectangle(50, 50, Color.BLACK), nuevaTorreta);
+	public void colocarTorreta(Point2D pos, Torreta nuevaTorreta, Pane area) {
+        // Ajusta la posición de la torreta dentro del área de juego
+        nuevaTorreta.setPos(pos);
 
-		// Ajusta la posición del StackPane, no de la torreta individualmente
-		torretaConFondo.setLayoutX(nuevaTorreta.getPos().getX() - 25); // Ajusta según sea necesario
-		torretaConFondo.setLayoutY(nuevaTorreta.getPos().getY() - 25);
-
-		// Agrega el StackPane al área de juego
-		area.getChildren().add(torretaConFondo);
-
-	}
+        // Agrega la torreta al área de juego
+        area.getChildren().add(nuevaTorreta);
+    }
 
 	private boolean esPosicionValida(Point2D target) {
 		// Lista de todas las posiciones centrales válidas para colocar torretas
 		List<Point2D> posicionesValidas = List.of(
-						new Point2D(275 , 525),
-						new Point2D(775, 525) 
+						new Point2D(275 , 525)
+//						new Point2D(775, 525), 
 //						new Point2D(575, 375),
 //						new Point2D(1125, 575), 
 //						new Point2D(775, 375), 
@@ -246,6 +223,21 @@ public class Mapa extends StackPane {
 			}
 		}
 		return pane;
+	}
+	
+	private Path crearRuta() {
+		path = new Path();
+		path.setStroke(Color.RED);
+		path.setStrokeWidth(3);
+
+		path.getElements().add(new MoveTo(0, 475));
+		path.getElements().add(new LineTo(475, 475));
+		path.getElements().add(new LineTo(475, 275));
+		path.getElements().add(new LineTo(875, 275));
+		path.getElements().add(new LineTo(875, 525));
+		path.getElements().add(new LineTo(1310, 525));
+		
+		return path;
 	}
 
 	public GridPane getFondo() {

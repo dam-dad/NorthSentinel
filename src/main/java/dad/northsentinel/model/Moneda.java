@@ -7,14 +7,14 @@ import javafx.beans.property.SimpleDoubleProperty;
 
 public class Moneda {
 	
-private DoubleProperty	moneda = new SimpleDoubleProperty();
+private DoubleProperty	monedas = new SimpleDoubleProperty();
 	
 	public Moneda(){
 		setMoneda(100);	
 	}
 	
 	public final DoubleProperty monedaProperty() {
-		return this.moneda;
+		return this.monedas;
 	}
 
 	public final double getmoneda() {

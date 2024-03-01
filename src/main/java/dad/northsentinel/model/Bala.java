@@ -8,6 +8,8 @@ import javafx.geometry.Point2D;
 import javafx.scene.shape.LineTo;
 import javafx.scene.shape.MoveTo;
 import javafx.scene.shape.Path;
+import javafx.scene.shape.Rectangle;
+import javafx.scene.shape.Shape;
 import javafx.util.Duration;
 
 public class Bala extends Entidad {
@@ -68,13 +70,13 @@ public class Bala extends Entidad {
             destruir();
             Mapa.supermapa.getArea().getChildren().remove(ruta);
             
-            
         });
         transition.play();
 
     }
 	
-	
-
-
+	@Override
+	public Shape getCollisionShape() {
+		return new Rectangle(50, 50);
+	}
 }

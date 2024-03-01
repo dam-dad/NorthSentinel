@@ -31,6 +31,7 @@ import javafx.util.Duration;
 public class Mapa extends StackPane {
 
 	private List<Torreta> torretas = new ArrayList<>();
+	private List<Entidad> entidades = new ArrayList<>();
 
 	public static Mapa supermapa;
 
@@ -152,6 +153,10 @@ public class Mapa extends StackPane {
 		supermapa = this;
 	}
 
+	public List<Entidad> getEntidades() {
+		return entidades;
+	}
+	
 	private Torreta obtenerTorretaEnPosicion(Point2D posicion) {
 		for (Torreta torreta : torretas) {
 			if (torreta.getPos().equals(posicion)) {
@@ -170,6 +175,7 @@ public class Mapa extends StackPane {
 
 		// Agrega la torreta a la lista de torretas del mapa
 		torretas.add(nuevaTorreta);
+		entidades.add(nuevaTorreta);
 	}
 
 	private boolean esPosicionValida(Point2D target) {
@@ -199,6 +205,7 @@ public class Mapa extends StackPane {
 				Enemigo enemigo = new Enemigo();
 				enemigo.setPos(new Point2D(primerPunto.getX(), primerPunto.getY()));
 				getArea().getChildren().add(enemigo);
+				Mapa.supermapa.getEntidades().add(enemigo);
 				enemigo.setVisible(false);
 				enemigo.iniciarMovimiento(i * 2); // Asegura pasar el retraso como argumento
 			}
@@ -208,6 +215,7 @@ public class Mapa extends StackPane {
 	}
 
 	public void destruir(Entidad entidad) {
+		entidades.remove(entidad);
 		area.getChildren().remove(entidad);
 	}
 

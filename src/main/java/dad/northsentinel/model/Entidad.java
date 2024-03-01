@@ -2,6 +2,7 @@ package dad.northsentinel.model;
 
 import javafx.geometry.Point2D;
 import javafx.scene.image.ImageView;
+import javafx.scene.shape.Shape;
 
 public abstract class Entidad extends ImageView {
 	
@@ -25,5 +26,9 @@ public abstract class Entidad extends ImageView {
 	}
 	
 	public abstract void actualizar(double seconds);
-
+	public abstract Shape getCollisionShape();
+	
+	public boolean comprobarColision(Entidad entidad) {
+		return (getCollisionShape() != null && entidad.getCollisionShape() != null && getCollisionShape().intersects(entidad.getCollisionShape().getLayoutBounds()));
+	}
 }

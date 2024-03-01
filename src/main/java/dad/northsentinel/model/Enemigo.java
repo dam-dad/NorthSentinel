@@ -11,6 +11,8 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.geometry.Point2D;
 import javafx.scene.shape.MoveTo;
 import javafx.scene.shape.Path;
+import javafx.scene.shape.Rectangle;
+import javafx.scene.shape.Shape;
 import javafx.util.Duration;
 
 public class Enemigo extends Entidad {
@@ -84,6 +86,10 @@ public class Enemigo extends Entidad {
 		return posEnemigo;
 	}
     
+    @Override
+	public Shape getCollisionShape() {
+		return new Rectangle(50, 50);
+	}
     
     // Métodos getters y setters para vida, destino, origen, velocidad, etc., según sea necesario
     public int getVida() {

@@ -6,6 +6,8 @@ import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.geometry.Point2D;
 import javafx.scene.layout.Pane;
+import javafx.scene.shape.Rectangle;
+import javafx.scene.shape.Shape;
 
 public class Torreta extends Entidad {
 
@@ -49,6 +51,7 @@ public class Torreta extends Entidad {
         Bala bala = new Bala(this.getPos());
         bala.disparar(target);
         area.getChildren().add(bala);
+        Mapa.supermapa.getEntidades().add(bala);
 
         if (target != null) { // Verificar si target no es nulo
             // Calcular el ángulo entre la posición actual de la torreta y el destino de la bala
@@ -68,6 +71,11 @@ public class Torreta extends Entidad {
             this.setRotate(angleDegrees);
         }
     }
+	
+	@Override
+	public Shape getCollisionShape() {
+		return null;
+	}
 
     
     public double getTiempoDisparo() {

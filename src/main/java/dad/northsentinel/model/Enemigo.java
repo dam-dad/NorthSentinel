@@ -1,5 +1,6 @@
 package dad.northsentinel.model;
 
+
 import javafx.animation.Interpolator;
 import javafx.animation.PathTransition;
 import javafx.animation.PauseTransition;
@@ -10,6 +11,7 @@ import javafx.scene.shape.Path;
 import javafx.util.Duration;
 
 public class Enemigo extends Entidad {
+
 
     private int vida;
     private Point2D destino;
@@ -55,7 +57,8 @@ public class Enemigo extends Entidad {
     public void destruir() {
         // Elimina este enemigo de la pantalla o del contenedor padre
         Mapa.supermapa.destruir(this);
-        
+    
+    
     }
 
     public void detenerMovimiento() {
@@ -70,6 +73,7 @@ public class Enemigo extends Entidad {
 		posEnemigo.getElements().add(new MoveTo(getPos().getX() ,getPos().getY()));
 		return posEnemigo;
 	}
+    
     
     // Métodos getters y setters para vida, destino, origen, velocidad, etc., según sea necesario
     public int getVida() {

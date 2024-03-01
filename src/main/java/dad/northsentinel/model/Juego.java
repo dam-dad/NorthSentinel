@@ -11,6 +11,8 @@ import javafx.geometry.Point2D;
 public class Juego extends AnimationTimer {
 
 	private static final double NANO_A_SEGUNDOS = 1e-9;
+	
+
 
 	private DoubleProperty fps = new SimpleDoubleProperty();
 
@@ -34,6 +36,7 @@ public class Juego extends AnimationTimer {
 	        mapa.getTorretas().forEach(torreta -> torreta.dispararBala(target, mapa.getArea()));
 	    });
 	}
+	
 
 	@Override
 	public void handle(long ahora) {
@@ -63,5 +66,7 @@ public class Juego extends AnimationTimer {
 	public final void setFps(final double fps) {
 		this.fpsProperty().set(fps);
 	}
+	
 
+	
 }

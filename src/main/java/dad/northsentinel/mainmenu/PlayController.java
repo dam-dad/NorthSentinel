@@ -37,7 +37,7 @@ public class PlayController implements Initializable {
     private Label monedaLabel;
 
     @FXML
-    private Label videLabel;
+    private Label vidaLabel;
 
 	public PlayController() {
 		try {
@@ -48,6 +48,8 @@ public class PlayController implements Initializable {
 			throw new RuntimeException(e);
 		}
 	}
+	
+	
 	
 	@FXML
 	void onGoBack(ActionEvent event) {
@@ -81,5 +83,7 @@ public class PlayController implements Initializable {
 	public BorderPane getView() {
 		return view;
 	}
+	
+	
 
 }

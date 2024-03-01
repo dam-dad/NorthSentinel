@@ -5,6 +5,7 @@ import javafx.animation.Interpolator;
 import javafx.animation.PathTransition;
 import javafx.animation.PauseTransition;
 import javafx.animation.Timeline;
+import javafx.application.Platform;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.geometry.Point2D;
@@ -48,10 +49,14 @@ public class Enemigo extends Entidad {
         // Aplica el retraso antes de iniciar el movimiento
         if (delay > 0) {
             PauseTransition pause = new PauseTransition(Duration.seconds(delay));
-            pause.setOnFinished(event -> transition.play());
+            pause.setOnFinished(event -> {
+            	transition.play();
+            	Platform.runLater(() -> setVisible(true));
+            });
             pause.play();
         } else {
             transition.play(); // Inicia inmediatamente si no hay retraso
+            Platform.runLater(() -> setVisible(true));
         }
     }
 

@@ -7,6 +7,7 @@ import java.util.Optional;
 import dad.northsentinel.main.App;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.application.Platform;
 import javafx.geometry.Point2D;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
@@ -128,21 +129,8 @@ public class Mapa extends StackPane {
 
 			Point2D target = new Point2D(e.getX(), e.getY());
 
-//			Bala bala = new Bala(new Point2D(300, 300));
-//			bala.disparar(target);
-//
-//			area.getChildren().add(bala);
-
-			// Torreta nuevaTorreta = new Torreta(new Point2D(275, 525));
-//			
-			// Bala bala = new Bala(nuevaTorreta.getPos());
-			// bala.disparar(target);
-			// area.getChildren().add(bala);
-
 			if (esPosicionValida(target)) {
 		        boolean confirmado = mostrarDialogoColocarTorreta(App.primarySatge, "¿Estás seguro de realizar esta acción? Te costará 100 monedas.");
-
-		        boolean torretaColocada = false;
 
 		        if (confirmado) {
 		            System.out.println("El usuario ha confirmado la acción.");
@@ -152,12 +140,6 @@ public class Mapa extends StackPane {
 		                Torreta nuevaTorreta = new Torreta(target);
 		                colocarTorreta(target, nuevaTorreta, area);
 		                System.out.println("Torreta colocada en posición válida: " + target);
-		                torretaColocada = true;
-		            }
-
-		            // Disparar balas desde todas las torretas, incluida la nueva si se colocó
-		            for (Torreta torreta : torretas) {
-		                torreta.dispararBala(torretaColocada ? target : null, area);
 		            }
 		        } else {
 		            System.out.println("El usuario ha cancelado la acción.");
@@ -165,7 +147,6 @@ public class Mapa extends StackPane {
 		    } else {
 		        System.out.println("Posición no válida para colocar torreta.");
 		    }
-
 		});
 
 		supermapa = this;
@@ -214,10 +195,11 @@ public class Mapa extends StackPane {
 		Path path = getPath();
 		if (!path.getElements().isEmpty() && path.getElements().get(0) instanceof MoveTo) {
 			MoveTo primerPunto = (MoveTo) path.getElements().get(0);
-			for (int i = 0; i < 1; i++) {
+			for (int i = 0; i < 5; i++) {
 				Enemigo enemigo = new Enemigo();
 				enemigo.setPos(new Point2D(primerPunto.getX(), primerPunto.getY()));
 				getArea().getChildren().add(enemigo);
+				enemigo.setVisible(false);
 				enemigo.iniciarMovimiento(i * 2); // Asegura pasar el retraso como argumento
 			}
 		} else {

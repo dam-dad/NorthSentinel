@@ -74,11 +74,13 @@ public class PlayController implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		
+		
         //vidaLabel.textProperty().bind(Bindings.format("%.0f"));
 		
 		vidaLabel.textProperty().bind(Bindings.createStringBinding(() -> {
 	        int valorVida = vida.getVida();
 	        return valorVida+""; // Formatea el texto según sea necesario
+	        
 	    }, vida.vidaProperty()));
 		
 //		juego.fpsProperty().addListener((o, ov, nv) -> {

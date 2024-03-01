@@ -20,6 +20,11 @@ public class Bala extends Entidad {
 	public Bala(Point2D origen) {
 		super("/assets/balas/bala1.png");
 		setPos(origen);
+		
+		
+		// Establecer tamaño fijo
+		setFitWidth(25); // Ancho fijo de la imagen
+		setFitHeight(25); // Alto fijo de la imagen
 	}
 	
 	public double getVelocidad() {

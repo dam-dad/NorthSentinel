@@ -65,12 +65,11 @@ public class Enemigo extends Entidad {
     // Suponiendo que ya tienes implementado el método destruir()
     @Override
     public void destruir() {
+//    	vidaJuego.setVida(vidaJuego.getVida() - 10); // Resta 10 a la vida
+//        System.out.println("Vida restante: " + vidaJuego.getVida());
         // Elimina este enemigo de la pantalla o del contenedor padre
         Mapa.supermapa.destruir(this);
         
-        vidaJuego.setVida(vidaJuego.getVida() - 10); // Resta 10 a la vida
-        System.out.println("Vida restante: " + vidaJuego.getVida());
-    
     }
 
     public void detenerMovimiento() {

@@ -50,7 +50,8 @@ public class Juego extends AnimationTimer {
 			Mapa.supermapa.getEnemigos().stream()
 				.filter(enemigo -> bala.comprobarColision(enemigo))
 				.forEach(enemigo -> {
-					System.out.println("tain!!! ");
+					enemigo.destruir();
+					bala.destruir();
 					System.out.println(bala);
 					System.out.println(enemigo);
 				});

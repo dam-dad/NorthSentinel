@@ -135,19 +135,19 @@ public class Mapa extends StackPane {
 		        boolean confirmado = mostrarDialogoColocarTorreta(App.primarySatge, "¿Estás seguro de realizar esta acción? Te costará 100 monedas.");
 
 		        if (confirmado) {
-		            System.out.println("El usuario ha confirmado la acción.");
+		            //System.out.println("El usuario ha confirmado la acción.");
 
 		            Torreta torretaExistente = obtenerTorretaEnPosicion(target);
 		            if (torretaExistente == null) {
 		                Torreta nuevaTorreta = new Torreta(target);
 		                colocarTorreta(target, nuevaTorreta, area);
-		                System.out.println("Torreta colocada en posición válida: " + target);
+		                //System.out.println("Torreta colocada en posición válida: " + target);
 		            }
 		        } else {
-		            System.out.println("El usuario ha cancelado la acción.");
+		            //System.out.println("El usuario ha cancelado la acción.");
 		        }
 		    } else {
-		        System.out.println("Posición no válida para colocar torreta.");
+		        //System.out.println("Posición no válida para colocar torreta.");
 		    }
 		});
 

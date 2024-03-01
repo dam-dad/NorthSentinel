@@ -76,7 +76,6 @@ public class Torreta extends Entidad {
 	public Shape getCollisionShape() {
 		return null;
 	}
-
     
     public double getTiempoDisparo() {
         return tiempoDisparo;

@@ -1,24 +1,19 @@
 package dad.northsentinel.model;
 
-
+import dad.northsentinel.mainmenu.PlayController;
 import javafx.animation.Interpolator;
 import javafx.animation.PathTransition;
 import javafx.animation.PauseTransition;
-import javafx.animation.Timeline;
 import javafx.application.Platform;
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
 import javafx.geometry.Point2D;
-import javafx.scene.shape.MoveTo;
-import javafx.scene.shape.Path;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
 import javafx.util.Duration;
 
 public class Enemigo extends Entidad {
 
-	private Vida vidaJuego = new Vida();
-
+	private Vida vidaJuego;
+	
     private int vida;
     private Point2D destino;
     private Point2D origen;
@@ -29,7 +24,6 @@ public class Enemigo extends Entidad {
         super("/assets/enemigos/enemigo1.png");
         //this.vida = 100; // Ejemplo de vida inicial, ajusta según sea necesario
         this.velocidad = 0.25; // Ejemplo de velocidad, ajusta según sea necesario
-        //iniciarMovimiento();
            
     }
 
@@ -65,10 +59,10 @@ public class Enemigo extends Entidad {
     // Suponiendo que ya tienes implementado el método destruir()
     @Override
     public void destruir() {
-//    	vidaJuego.setVida(vidaJuego.getVida() - 10); // Resta 10 a la vida
-//        System.out.println("Vida restante: " + vidaJuego.getVida());
         // Elimina este enemigo de la pantalla o del contenedor padre
         Mapa.supermapa.destruir(this);
+        vidaJuego = new Vida();
+        vidaJuego.reducirVida(10); // Reducir la vida en 10 cuando se destruye un enemigo
         
     }
 
@@ -77,7 +71,6 @@ public class Enemigo extends Entidad {
             transition.stop();
         }
     }
-
     
     @Override
 	public Shape getCollisionShape() {

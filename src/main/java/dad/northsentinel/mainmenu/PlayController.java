@@ -42,7 +42,7 @@ public class PlayController implements Initializable {
     @FXML
     private Label vidaLabel;
 
-	public PlayController() {
+	public PlayController() {		
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/PlayView.fxml"));
 			loader.setController(this);
@@ -51,8 +51,6 @@ public class PlayController implements Initializable {
 			throw new RuntimeException(e);
 		}
 	}
-	
-	
 	
 	@FXML
 	void onGoBack(ActionEvent event) {
@@ -75,14 +73,13 @@ public class PlayController implements Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
 		
 		
-        //vidaLabel.textProperty().bind(Bindings.format("%.0f"));
+        vidaLabel.textProperty().bind(vida.cantidadVidaProperty().asString());
 		
-		vidaLabel.textProperty().bind(Bindings.createStringBinding(() -> {
-	        int valorVida = vida.getVida();
-	        return valorVida+""; // Formatea el texto según sea necesario
-	        
-	    }, vida.vidaProperty()));
-		
+        vida.cantidadVidaProperty().addListener((o, ov, nv) -> {
+			System.out.println("vida=" + nv);
+			vidaLabel.setText(nv+"");
+		});
+        
 //		juego.fpsProperty().addListener((o, ov, nv) -> {
 //			System.out.println("fps=" + nv);
 //		});

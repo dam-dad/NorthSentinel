@@ -4,25 +4,23 @@ import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 
 public class Vida {
-
-	private IntegerProperty vida = new SimpleIntegerProperty();
 	
-	public Vida() {
-		setVida(100);
-	}
+    private IntegerProperty cantidadVida;
 
-	public final IntegerProperty vidaProperty() {
-		return this.vida;
-	}
-	
+    public Vida() {
+        this.cantidadVida = new SimpleIntegerProperty(100);
+    }
 
-	public final int getVida() {
-		return this.vidaProperty().get();
-	}
-	
+    public int getCantidadVida() {
+        return cantidadVida.get();
+    }
 
-	public final void setVida(final int vida) {
-		this.vidaProperty().set(vida);
-	}
-	
+    public IntegerProperty cantidadVidaProperty() {
+        return cantidadVida;
+    }
+
+    public void reducirVida(int cantidad) {
+        cantidadVida.set(cantidadVida.get() - cantidad);
+    }
 }
+

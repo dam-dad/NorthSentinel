@@ -24,6 +24,8 @@ public class PlayController implements Initializable {
 	
 	private Vida vida = new Vida();
 	
+	private static int monedas = 100;
+	
 	// actions
 
 	private EventHandler<ActionEvent> onGoBack;
@@ -88,6 +90,15 @@ public class PlayController implements Initializable {
 		juego.start();
 		
 	}
+	
+	public static void sumarMonedas(int cantidad) {
+        monedas += cantidad;
+        System.out.println("Se han sumado " + cantidad + " monedas. Total de monedas: " + monedas);
+    }
+	
+	public static int getMonedas() {
+        return monedas;
+    }
 
 	public BorderPane getView() {
 		return view;

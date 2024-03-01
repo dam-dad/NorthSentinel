@@ -13,6 +13,7 @@ public class Juego extends AnimationTimer {
 	private static final double NANO_A_SEGUNDOS = 1e-9;
 
 	private DoubleProperty fps = new SimpleDoubleProperty();
+	
 
 	private long ultimoTiempo;
 	private Mapa mapa = new Mapa();
@@ -50,8 +51,10 @@ public class Juego extends AnimationTimer {
             Mapa.supermapa.getEnemigos().stream()
                 .filter(enemigo -> bala.getCollisionShape().intersects(enemigo.getCollisionShape().getBoundsInLocal()))
                 .forEach(enemigo -> {
+                	
                     enemigo.recibirImpacto(25); // Restar vida al enemigo
                     bala.destruir(); // Destruir la bala
+                    
                 });
         });
 	}

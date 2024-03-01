@@ -17,6 +17,8 @@ public class Enemigo extends Entidad {
 	private int vida = 100; // Nueva propiedad para representar la vida del enemigo
 	
 
+	
+
     private Point2D destino;
     private Point2D origen;
     private double velocidad;
@@ -26,7 +28,7 @@ public class Enemigo extends Entidad {
         super("/assets/enemigos/enemigo1.png");
         //this.vida = 100; // Ejemplo de vida inicial, ajusta según sea necesario
         this.velocidad = 0.25; // Ejemplo de velocidad, ajusta según sea necesario
-           
+    
     }
 
     @Override
@@ -35,14 +37,22 @@ public class Enemigo extends Entidad {
         // Por ahora, el movimiento se maneja completamente a través de PathTransition
     }
     
+    
+ 
     public void recibirImpacto(int cantidad) {
         vida -= cantidad;
         System.out.println("El enemigo ha recibido un impacto. Vida restante: " + vida);
         if (vida <= 0) {
             System.out.println("El enemigo ha sido destruido.");
             destruir();
+         // Sumar 20 monedas cuando la vida del enemigo llegue a 0
+            PlayController.sumarMonedas(20); // Suponiendo que tienes un método en PlayController para sumar monedas
+            System.out.println("Se han sumado 20 monedas.");
+            
         }
     }
+    
+   
 
     public void iniciarMovimiento(int delay) {
         transition = new PathTransition(); // Usa la variable de instancia

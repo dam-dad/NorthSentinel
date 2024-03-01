@@ -17,13 +17,15 @@ private DoubleProperty	monedas = new SimpleDoubleProperty();
 		return this.monedas;
 	}
 
-	public final double getmoneda() {
+	public final double getMoneda() {
 		return this.monedaProperty().get();
 	}
 
 	public final void setMoneda(final double moneda) {
 		this.monedaProperty().set(moneda);
 	}
+	
+	
 
 }
 //Autores: Iván Garrido, Samuel Padrón y Feliciano Pérez.

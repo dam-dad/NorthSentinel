@@ -1,7 +1,5 @@
 package dad.northsentinel.model;
 
-import java.util.List;
-
 import javafx.animation.Interpolator;
 import javafx.animation.PathTransition;
 import javafx.geometry.Point2D;
@@ -82,6 +80,6 @@ public class Bala extends Entidad {
 	
 	@Override
 	public Shape getCollisionShape() {
-		return new Rectangle(50, 50);
+		return new Rectangle(getPos().getX(), getPos().getY(), 25, 25);
 	}
 }

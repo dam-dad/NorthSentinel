@@ -12,9 +12,9 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane fx:id="view" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane fx:id="view" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
    <center>
-      <BorderPane fx:id="viewPlay" BorderPane.alignment="CENTER">
+      <BorderPane fx:id="viewPlay" minHeight="-Infinity" minWidth="-Infinity" BorderPane.alignment="CENTER">
          <right>
             <GridPane BorderPane.alignment="CENTER">
               <columnConstraints>

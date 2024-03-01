@@ -36,23 +36,25 @@ public class Juego extends AnimationTimer {
 	public void handle(long ahora) {
 		double diferencia = ahora - ultimoTiempo;
 		actualizar(diferencia * NANO_A_SEGUNDOS);
+		comprobarColisiones(diferencia * NANO_A_SEGUNDOS);
 		ultimoTiempo = ahora;
 	}
-
+	
 	private void actualizar(double segundos) {
+		Mapa.supermapa.getEntidades().forEach(entidad -> entidad.actualizar(segundos));
+	}
+
+	private void comprobarColisiones(double segundos) {
 		fps.set(1 / segundos);
-		//entidades.forEach(entidad -> entidad.actualizar(segundos));
-		for (Entidad balas : Mapa.supermapa.getEntidades()) {
-			if (balas instanceof Bala bala) {
-				for (Entidad enemigos : Mapa.supermapa.getEntidades()) {
-					if(enemigos instanceof Enemigo enemigo) {
-						if(bala.comprobarColision(enemigo)) {
-							System.out.println("COLISION");
-						}
-					}
-				}
-			}
-		}
+		Mapa.supermapa.getBalas().forEach(bala -> {
+			Mapa.supermapa.getEnemigos().stream()
+				.filter(enemigo -> bala.comprobarColision(enemigo))
+				.forEach(enemigo -> {
+					System.out.println("tain!!! ");
+					System.out.println(bala);
+					System.out.println(enemigo);
+				});
+		});
 	}
 
 	public Mapa getMapa() {

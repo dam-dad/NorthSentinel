@@ -3,6 +3,7 @@ package dad.northsentinel.model;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import dad.northsentinel.main.App;
 import javafx.animation.KeyFrame;
@@ -304,6 +305,20 @@ public class Mapa extends StackPane {
 
 	public void setTorretas(List<Torreta> torretas) {
 		this.torretas = torretas;
+	}
+	
+	public List<Bala> getBalas() {
+		return Mapa.supermapa.getEntidades().stream()
+			.filter(e -> (e instanceof Bala))
+			.map(e -> (Bala) e)
+			.collect(Collectors.toList());
+	}
+	
+	public List<Enemigo> getEnemigos() {
+		return Mapa.supermapa.getEntidades().stream()
+			.filter(e -> (e instanceof Enemigo))
+			.map(e -> (Enemigo) e)
+			.collect(Collectors.toList());
 	}
 
 }

@@ -79,16 +79,10 @@ public class Enemigo extends Entidad {
         }
     }
 
-    //Método para obtener la posición del enemigo
-    public Path getPosEnemigo() {
-		Path posEnemigo = new Path();
-		posEnemigo.getElements().add(new MoveTo(getPos().getX() ,getPos().getY()));
-		return posEnemigo;
-	}
     
     @Override
 	public Shape getCollisionShape() {
-		return new Rectangle(50, 50);
+		return new Rectangle(getPos().getX(), getPos().getY(), 50, 50);
 	}
     
     // Métodos getters y setters para vida, destino, origen, velocidad, etc., según sea necesario

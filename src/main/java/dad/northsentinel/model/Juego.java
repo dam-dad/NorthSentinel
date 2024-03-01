@@ -47,15 +47,13 @@ public class Juego extends AnimationTimer {
 	private void comprobarColisiones(double segundos) {
 		fps.set(1 / segundos);
 		Mapa.supermapa.getBalas().forEach(bala -> {
-			Mapa.supermapa.getEnemigos().stream()
-				.filter(enemigo -> bala.comprobarColision(enemigo))
-				.forEach(enemigo -> {
-					enemigo.destruir();
-					bala.destruir();
-					System.out.println(bala);
-					System.out.println(enemigo);
-				});
-		});
+            Mapa.supermapa.getEnemigos().stream()
+                .filter(enemigo -> bala.getCollisionShape().intersects(enemigo.getCollisionShape().getBoundsInLocal()))
+                .forEach(enemigo -> {
+                    enemigo.recibirImpacto(25); // Restar vida al enemigo
+                    bala.destruir(); // Destruir la bala
+                });
+        });
 	}
 
 	public Mapa getMapa() {

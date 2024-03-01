@@ -14,7 +14,9 @@ public class Enemigo extends Entidad {
 
 	private Vida vidaJuego;
 	
-    private int vida;
+	private int vida = 100; // Nueva propiedad para representar la vida del enemigo
+	
+
     private Point2D destino;
     private Point2D origen;
     private double velocidad;
@@ -31,6 +33,15 @@ public class Enemigo extends Entidad {
     public void actualizar(double seconds) {
         // Este método podría usarse para actualizar la lógica específica del enemigo, como IA, interacciones, etc.
         // Por ahora, el movimiento se maneja completamente a través de PathTransition
+    }
+    
+    public void recibirImpacto(int cantidad) {
+        vida -= cantidad;
+        System.out.println("El enemigo ha recibido un impacto. Vida restante: " + vida);
+        if (vida <= 0) {
+            System.out.println("El enemigo ha sido destruido.");
+            destruir();
+        }
     }
 
     public void iniciarMovimiento(int delay) {

@@ -54,6 +54,16 @@ public class Bala extends Entidad {
         if (target == null) {
             return; // Termina la ejecución del método si target es null
         }
+        
+     // Verificar colisión con enemigos
+        for (Enemigo enemigo : Mapa.supermapa.getEnemigos()) {
+            if (this.getBoundsInParent().intersects(enemigo.getBoundsInParent())) {
+                System.out.println("¡Impacto de bala en el enemigo!");
+                enemigo.recibirImpacto(25); // Restar vida al enemigo
+                destruir(); // Destruir la bala
+                break; // Salir del bucle para evitar impactos múltiples en el mismo enemigo
+            }
+        }
 
         double distancia = getPos().distance(target);
 

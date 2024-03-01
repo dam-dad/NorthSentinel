@@ -6,6 +6,8 @@ import java.util.ResourceBundle;
 
 import dad.northsentinel.model.Juego;
 import dad.northsentinel.model.Mapa;
+import dad.northsentinel.model.Vida;
+import javafx.beans.binding.Bindings;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -20,6 +22,7 @@ public class PlayController implements Initializable {
 	
 	private Juego juego = new Juego();
 	
+	private Vida vida = new Vida();
 	
 	// actions
 
@@ -70,6 +73,13 @@ public class PlayController implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		
+        //vidaLabel.textProperty().bind(Bindings.format("%.0f"));
+		
+		vidaLabel.textProperty().bind(Bindings.createStringBinding(() -> {
+	        int valorVida = vida.getVida();
+	        return valorVida+""; // Formatea el texto según sea necesario
+	    }, vida.vidaProperty()));
 		
 //		juego.fpsProperty().addListener((o, ov, nv) -> {
 //			System.out.println("fps=" + nv);

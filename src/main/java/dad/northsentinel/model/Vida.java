@@ -5,19 +5,24 @@ import javafx.beans.property.SimpleIntegerProperty;
 
 public class Vida {
 
-	private int vida;
+	private IntegerProperty vida = new SimpleIntegerProperty();
 	
 	public Vida() {
 		setVida(100);
 	}
 
-	public int getVida() {
-		return vida;
-	}
-
-	public void setVida(int vida) {
-		this.vida = vida;
+	public final IntegerProperty vidaProperty() {
+		return this.vida;
 	}
 	
+
+	public final int getVida() {
+		return this.vidaProperty().get();
+	}
+	
+
+	public final void setVida(final int vida) {
+		this.vidaProperty().set(vida);
+	}
 	
 }

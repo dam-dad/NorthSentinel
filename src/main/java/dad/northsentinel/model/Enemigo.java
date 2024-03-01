@@ -5,6 +5,8 @@ import javafx.animation.Interpolator;
 import javafx.animation.PathTransition;
 import javafx.animation.PauseTransition;
 import javafx.animation.Timeline;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.geometry.Point2D;
 import javafx.scene.shape.MoveTo;
 import javafx.scene.shape.Path;
@@ -12,6 +14,7 @@ import javafx.util.Duration;
 
 public class Enemigo extends Entidad {
 
+	private Vida vidaJuego = new Vida();
 
     private int vida;
     private Point2D destino;
@@ -57,7 +60,9 @@ public class Enemigo extends Entidad {
     public void destruir() {
         // Elimina este enemigo de la pantalla o del contenedor padre
         Mapa.supermapa.destruir(this);
-    
+        
+        vidaJuego.setVida(vidaJuego.getVida() - 10); // Resta 10 a la vida
+        System.out.println("Vida restante: " + vidaJuego.getVida());
     
     }
 

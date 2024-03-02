@@ -21,7 +21,7 @@ public class PlayController implements Initializable {
 
 	private static PlayController instance;
 
-	private static int vida = 100;
+	private static int vida = 15;
 
 	private static int monedas = 100;
 

@@ -15,6 +15,7 @@ public class Enemigo extends Entidad {
 	private int vida;
 	private boolean haSidoDestruidoPorDaño = false;
 
+	private int daño;
 	private Point2D destino;
 	private Point2D origen;
 	private double velocidad;
@@ -24,6 +25,7 @@ public class Enemigo extends Entidad {
 		super("/assets/enemigos/enemigo1.png");
 		this.vida = 100;
 		this.velocidad = 0.25;
+		this.daño = 1;
 		setFitWidth(100);
 		setFitHeight(100);
 	}
@@ -58,7 +60,7 @@ public class Enemigo extends Entidad {
 	@Override
 	public void destruir() {
 		if (!haSidoDestruidoPorDaño) {
-			PlayController.reducirVida(10);
+			PlayController.reducirVida(getDaño());
 		}
 		Mapa.supermapa.destruir(this);
 	}
@@ -73,18 +75,18 @@ public class Enemigo extends Entidad {
 		vida -= cantidad;
 		if (vida <= 0) {
 			haSidoDestruidoPorDaño = true;
-			//System.out.println("El enemigo ha sido destruido.");
+			// System.out.println("El enemigo ha sido destruido.");
 			destruir();
 			PlayController.sumarMonedas(20);
 		}
 	}
-	
+
 	@Override
 	public Shape getCollisionShape() {
 		return new Rectangle(getPos().getX(), getPos().getY(), 60, 60);
 	}
 
-	//getters y setters
+	// getters y setters
 	public int getVida() {
 		return vida;
 	}
@@ -107,6 +109,14 @@ public class Enemigo extends Entidad {
 
 	public void setOrigen(Point2D origen) {
 		this.origen = origen;
+	}
+
+	public int getDaño() {
+		return daño;
+	}
+
+	public void setDaño(int daño) {
+		this.daño = daño;
 	}
 
 	public double getVelocidad() {
@@ -132,5 +142,5 @@ public class Enemigo extends Entidad {
 	public void setTransition(PathTransition transition) {
 		this.transition = transition;
 	}
-	
+
 }

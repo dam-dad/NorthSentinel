@@ -7,6 +7,7 @@ import java.util.ResourceBundle;
 import dad.northsentinel.model.Juego;
 import dad.northsentinel.model.Mapa;
 import dad.northsentinel.model.Vida;
+import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -40,11 +41,14 @@ public class PlayController implements Initializable {
     
     @FXML
     private Label monedaLabel;
+    
+    private static PlayController instance; // Referencia estática a la instancia
 
     @FXML
     private Label vidaLabel;
 
-	public PlayController() {		
+	public PlayController() {	
+		 instance = this;
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/PlayView.fxml"));
 			loader.setController(this);
@@ -74,7 +78,7 @@ public class PlayController implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		
-		
+		monedaLabel.setText("100");
         vidaLabel.textProperty().bind(vida.cantidadVidaProperty().asString());
 		
         vida.cantidadVidaProperty().addListener((o, ov, nv) -> {
@@ -91,10 +95,13 @@ public class PlayController implements Initializable {
 		
 	}
 	
-	public static void sumarMonedas(int cantidad) {
-        monedas += cantidad;
-        System.out.println("Se han sumado " + cantidad + " monedas. Total de monedas: " + monedas);
-    }
+	 public static void sumarMonedas(int cantidad) {
+	        monedas += cantidad;
+	        // Actualiza el label de monedas
+	        if (instance != null && instance.monedaLabel != null) {
+	            Platform.runLater(() -> instance.monedaLabel.setText(String.valueOf(monedas)));
+	        }
+	    }
 	
 	public static int getMonedas() {
         return monedas;

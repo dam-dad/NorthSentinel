@@ -3,6 +3,7 @@ package dad.northsentinel.model;
 import javafx.animation.Interpolator;
 import javafx.animation.PathTransition;
 import javafx.geometry.Point2D;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.LineTo;
 import javafx.scene.shape.MoveTo;
 import javafx.scene.shape.Path;
@@ -46,6 +47,7 @@ public class Bala extends Entidad {
 		Duration duracion = Duration.seconds(distancia / getVelocidad());
 
 		Path ruta = getRuta(target);
+		ruta.setStroke(Color.TRANSPARENT); // Establece el trazo a transparente para que no se vea la línea negra
 
 		Mapa.supermapa.getArea().getChildren().add(ruta);
 
@@ -71,7 +73,6 @@ public class Bala extends Entidad {
 		}
 
 		transition.play();
-
 	}
 
 	// getters y setters

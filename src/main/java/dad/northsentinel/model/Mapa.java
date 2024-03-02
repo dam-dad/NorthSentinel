@@ -238,7 +238,7 @@ public class Mapa extends StackPane {
 	// creacion camino enemigos
 	private Path crearRuta() {
 		path = new Path();
-		path.setStroke(Color.RED);
+		path.setStroke(Color.TRANSPARENT);
 		path.setStrokeWidth(3);
 
 		path.getElements().add(new MoveTo(0, 475));

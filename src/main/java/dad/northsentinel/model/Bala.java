@@ -11,85 +11,89 @@ import javafx.scene.shape.Shape;
 import javafx.util.Duration;
 
 public class Bala extends Entidad {
-	
+
 	private int daño;
-	private double velocidad = 800;
-	
+	private double velocidad;
+
 	public Bala(Point2D origen) {
 		super("/assets/balas/bala1.png");
 		setPos(origen);
-		
-		
-		// Establecer tamaño fijo
-		setFitWidth(25); // Ancho fijo de la imagen
-		setFitHeight(25); // Alto fijo de la imagen
+		this.daño = 25;
+		this.velocidad = 800;
+		setFitWidth(25);
+		setFitHeight(25);
 	}
-	
-	public double getVelocidad() {
-		return velocidad;
-	}
-	
-	public int getDaño() {
-		return daño;
-	}
-	
+
 	public Path getRuta(Point2D destino) {
 		Path rutaBala = new Path();
-		rutaBala.getElements().add(new MoveTo(getPos().getX() ,getPos().getY()));
+		rutaBala.getElements().add(new MoveTo(getPos().getX(), getPos().getY()));
 		rutaBala.getElements().add(new LineTo(destino.getX(), destino.getY()));
 		return rutaBala;
 	}
-	
+
 	@Override
 	public void actualizar(double segundos) {
-		// e = v / t
-//		double ix = (velocidad / segundos) * normal.getX();
-//		double iy = (velocidad / segundos) * normal.getY();
-//		setPos(getX() + ix, getY() + iy);
-		
-		
+
 	}
 
 	public void disparar(Point2D target) {
-        if (target == null) {
-            return; // Termina la ejecución del método si target es null
-        }
-        
-     // Verificar colisión con enemigos
-        for (Enemigo enemigo : Mapa.supermapa.getEnemigos()) {
-            if (this.getBoundsInParent().intersects(enemigo.getBoundsInParent())) {
-                System.out.println("¡Impacto de bala en el enemigo!");
-                enemigo.recibirImpacto(25); // Restar vida al enemigo
-                destruir(); // Destruir la bala
-                break; // Salir del bucle para evitar impactos múltiples en el mismo enemigo
-            }
-        }
+		if (target == null) {
+			return;
+		}
 
-        double distancia = getPos().distance(target);
+		double distancia = getPos().distance(target);
 
-        Duration duracion = Duration.seconds(distancia / getVelocidad());
+		Duration duracion = Duration.seconds(distancia / getVelocidad());
 
-        Path ruta = getRuta(target);
+		Path ruta = getRuta(target);
 
-        Mapa.supermapa.getArea().getChildren().add(ruta);
+		Mapa.supermapa.getArea().getChildren().add(ruta);
 
-        PathTransition transition = new PathTransition();
-        transition.setInterpolator(Interpolator.LINEAR);
-        transition.setPath(getRuta(target));
-        transition.setNode(this);
-        transition.setDuration(duracion);
-        transition.setOnFinished(e -> {
-            //System.out.println("boom!");
-            destruir();
-            Mapa.supermapa.getArea().getChildren().remove(ruta);
-            
-        });
-        transition.play();
+		PathTransition transition = new PathTransition();
+		transition.setInterpolator(Interpolator.LINEAR);
+		transition.setPath(getRuta(target));
+		transition.setNode(this);
+		transition.setDuration(duracion);
+		transition.setOnFinished(e -> {
+			destruir();
+			Mapa.supermapa.getArea().getChildren().remove(ruta);
 
-    }
-	
+		});
+
+		// Verificar colisión con enemigos
+		for (Enemigo enemigo : Mapa.supermapa.getEnemigos()) {
+			if (this.getBoundsInParent().intersects(enemigo.getBoundsInParent())) {
+				// System.out.println("¡Impacto de bala en el enemigo!");
+				enemigo.recibirImpacto(getDaño());
+				destruir();
+				break;
+			}
+		}
+
+		transition.play();
+
+	}
+
+	// getters y setters
 	@Override
 	public Shape getCollisionShape() {
 		return new Rectangle(getPos().getX(), getPos().getY(), 25, 25);
 	}
+
+	public double getVelocidad() {
+		return velocidad;
+	}
+
+	public void setVelocidad(double velocidad) {
+		this.velocidad = velocidad;
+	}
+
+	public int getDaño() {
+		return daño;
+	}
+
+	public void setDaño(int daño) {
+		this.daño = daño;
+	}
+
 }

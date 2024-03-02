@@ -6,11 +6,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 import dad.northsentinel.main.App;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
-import javafx.application.Platform;
 import javafx.geometry.Point2D;
-import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
@@ -25,13 +21,12 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.LineTo;
 import javafx.scene.shape.MoveTo;
 import javafx.scene.shape.Path;
-import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
-import javafx.util.Duration;
 
 public class Mapa extends StackPane {
 
 	private List<Torreta> torretas = new ArrayList<>();
+
 	private List<Entidad> entidades = new ArrayList<>();
 
 	public static Mapa supermapa;
@@ -54,7 +49,8 @@ public class Mapa extends StackPane {
 			{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
 			{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, };
 
-	private static final Image[] assets_agua = { new Image("assets/agua/agua.png"), };
+	private static final Image[] assets_agua = { new Image("assets/agua/agua.png"), // 0
+	};
 
 	int[][] capa2 = {
 			{ 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10 },
@@ -127,78 +123,64 @@ public class Mapa extends StackPane {
 		getChildren().addAll(fondo, mapa, camino, area);
 
 		setOnMouseClicked(e -> {
-			// System.out.println(e.getX() + "-" + e.getY());
-
 			Point2D target = new Point2D(e.getX(), e.getY());
 
 			if (esPosicionValida(target)) {
-		        boolean confirmado = mostrarDialogoColocarTorreta(App.primarySatge, "¿Estás seguro de realizar esta acción? Te costará 100 monedas.");
+				boolean confirmado = mostrarDialogoColocarTorreta(App.primarySatge,
+						"¿Estás seguro de realizar esta acción? Te costará 100 monedas.");
+				if (confirmado) {
+					Torreta torretaExistente = obtenerTorretaEnPosicion(target);
+					if (torretaExistente == null) {
+						Torreta nuevaTorreta = new Torreta(target);
+						colocarTorreta(target, nuevaTorreta, area);
+					}
+				} else {
 
-		        if (confirmado) {
-		            //System.out.println("El usuario ha confirmado la acción.");
+				}
+			} else {
 
-		            Torreta torretaExistente = obtenerTorretaEnPosicion(target);
-		            if (torretaExistente == null) {
-		                Torreta nuevaTorreta = new Torreta(target);
-		                colocarTorreta(target, nuevaTorreta, area);
-		                //System.out.println("Torreta colocada en posición válida: " + target);
-		            }
-		        } else {
-		            //System.out.println("El usuario ha cancelado la acción.");
-		        }
-		    } else {
-		        //System.out.println("Posición no válida para colocar torreta.");
-		    }
+			}
 		});
 
 		supermapa = this;
 	}
 
-	public List<Entidad> getEntidades() {
-		return entidades;
-	}
-	
-	private Torreta obtenerTorretaEnPosicion(Point2D posicion) {
-		for (Torreta torreta : torretas) {
-			if (torreta.getPos().equals(posicion)) {
-				return torreta;
-			}
-		}
-		return null; // No se encontró ninguna torreta en la posición especificada
-	}
-
-	public void colocarTorreta(Point2D pos, Torreta nuevaTorreta, Pane area) {
-		// Ajusta la posición de la torreta dentro del área de juego
-		nuevaTorreta.setPos(pos);
-
-		// Agrega la torreta al área de juego
-		area.getChildren().add(nuevaTorreta);
-
-		// Agrega la torreta a la lista de torretas del mapa
-		torretas.add(nuevaTorreta);
-		entidades.add(nuevaTorreta);
-	}
-
 	private boolean esPosicionValida(Point2D target) {
-		// Lista de todas las posiciones centrales válidas para colocar torretas
+		// Lista de todas las posiciones válidas para colocar torretas
 		List<Point2D> posicionesValidas = List.of(new Point2D(275, 525), new Point2D(775, 525), new Point2D(575, 375),
 				new Point2D(1125, 575), new Point2D(775, 375), new Point2D(375, 375), new Point2D(75, 375),
 				new Point2D(975, 425), new Point2D(675, 225));
 		double margenError = 25; // Tolerancia alrededor de cada posición válida
 
 		// Verifica si el punto de clic está dentro del margen de error de alguna
-		// posición válida
 		for (Point2D pos : posicionesValidas) {
 			if (target.getX() >= pos.getX() - margenError && target.getX() <= pos.getX() + margenError
 					&& target.getY() >= pos.getY() - margenError && target.getY() <= pos.getY() + margenError) {
 				return true; // El punto de clic está dentro de una posición válida
 			}
 		}
-		return false; // El punto de clic no está dentro de ninguna posición válida
+		return false;
 	}
 
-	public void crearEnemigos() {
+	private Torreta obtenerTorretaEnPosicion(Point2D posicion) {
+		for (Torreta torreta : torretas) {
+			if (torreta.getPos().equals(posicion)) {
+				return torreta;
+			}
+		}
+		return null;
+	}
 
+	public void colocarTorreta(Point2D pos, Torreta nuevaTorreta, Pane area) {
+		nuevaTorreta.setPos(pos);
+		// Agrega la torreta al área de juego y añadirla a la lista
+		area.getChildren().add(nuevaTorreta);
+		torretas.add(nuevaTorreta);
+		entidades.add(nuevaTorreta);
+	}
+
+	// crear la oleada de enemigos
+	public void generarOleada() {
 		Path path = getPath();
 		if (!path.getElements().isEmpty() && path.getElements().get(0) instanceof MoveTo) {
 			MoveTo primerPunto = (MoveTo) path.getElements().get(0);
@@ -248,6 +230,7 @@ public class Mapa extends StackPane {
 		return pane;
 	}
 
+	// creacion camino enemigos
 	private Path crearRuta() {
 		path = new Path();
 		path.setStroke(Color.RED);
@@ -263,6 +246,7 @@ public class Mapa extends StackPane {
 		return path;
 	}
 
+	// dialogo colocar torreta
 	public static boolean mostrarDialogoColocarTorreta(Stage stage, String mensaje) {
 		Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
 		alert.setTitle("Confirmar acción");
@@ -278,6 +262,7 @@ public class Mapa extends StackPane {
 		return resultado.isPresent() && resultado.get() == botonSi;
 	}
 
+	//getters y setters
 	public GridPane getFondo() {
 		return fondo;
 	}
@@ -306,19 +291,19 @@ public class Mapa extends StackPane {
 	public void setTorretas(List<Torreta> torretas) {
 		this.torretas = torretas;
 	}
-	
-	public List<Bala> getBalas() {
-		return Mapa.supermapa.getEntidades().stream()
-			.filter(e -> (e instanceof Bala))
-			.map(e -> (Bala) e)
-			.collect(Collectors.toList());
+
+	public List<Entidad> getEntidades() {
+		return entidades;
 	}
-	
+
+	public List<Bala> getBalas() {
+		return Mapa.supermapa.getEntidades().stream().filter(e -> (e instanceof Bala)).map(e -> (Bala) e)
+				.collect(Collectors.toList());
+	}
+
 	public List<Enemigo> getEnemigos() {
-		return Mapa.supermapa.getEntidades().stream()
-			.filter(e -> (e instanceof Enemigo))
-			.map(e -> (Enemigo) e)
-			.collect(Collectors.toList());
+		return Mapa.supermapa.getEntidades().stream().filter(e -> (e instanceof Enemigo)).map(e -> (Enemigo) e)
+				.collect(Collectors.toList());
 	}
 
 }

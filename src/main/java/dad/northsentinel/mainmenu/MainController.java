@@ -13,94 +13,87 @@ import javafx.fxml.Initializable;
 
 public class MainController implements Initializable {
 
-    private MenuController menuController;
-    private SettingsController settingsController;
-    private HowToPlayController howToPlayController;
-    private PlayController playController;
-    private MediaPlayer mediaPlayerMenu;
-    private MediaPlayer mediaPlayerJuego;
-    
-    @FXML
-    private BorderPane view;
-    
-    public MainController() {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/MainView.fxml"));
-            loader.setController(this);
-            loader.load();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
+	private MenuController menuController;
+	private SettingsController settingsController;
+	private HowToPlayController howToPlayController;
+	private PlayController playController;
+	private MediaPlayer mediaPlayerMenu;
+	private MediaPlayer mediaPlayerJuego;
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-    	
-    	
-        
-        String menuMusicPath = new File("src/main/resources/soundTrack/musicamenu.mp3").toURI().toString();
-        Media mediaMenu = new Media(menuMusicPath);
-        mediaPlayerMenu = new MediaPlayer(mediaMenu);
-        mediaPlayerMenu.setCycleCount(MediaPlayer.INDEFINITE);
-        mediaPlayerMenu.play();
+	@FXML
+	private BorderPane view;
 
-        menuController = new MenuController();
-        menuController.setOnSettings(e -> {      
-            view.setCenter(settingsController.getView());
-        });
-        
-        menuController.setOnHowToPlay(e -> {
-            view.setCenter(howToPlayController.getView());
-        });
-        
-        menuController.setOnPlay(e -> {
-            mediaPlayerMenu.stop();
-            String juegoMusicPath = new File("src/main/resources/soundTrack/musicajuego.mp3").toURI().toString();
-            Media mediaJuego = new Media(juegoMusicPath);
-            mediaPlayerJuego = new MediaPlayer(mediaJuego);
-            mediaPlayerJuego.play();
-            view.setCenter(playController.getView());
-                        
+	public MainController() {
+		try {
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/MainView.fxml"));
+			loader.setController(this);
+			loader.load();
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		}
+	}
 
-        });
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
 
-        settingsController = new SettingsController();
-        settingsController.setMainController(this);
-        settingsController.setOnGoBack(e -> {
-            view.setCenter(menuController.getView());
-        });
+		String menuMusicPath = new File("src/main/resources/soundTrack/musicamenu.mp3").toURI().toString();
+		Media mediaMenu = new Media(menuMusicPath);
+		mediaPlayerMenu = new MediaPlayer(mediaMenu);
+		mediaPlayerMenu.setCycleCount(MediaPlayer.INDEFINITE);
+		mediaPlayerMenu.play();
 
-        howToPlayController = new HowToPlayController();
-        howToPlayController.setOnGoBack(e -> {
-            view.setCenter(menuController.getView());
-        });
-        
-        playController = new PlayController();
-        playController.setOnGoBack(e -> {
-            mediaPlayerJuego.stop();
-            mediaPlayerMenu.play();
-            view.setCenter(menuController.getView());
-            
-            
-        });
+		menuController = new MenuController();
+		menuController.setOnSettings(e -> {
+			view.setCenter(settingsController.getView());
+		});
 
-        // Listener para el control de volumen
-        settingsController.volumeSlider.valueProperty().addListener((observable, oldValue, newValue) -> {
-            double volume = newValue.doubleValue() / 100;
-            if (mediaPlayerMenu != null) {
-                mediaPlayerMenu.setVolume(volume);
-            }
-            if (mediaPlayerJuego != null) {
-                mediaPlayerJuego.setVolume(volume);
-            }
-        });
-        
-        view.setCenter(menuController.getView());
-    }
-    
-    
-    
-    public MediaPlayer getMediaPlayerMenu() {
+		menuController.setOnHowToPlay(e -> {
+			view.setCenter(howToPlayController.getView());
+		});
+
+		menuController.setOnPlay(e -> {
+			mediaPlayerMenu.stop();
+			String juegoMusicPath = new File("src/main/resources/soundTrack/musicajuego.mp3").toURI().toString();
+			Media mediaJuego = new Media(juegoMusicPath);
+			mediaPlayerJuego = new MediaPlayer(mediaJuego);
+			mediaPlayerJuego.play();
+			view.setCenter(playController.getView());
+
+		});
+
+		settingsController = new SettingsController();
+		settingsController.setMainController(this);
+		settingsController.setOnGoBack(e -> {
+			view.setCenter(menuController.getView());
+		});
+
+		howToPlayController = new HowToPlayController();
+		howToPlayController.setOnGoBack(e -> {
+			view.setCenter(menuController.getView());
+		});
+
+		playController = new PlayController();
+		playController.setOnGoBack(e -> {
+			mediaPlayerJuego.stop();
+			mediaPlayerMenu.play();
+			view.setCenter(menuController.getView());
+
+		});
+
+		settingsController.volumeSlider.valueProperty().addListener((observable, oldValue, newValue) -> {
+			double volume = newValue.doubleValue() / 100;
+			if (mediaPlayerMenu != null) {
+				mediaPlayerMenu.setVolume(volume);
+			}
+			if (mediaPlayerJuego != null) {
+				mediaPlayerJuego.setVolume(volume);
+			}
+		});
+
+		view.setCenter(menuController.getView());
+	}
+
+	public MediaPlayer getMediaPlayerMenu() {
 		return mediaPlayerMenu;
 	}
 
@@ -109,10 +102,7 @@ public class MainController implements Initializable {
 	}
 
 	public BorderPane getView() {
-        return view;
-    }
+		return view;
+	}
 
 }
-
-
-

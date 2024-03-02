@@ -5,10 +5,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import dad.northsentinel.model.Juego;
-import dad.northsentinel.model.Mapa;
-import dad.northsentinel.model.Vida;
 import javafx.application.Platform;
-import javafx.beans.binding.Bindings;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -18,18 +15,16 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 
 public class PlayController implements Initializable {
-	
-	private static int vida = 100; // Vida inicial del jugador
-	
-	
+
 	// model
-	
 	private Juego juego = new Juego();
-	
-	
-	
+
+	private static PlayController instance;
+
+	private static int vida = 100;
+
 	private static int monedas = 100;
-	
+
 	// actions
 
 	private EventHandler<ActionEvent> onGoBack;
@@ -39,19 +34,17 @@ public class PlayController implements Initializable {
 	@FXML
 	private BorderPane view;
 
-    @FXML
-    private BorderPane viewPlay;
-    
-    @FXML
-    private Label monedaLabel;
-    
-    private static PlayController instance; // Referencia estática a la instancia
+	@FXML
+	private BorderPane viewPlay;
 
-    @FXML
-    private Label vidaLabel;
+	@FXML
+	private Label monedaLabel;
 
-	public PlayController() {	
-		 instance = this;
+	@FXML
+	private Label vidaLabel;
+
+	public PlayController() {
+		instance = this;
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/PlayView.fxml"));
 			loader.setController(this);
@@ -60,7 +53,7 @@ public class PlayController implements Initializable {
 			throw new RuntimeException(e);
 		}
 	}
-	
+
 	@FXML
 	void onGoBack(ActionEvent event) {
 		if (onGoBack != null) {
@@ -70,67 +63,61 @@ public class PlayController implements Initializable {
 	}
 
 	@FXML
-    void onStartWave(ActionEvent event) {
-		juego.getMapa().crearEnemigos(); // Añade esta línea para crear enemigos.
-    }
-	
+	void onStartWave(ActionEvent event) {
+		juego.getMapa().generarOleada();
+	}
+
 	public void setOnGoBack(EventHandler<ActionEvent> onGoBack) {
 		this.onGoBack = onGoBack;
 	}
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		
-		monedaLabel.setText("100");
-		vidaLabel.setText("100");
-		
-       
-        
+
 //		juego.fpsProperty().addListener((o, ov, nv) -> {
-//			System.out.println("fps=" + nv);
-//		});
+//		System.out.println("fps=" + nv);
+//	});
 		
+		monedaLabel.setText(getMonedas() + "");
+		vidaLabel.setText(getVida() + "");
+
 		viewPlay.setCenter(juego.getMapa());
 		juego.start();
-		
+
 	}
-	
-	// Método estático para reducir la vida
+
+	// reducir vida por cada enemigo que llegue al final
 	public static void reducirVida(int cantidad) {
-	    vida -= cantidad;
-	    Platform.runLater(() -> {
-	        if (instance != null && instance.vidaLabel != null) {
-	            instance.vidaLabel.setText(String.valueOf(vida));
-	            System.out.println("Vida restante: " + vida); // Para depuración
-	        }
-	    });
-	    if (vida <= 0) {
-	        System.out.println("El jugador ha perdido."); // Manejo del juego perdido
-	    }
+		vida -= cantidad;
+		Platform.runLater(() -> {
+			if (instance != null && instance.vidaLabel != null) {
+				instance.vidaLabel.setText(String.valueOf(vida));
+			}
+		});
+		if (vida <= 0) {
+			System.out.println("El jugador ha perdido."); // Manejo del juego perdido
+		}
 	}
-	
-	// Método para obtener la vida actual, por si acaso lo necesitas
+
+	// sumar moneda por cada enemigo muerto
+	public static void sumarMonedas(int cantidad) {
+		monedas += cantidad;
+		// Actualiza el label de monedas
+		if (instance != null && instance.monedaLabel != null) {
+			Platform.runLater(() -> instance.monedaLabel.setText(String.valueOf(monedas)));
+		}
+	}
+
 	public static int getVida() {
-	    return vida;
+		return vida;
 	}
-	
-	
-	 public static void sumarMonedas(int cantidad) {
-	        monedas += cantidad;
-	        // Actualiza el label de monedas
-	        if (instance != null && instance.monedaLabel != null) {
-	            Platform.runLater(() -> instance.monedaLabel.setText(String.valueOf(monedas)));
-	        }
-	    }
-	
+
 	public static int getMonedas() {
-        return monedas;
-    }
+		return monedas;
+	}
 
 	public BorderPane getView() {
 		return view;
 	}
-	
-	
 
 }

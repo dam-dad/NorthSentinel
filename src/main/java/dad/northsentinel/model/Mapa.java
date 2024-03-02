@@ -127,21 +127,23 @@ public class Mapa extends StackPane {
 			Point2D target = new Point2D(e.getX(), e.getY());
 
 			if (esPosicionValida(target)) {
-				boolean confirmado = mostrarDialogoColocarTorreta(App.primarySatge,
-						"¿Estás seguro de realizar esta acción? Te costará 100 monedas.");
-				if (confirmado) {
-					Torreta torretaExistente = obtenerTorretaEnPosicion(target);
-					if (torretaExistente == null) {
-						Torreta nuevaTorreta = new Torreta(target);
-						colocarTorreta(target, nuevaTorreta, area);
-						PlayController.restarMonedas(nuevaTorreta.getCosto());
-					}
-				} else {
+		        if (PlayController.getMonedas() >= Torreta.COSTO_TORRETA) { // Verificar si tienes suficientes monedas
+		            boolean confirmado = mostrarDialogoColocarTorreta(App.primarySatge,
+		                    "¿Estás seguro de realizar esta acción? Te costará " + Torreta.COSTO_TORRETA + " monedas.");
+		            if (confirmado) {
+		                Torreta torretaExistente = obtenerTorretaEnPosicion(target);
+		                if (torretaExistente == null) {
+		                    Torreta nuevaTorreta = new Torreta(target);
+		                    colocarTorreta(target, nuevaTorreta, area);
+		                    PlayController.restarMonedas(Torreta.COSTO_TORRETA);
+		                }
+		            }
+		        } else {
+		            System.out.println("No tienes suficientes monedas para colocar una torreta.");
+		        }
+		    } else {
 
-				}
-			} else {
-
-			}
+		    }
 		});
 
 		supermapa = this;

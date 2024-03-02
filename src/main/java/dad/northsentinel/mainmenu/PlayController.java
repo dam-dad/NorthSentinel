@@ -77,7 +77,7 @@ public class PlayController implements Initializable {
 //		juego.fpsProperty().addListener((o, ov, nv) -> {
 //		System.out.println("fps=" + nv);
 //	});
-		
+
 		monedaLabel.setText(getMonedas() + "");
 		vidaLabel.setText(getVida() + "");
 
@@ -89,13 +89,20 @@ public class PlayController implements Initializable {
 	// reducir vida por cada enemigo que llegue al final
 	public static void reducirVida(int cantidad) {
 		vida -= cantidad;
-		Platform.runLater(() -> {
-			if (instance != null && instance.vidaLabel != null) {
-				instance.vidaLabel.setText(String.valueOf(vida));
-			}
-		});
 		if (vida <= 0) {
-			System.out.println("El jugador ha perdido.");
+			vida = 0; // Asegurarse de que la vida no sea negativa
+			Platform.runLater(() -> {
+				if (instance != null && instance.vidaLabel != null) {
+					instance.vidaLabel.setText("0");
+				}
+				System.out.println("El jugador ha perdido.");
+			});
+		} else {
+			Platform.runLater(() -> {
+				if (instance != null && instance.vidaLabel != null) {
+					instance.vidaLabel.setText(String.valueOf(vida));
+				}
+			});
 		}
 	}
 
@@ -106,7 +113,7 @@ public class PlayController implements Initializable {
 			Platform.runLater(() -> instance.monedaLabel.setText(String.valueOf(monedas)));
 		}
 	}
-	
+
 	public static void restarMonedas(int cantidad) {
 		monedas -= cantidad;
 		// Actualiza el label de monedas

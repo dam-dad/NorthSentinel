@@ -95,13 +95,20 @@ public class PlayController implements Initializable {
 			}
 		});
 		if (vida <= 0) {
-			System.out.println("El jugador ha perdido."); // Manejo del juego perdido
+			System.out.println("El jugador ha perdido.");
 		}
 	}
 
 	// sumar moneda por cada enemigo muerto
 	public static void sumarMonedas(int cantidad) {
 		monedas += cantidad;
+		if (instance != null && instance.monedaLabel != null) {
+			Platform.runLater(() -> instance.monedaLabel.setText(String.valueOf(monedas)));
+		}
+	}
+	
+	public static void restarMonedas(int cantidad) {
+		monedas -= cantidad;
 		// Actualiza el label de monedas
 		if (instance != null && instance.monedaLabel != null) {
 			Platform.runLater(() -> instance.monedaLabel.setText(String.valueOf(monedas)));

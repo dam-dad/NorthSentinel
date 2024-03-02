@@ -6,12 +6,12 @@ import javafx.scene.shape.Shape;
 
 public class Torreta extends Entidad {
 
-	private int cost;
+	private int costo;
 	private Point2D pos;
 
 	public Torreta(Point2D pos) {
 		super("/assets/torretas/torreta1.png");
-		this.cost = 100;
+		this.costo = 100;
 		this.setPos(pos);
 	}
 
@@ -70,8 +70,8 @@ public class Torreta extends Entidad {
 		return pos;
 	}
 
-	public int getCost() {
-		return cost;
+	public int getCosto() {
+		return costo;
 	}
 	
 }

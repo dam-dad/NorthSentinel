@@ -6,6 +6,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 import dad.northsentinel.main.App;
+import dad.northsentinel.mainmenu.PlayController;
 import javafx.geometry.Point2D;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonBar;
@@ -133,6 +134,7 @@ public class Mapa extends StackPane {
 					if (torretaExistente == null) {
 						Torreta nuevaTorreta = new Torreta(target);
 						colocarTorreta(target, nuevaTorreta, area);
+						PlayController.restarMonedas(nuevaTorreta.getCosto());
 					}
 				} else {
 

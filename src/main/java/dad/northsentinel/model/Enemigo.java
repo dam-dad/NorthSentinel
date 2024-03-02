@@ -11,14 +11,10 @@ import javafx.scene.shape.Shape;
 import javafx.util.Duration;
 
 public class Enemigo extends Entidad {
-
-	private Vida vidaJuego;
 	
 	private int vida = 100; // Nueva propiedad para representar la vida del enemigo
+	private boolean haSidoDestruidoPorDaño = false;
 	
-
-	
-
     private Point2D destino;
     private Point2D origen;
     private double velocidad;
@@ -41,16 +37,15 @@ public class Enemigo extends Entidad {
  
     public void recibirImpacto(int cantidad) {
         vida -= cantidad;
-        System.out.println("El enemigo ha recibido un impacto. Vida restante: " + vida);
         if (vida <= 0) {
+            haSidoDestruidoPorDaño = true;
             System.out.println("El enemigo ha sido destruido.");
             destruir();
-         // Sumar 20 monedas cuando la vida del enemigo llegue a 0
-            PlayController.sumarMonedas(20); // Suponiendo que tienes un método en PlayController para sumar monedas
-            System.out.println("Se han sumado 20 monedas.");
-            
+            PlayController.sumarMonedas(20); // Asume que esto ya está implementado
         }
     }
+    
+    
     
    
 
@@ -80,13 +75,12 @@ public class Enemigo extends Entidad {
     // Suponiendo que ya tienes implementado el método destruir()
     @Override
     public void destruir() {
-        // Elimina este enemigo de la pantalla o del contenedor padre
-        Mapa.supermapa.destruir(this);
-        vidaJuego = new Vida();
-        vidaJuego.reducirVida(10); // Reducir la vida en 10 cuando se destruye un enemigo
-        
+        if (!haSidoDestruidoPorDaño) {
+            System.out.println("Un enemigo ha llegado al final sin ser destruido.");
+            PlayController.reducirVida(10);
+        }
+        super.destruir(); // Asegúrate de que esta llamada haga lo que se supone que debe hacer, como eliminar el enemigo del juego.
     }
-
     public void detenerMovimiento() {
         if (transition != null) {
             transition.stop();

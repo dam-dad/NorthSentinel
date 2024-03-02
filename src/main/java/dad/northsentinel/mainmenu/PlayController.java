@@ -19,11 +19,14 @@ import javafx.scene.layout.BorderPane;
 
 public class PlayController implements Initializable {
 	
+	private static int vida = 100; // Vida inicial del jugador
+	
+	
 	// model
 	
 	private Juego juego = new Juego();
 	
-	private Vida vida = new Vida();
+	
 	
 	private static int monedas = 100;
 	
@@ -79,12 +82,9 @@ public class PlayController implements Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
 		
 		monedaLabel.setText("100");
-        vidaLabel.textProperty().bind(vida.cantidadVidaProperty().asString());
+		vidaLabel.setText("100");
 		
-        vida.cantidadVidaProperty().addListener((o, ov, nv) -> {
-			System.out.println("vida=" + nv);
-			vidaLabel.setText(nv+"");
-		});
+       
         
 //		juego.fpsProperty().addListener((o, ov, nv) -> {
 //			System.out.println("fps=" + nv);
@@ -94,6 +94,26 @@ public class PlayController implements Initializable {
 		juego.start();
 		
 	}
+	
+	// Método estático para reducir la vida
+	public static void reducirVida(int cantidad) {
+	    vida -= cantidad;
+	    Platform.runLater(() -> {
+	        if (instance != null && instance.vidaLabel != null) {
+	            instance.vidaLabel.setText(String.valueOf(vida));
+	            System.out.println("Vida restante: " + vida); // Para depuración
+	        }
+	    });
+	    if (vida <= 0) {
+	        System.out.println("El jugador ha perdido."); // Manejo del juego perdido
+	    }
+	}
+	
+	// Método para obtener la vida actual, por si acaso lo necesitas
+	public static int getVida() {
+	    return vida;
+	}
+	
 	
 	 public static void sumarMonedas(int cantidad) {
 	        monedas += cantidad;

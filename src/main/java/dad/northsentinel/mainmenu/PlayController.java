@@ -2,8 +2,10 @@ package dad.northsentinel.mainmenu;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
+import dad.northsentinel.main.App;
 import dad.northsentinel.model.Juego;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -11,8 +13,12 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonBar;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
+import javafx.stage.Stage;
 
 public class PlayController implements Initializable {
 
@@ -23,7 +29,7 @@ public class PlayController implements Initializable {
 
 	private static int vida = 15;
 
-	private static int monedas = 100;
+	private static int monedas = 500;
 
 	// actions
 
@@ -90,11 +96,12 @@ public class PlayController implements Initializable {
 	public static void reducirVida(int cantidad) {
 		vida -= cantidad;
 		if (vida <= 0) {
-			vida = 0; // Asegurarse de que la vida no sea negativa
+			vida = 0;
 			Platform.runLater(() -> {
 				if (instance != null && instance.vidaLabel != null) {
 					instance.vidaLabel.setText("0");
 				}
+				mostrarDialogoPerdiste(App.primarySatge);
 				System.out.println("El jugador ha perdido.");
 			});
 		} else {
@@ -122,6 +129,21 @@ public class PlayController implements Initializable {
 		}
 	}
 
+	public static boolean mostrarDialogoPerdiste(Stage stage) {
+		Alert alert = new Alert(Alert.AlertType.ERROR);
+		alert.setTitle("");
+		alert.setHeaderText("Los enemigos han asaltado tu base");
+		alert.setContentText("¿Que quieres hacer?");
+
+		ButtonType botonSi = new ButtonType("Reiniciar partida", ButtonBar.ButtonData.YES);
+		ButtonType botonNo = new ButtonType("Volver menu", ButtonBar.ButtonData.NO);
+		alert.getButtonTypes().setAll(botonSi, botonNo);
+
+		Optional<ButtonType> resultado = alert.showAndWait();
+
+		return resultado.isPresent() && resultado.get() == botonSi;
+	}
+	
 	public static int getVida() {
 		return vida;
 	}

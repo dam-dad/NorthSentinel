@@ -27,17 +27,14 @@ public class Enemigo extends Entidad {
 	private int daño;
 	private Point2D destino;
 	private Point2D origen;
-	private double velocidad;
 	private PathTransition transition; // Para manejar el movimiento a lo largo del camino
 
 	public Enemigo() {
 		super("/assets/enemigos/enemigo1.png");
 		this.vida = 100;
-		this.velocidad = 0.25;
 		this.daño = 1;
 		setFitWidth(100);
 		setFitHeight(100);
-
 	}
 
 	@Override
@@ -169,14 +166,6 @@ public class Enemigo extends Entidad {
 
 	public void setDaño(int daño) {
 		this.daño = daño;
-	}
-
-	public double getVelocidad() {
-		return velocidad;
-	}
-
-	public void setVelocidad(double velocidad) {
-		this.velocidad = velocidad;
 	}
 
 	public boolean isHaSidoDestruidoPorDaño() {

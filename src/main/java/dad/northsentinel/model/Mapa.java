@@ -97,11 +97,11 @@ public class Mapa extends StackPane {
 	private static final Image[] assets_camino = { 
 			new Image("assets/camino/camino_central.png"), // 0
 			new Image("assets/camino/camino_arriba.png"), // 1
-			new Image("assets/camino/esquina_1.png"), // 3
-			new Image("assets/camino/esquina_2.png"), // 4
-			new Image("assets/camino/esquina_3.png"), // 5
-			new Image("assets/camino/esquina_4.png"), // 6
-			new Image("assets/camino/suelo_torreta.png"), // 7
+			new Image("assets/camino/esquina_1.png"), // 2
+			new Image("assets/camino/esquina_2.png"), // 3
+			new Image("assets/camino/esquina_3.png"), // 4
+			new Image("assets/camino/esquina_4.png"), // 5
+			new Image("assets/camino/suelo_torreta.png"), // 6
 	};
 
 	private GridPane fondo;
@@ -195,7 +195,7 @@ public class Mapa extends StackPane {
 				getArea().getChildren().add(enemigo);
 				Mapa.supermapa.getEntidades().add(enemigo);
 				enemigo.setVisible(false);
-				enemigo.iniciarMovimiento(i * 2); // Asegura pasar el retraso como argumento
+				enemigo.iniciarMovimiento(i * 1); // Asegura pasar el retraso como argumento
 			}
 		} else {
 			System.out.println("No se pudo obtener el primer punto del camino.");
@@ -254,7 +254,7 @@ public class Mapa extends StackPane {
 	// dialogo colocar torreta
 	public static boolean mostrarDialogoColocarTorreta(Stage stage, String mensaje) {
 		Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-		alert.setTitle("Confirmar acción");
+		alert.setTitle("");
 		alert.setHeaderText("¿Colocar torreta aquí?");
 		alert.setContentText(mensaje);
 

@@ -6,7 +6,7 @@ import javafx.scene.shape.Shape;
 
 public class Torreta extends Entidad {
 
-	public static final int COSTO_TORRETA = 100;
+	public static final int COSTO_TORRETA = 500;
 	private Point2D pos;
 
 	public Torreta(Point2D pos) {

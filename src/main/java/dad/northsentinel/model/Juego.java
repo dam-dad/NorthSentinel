@@ -52,10 +52,7 @@ public class Juego extends AnimationTimer {
 	}
 	
 	public void reiniciarJuego() {
-        // Eliminar todas las torretas
-        mapa.eliminarTorretas();
-
-        // Otros pasos para reiniciar el juego, si los hay
+        mapa.reiniciarJuego();
     }
 
 	//getters y setters

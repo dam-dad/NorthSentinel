@@ -255,14 +255,9 @@ public class Mapa extends StackPane {
 	}
 	
 	public void reiniciarJuego() {
-        // Eliminar las torretas del pane del área de juego
-        area.getChildren().removeAll(torretas);
-
+        // Eliminar las torretas y enemigos
         area.getChildren().removeAll(entidades);
-        
         entidades.clear();
-        // Limpiar la lista de torretas
-        torretas.clear();
     }
 
 	// dialogo colocar torreta

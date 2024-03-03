@@ -25,7 +25,7 @@ import javafx.stage.Stage;
 
 public class PlayController implements Initializable {
 
-	// model	
+	// model
 	private static Juego juego = new Juego();
 
 	private static PlayController instance;
@@ -51,9 +51,9 @@ public class PlayController implements Initializable {
 
 	@FXML
 	private Label vidaLabel;
-	
-    @FXML
-    private Label oleadaLabel;
+
+	@FXML
+	private Label oleadaLabel;
 
 	public PlayController() {
 		instance = this;
@@ -77,7 +77,7 @@ public class PlayController implements Initializable {
 	@FXML
 	void onStartWave(ActionEvent event) {
 		juego.getMapa().generarOleada();
-		oleadaLabel.setText(""+juego.getMapa().getOleada());
+		oleadaLabel.setText("" + juego.getMapa().getOleada());
 		juego.getMapa().aumentarOleada();
 	}
 
@@ -91,7 +91,7 @@ public class PlayController implements Initializable {
 //		juego.fpsProperty().addListener((o, ov, nv) -> {
 //		System.out.println("fps=" + nv);
 //	});
-		
+
 		monedaLabel.setText(getMonedas() + "");
 		vidaLabel.setText(getVida() + "");
 
@@ -109,24 +109,26 @@ public class PlayController implements Initializable {
 				if (instance != null && instance.vidaLabel != null) {
 					instance.vidaLabel.setText("0");
 				}
-	            boolean confirmado = mostrarDialogoPerdiste(App.primarySatge);
-	            if (confirmado) {
-	            	juego.reiniciarJuego();
-	            	vida = 15;
-	            	if (instance != null && instance.vidaLabel != null) {
-	        			Platform.runLater(() -> instance.vidaLabel.setText(String.valueOf(vida)));
-	            	}
-	            	monedas = 500;
-	            	if (instance != null && instance.monedaLabel != null) {
-	        			Platform.runLater(() -> instance.monedaLabel.setText(String.valueOf(monedas)));
-	        		}
-	            	juego.getMapa().setOleada(0);
-	            	if (instance != null && instance.oleadaLabel != null) {
-	        			Platform.runLater(() -> instance.oleadaLabel.setText(String.valueOf(juego.getMapa().getOleada())));
-	        		}
-	            }else {
-	            	
-	            }
+
+				boolean confirmado = mostrarDialogoPerdiste(App.primarySatge);
+				if (confirmado) {
+					juego.getMapa().reiniciarJuego();
+					vida = 15;
+					if (instance != null && instance.vidaLabel != null) {
+						Platform.runLater(() -> instance.vidaLabel.setText(String.valueOf(vida)));
+					}
+					monedas = 500;
+					if (instance != null && instance.monedaLabel != null) {
+						Platform.runLater(() -> instance.monedaLabel.setText(String.valueOf(monedas)));
+					}
+					juego.getMapa().setOleada(0);
+					if (instance != null && instance.oleadaLabel != null) {
+						Platform.runLater(
+								() -> instance.oleadaLabel.setText(String.valueOf(juego.getMapa().getOleada())));
+					}
+				} else {
+					
+				}
 			});
 		} else {
 			Platform.runLater(() -> {
@@ -158,18 +160,17 @@ public class PlayController implements Initializable {
 		alert.setTitle("");
 
 		ImageView imageView = new ImageView(new Image("assets/sprites/derrota.png"));
-        VBox vBox = new VBox(imageView);
-        alert.getDialogPane().setContent(vBox);
-		
+		VBox vBox = new VBox(imageView);
+		alert.getDialogPane().setContent(vBox);
+
 		ButtonType botonSi = new ButtonType("Reiniciar partida", ButtonBar.ButtonData.YES);
-		ButtonType botonNo = new ButtonType("Volver menu", ButtonBar.ButtonData.NO);
-		alert.getButtonTypes().setAll(botonSi, botonNo);
+		alert.getButtonTypes().setAll(botonSi);
 
 		Optional<ButtonType> resultado = alert.showAndWait();
 
 		return resultado.isPresent() && resultado.get() == botonSi;
 	}
-	
+
 	public static int getVida() {
 		return vida;
 	}

@@ -50,10 +50,6 @@ public class Juego extends AnimationTimer {
 					});
 		});
 	}
-	
-	public void reiniciarJuego() {
-        mapa.reiniciarJuego();
-    }
 
 	//getters y setters
 	public Mapa getMapa() {

@@ -253,6 +253,14 @@ public class Mapa extends StackPane {
 
 		return path;
 	}
+	
+	public void eliminarTorretas() {
+        // Eliminar las torretas del pane del área de juego
+        area.getChildren().removeAll(torretas);
+
+        // Limpiar la lista de torretas
+        torretas.clear();
+    }
 
 	// dialogo colocar torreta
 	public static boolean mostrarDialogoColocarTorreta(Stage stage, String mensaje) {
@@ -297,6 +305,10 @@ public class Mapa extends StackPane {
 	
 	public int getOleada() {
 		return oleada;
+	}
+
+	public void setOleada(int oleada) {
+		this.oleada = oleada;
 	}
 
 	public int aumentarOleada() {

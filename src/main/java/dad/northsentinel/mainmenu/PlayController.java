@@ -26,7 +26,7 @@ import javafx.stage.Stage;
 public class PlayController implements Initializable {
 
 	// model	
-	private Juego juego = new Juego();
+	private static Juego juego = new Juego();
 
 	private static PlayController instance;
 
@@ -91,7 +91,7 @@ public class PlayController implements Initializable {
 //		juego.fpsProperty().addListener((o, ov, nv) -> {
 //		System.out.println("fps=" + nv);
 //	});
-
+		
 		monedaLabel.setText(getMonedas() + "");
 		vidaLabel.setText(getVida() + "");
 
@@ -109,8 +109,24 @@ public class PlayController implements Initializable {
 				if (instance != null && instance.vidaLabel != null) {
 					instance.vidaLabel.setText("0");
 				}
-				mostrarDialogoPerdiste(App.primarySatge);
-				System.out.println("El jugador ha perdido.");
+	            boolean confirmado = mostrarDialogoPerdiste(App.primarySatge);
+	            if (confirmado) {
+	            	juego.reiniciarJuego();
+	            	vida = 15;
+	            	if (instance != null && instance.vidaLabel != null) {
+	        			Platform.runLater(() -> instance.vidaLabel.setText(String.valueOf(vida)));
+	            	}
+	            	monedas = 500;
+	            	if (instance != null && instance.monedaLabel != null) {
+	        			Platform.runLater(() -> instance.monedaLabel.setText(String.valueOf(monedas)));
+	        		}
+	            	juego.getMapa().setOleada(0);
+	            	if (instance != null && instance.oleadaLabel != null) {
+	        			Platform.runLater(() -> instance.oleadaLabel.setText(String.valueOf(juego.getMapa().getOleada())));
+	        		}
+	            }else {
+	            	
+	            }
 			});
 		} else {
 			Platform.runLater(() -> {

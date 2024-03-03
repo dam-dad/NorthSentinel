@@ -31,6 +31,8 @@ public class Mapa extends StackPane {
 	private List<Entidad> entidades = new ArrayList<>();
 
 	public static Mapa supermapa;
+	
+    private int oleada = 1;
 
 	private static final int VACIO = 10;
 
@@ -186,10 +188,11 @@ public class Mapa extends StackPane {
 
 	// crear la oleada de enemigos
 	public void generarOleada() {
+        int cantidadEnemigos = oleada * 5; // Aumentar la cantidad de enemigos según el nivel de dificultad
 		Path path = getPath();
 		if (!path.getElements().isEmpty() && path.getElements().get(0) instanceof MoveTo) {
 			MoveTo primerPunto = (MoveTo) path.getElements().get(0);
-			for (int i = 0; i < 5; i++) {
+			for (int i = 0; i < cantidadEnemigos; i++) {
 				Enemigo enemigo = new Enemigo();
 				enemigo.setPos(new Point2D(primerPunto.getX(), primerPunto.getY()));
 				getArea().getChildren().add(enemigo);
@@ -268,6 +271,9 @@ public class Mapa extends StackPane {
 	}
 
 	//getters y setters
+	
+	
+	
 	public GridPane getFondo() {
 		return fondo;
 	}
@@ -287,6 +293,14 @@ public class Mapa extends StackPane {
 
 	public Path getPath() {
 		return path;
+	}
+	
+	public int getOleada() {
+		return oleada;
+	}
+
+	public int aumentarOleada() {
+		return ++oleada;
 	}
 
 	public List<Torreta> getTorretas() {

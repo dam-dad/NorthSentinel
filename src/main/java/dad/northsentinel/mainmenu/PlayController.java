@@ -17,12 +17,15 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class PlayController implements Initializable {
 
-	// model
+	// model	
 	private Juego juego = new Juego();
 
 	private static PlayController instance;
@@ -48,6 +51,9 @@ public class PlayController implements Initializable {
 
 	@FXML
 	private Label vidaLabel;
+	
+    @FXML
+    private Label oleadaLabel;
 
 	public PlayController() {
 		instance = this;
@@ -71,6 +77,8 @@ public class PlayController implements Initializable {
 	@FXML
 	void onStartWave(ActionEvent event) {
 		juego.getMapa().generarOleada();
+		oleadaLabel.setText(""+juego.getMapa().getOleada());
+		juego.getMapa().aumentarOleada();
 	}
 
 	public void setOnGoBack(EventHandler<ActionEvent> onGoBack) {
@@ -130,11 +138,13 @@ public class PlayController implements Initializable {
 	}
 
 	public static boolean mostrarDialogoPerdiste(Stage stage) {
-		Alert alert = new Alert(Alert.AlertType.ERROR);
+		Alert alert = new Alert(Alert.AlertType.NONE);
 		alert.setTitle("");
-		alert.setHeaderText("Los enemigos han asaltado tu base");
-		alert.setContentText("¿Que quieres hacer?");
 
+		ImageView imageView = new ImageView(new Image("assets/sprites/derrota.png"));
+        VBox vBox = new VBox(imageView);
+        alert.getDialogPane().setContent(vBox);
+		
 		ButtonType botonSi = new ButtonType("Reiniciar partida", ButtonBar.ButtonData.YES);
 		ButtonType botonNo = new ButtonType("Volver menu", ButtonBar.ButtonData.NO);
 		alert.getButtonTypes().setAll(botonSi, botonNo);

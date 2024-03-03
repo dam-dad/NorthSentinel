@@ -23,6 +23,7 @@
               <rowConstraints>
                 <RowConstraints valignment="CENTER" />
                 <RowConstraints valignment="CENTER" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" />
                 <RowConstraints valignment="CENTER" vgrow="ALWAYS" />
               </rowConstraints>
                <children>
@@ -58,7 +59,7 @@
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </GridPane.margin>
                   </HBox>
-                  <VBox alignment="CENTER" prefHeight="200.0" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                  <VBox alignment="CENTER" prefHeight="200.0" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
                      <children>
                         <Button alignment="CENTER" minHeight="40.0" minWidth="100.0" mnemonicParsing="false" onAction="#onGoBack" prefHeight="40.0" prefWidth="100.0" text="Go back" VBox.vgrow="ALWAYS">
                            <graphic>
@@ -86,6 +87,15 @@
                         </Button>
                      </children>
                   </VBox>
+                  <HBox alignment="CENTER" GridPane.rowIndex="2">
+                     <children>
+                        <Label text="Oleada: " />
+                        <Label fx:id="oleadaLabel" text="0" />
+                     </children>
+                     <GridPane.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </GridPane.margin>
+                  </HBox>
                </children>
                <BorderPane.margin>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />

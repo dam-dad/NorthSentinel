@@ -33,7 +33,7 @@ public class Mapa extends StackPane {
 	public static Mapa supermapa;
 	
     private int oleada = 1;
-
+    
 	private static final int VACIO = 10;
 
 	int[][] capa1 = { { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
@@ -194,6 +194,15 @@ public class Mapa extends StackPane {
 			MoveTo primerPunto = (MoveTo) path.getElements().get(0);
 			for (int i = 0; i < cantidadEnemigos; i++) {
 				Enemigo enemigo = new Enemigo();
+				enemigo.setVida(enemigo.getVida()*(oleada*0.50));
+				
+				if(oleada < 5) {
+					enemigo.setVelocidad(enemigo.getVelocidad()-oleada);
+				} else {
+					enemigo.setVelocidad(6);
+				}
+				System.out.println(enemigo.getVelocidad());
+				
 				enemigo.setPos(new Point2D(primerPunto.getX(), primerPunto.getY()));
 				getArea().getChildren().add(enemigo);
 				Mapa.supermapa.getEntidades().add(enemigo);
@@ -255,7 +264,9 @@ public class Mapa extends StackPane {
 	}
 	
 	public void reiniciarJuego() {
-        // Eliminar las torretas y enemigos
+        area.getChildren().removeAll(torretas);
+        torretas.clear();
+
         area.getChildren().removeAll(entidades);
         entidades.clear();
     }

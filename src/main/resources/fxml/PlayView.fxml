@@ -12,96 +12,91 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane fx:id="view" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
-   <center>
-      <BorderPane fx:id="viewPlay" BorderPane.alignment="CENTER">
-         <right>
-            <GridPane alignment="CENTER" BorderPane.alignment="CENTER">
-              <columnConstraints>
-                <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="-Infinity" />
-              </columnConstraints>
-              <rowConstraints>
-                <RowConstraints valignment="CENTER" />
-                <RowConstraints valignment="CENTER" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" />
-                <RowConstraints valignment="CENTER" vgrow="ALWAYS" />
-              </rowConstraints>
+<HBox fx:id="view" alignment="CENTER" stylesheets="/css/playview.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <BorderPane fx:id="viewPlay" />
+      <GridPane id="viewMenu" alignment="CENTER" HBox.hgrow="ALWAYS">
+        <columnConstraints>
+          <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" />
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="100.0" valignment="CENTER" />
+          <RowConstraints valignment="CENTER" />
+          <RowConstraints valignment="CENTER" />
+            <RowConstraints valignment="CENTER" />
+          <RowConstraints valignment="CENTER" vgrow="ALWAYS" />
+        </rowConstraints>
+         <children>
+            <HBox alignment="CENTER" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                <children>
-                  <HBox alignment="CENTER" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
-                     <children>
-                        <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../assets/sprites/vida.png" />
-                           </image>
-                           <HBox.margin>
-                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                           </HBox.margin>
-                        </ImageView>
-                        <Label fx:id="vidaLabel" text="0" />
-                     </children>
-                     <GridPane.margin>
+                  <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/sprites/vida.png" />
+                     </image>
+                     <HBox.margin>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                     </GridPane.margin>
-                  </HBox>
-                  <HBox alignment="CENTER" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
-                     <children>
-                        <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../assets/sprites/moneda.png" />
-                           </image>
-                           <HBox.margin>
-                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                           </HBox.margin>
-                        </ImageView>
-                        <Label fx:id="monedaLabel" text="0" />
-                     </children>
-                     <GridPane.margin>
-                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                     </GridPane.margin>
-                  </HBox>
-                  <VBox alignment="CENTER" prefHeight="200.0" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
-                     <children>
-                        <Button alignment="CENTER" minHeight="40.0" minWidth="100.0" mnemonicParsing="false" onAction="#onGoBack" prefHeight="40.0" prefWidth="100.0" text="Go back" VBox.vgrow="ALWAYS">
-                           <graphic>
-                              <ImageView fitHeight="25.0" fitWidth="25.0">
-                                 <image>
-                                    <Image url="@../images/goback.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
-                           <VBox.margin>
-                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                           </VBox.margin>
-                        </Button>
-                        <Button minHeight="40.0" minWidth="100.0" mnemonicParsing="false" onAction="#onStartWave" prefHeight="40.0" prefWidth="100.0" text="Start wave" VBox.vgrow="ALWAYS">
-                           <graphic>
-                              <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../images/oleada.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
-                           <VBox.margin>
-                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                           </VBox.margin>
-                        </Button>
-                     </children>
-                  </VBox>
-                  <HBox alignment="CENTER" GridPane.rowIndex="2">
-                     <children>
-                        <Label text="Oleada: " />
-                        <Label fx:id="oleadaLabel" text="0" />
-                     </children>
-                     <GridPane.margin>
-                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                     </GridPane.margin>
-                  </HBox>
+                     </HBox.margin>
+                  </ImageView>
+                  <Label fx:id="vidaLabel" text="0" />
                </children>
-               <BorderPane.margin>
+               <GridPane.margin>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-               </BorderPane.margin>
-            </GridPane>
-         </right>
-      </BorderPane>
-   </center>
-</BorderPane>
+               </GridPane.margin>
+            </HBox>
+            <HBox alignment="CENTER" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+               <children>
+                  <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/sprites/moneda.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <Label fx:id="monedaLabel" text="0" />
+               </children>
+               <GridPane.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </GridPane.margin>
+            </HBox>
+            <VBox alignment="CENTER" prefHeight="200.0" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+               <children>
+                  <Button alignment="CENTER" minHeight="40.0" minWidth="100.0" mnemonicParsing="false" onAction="#onGoBack" text="Go back" VBox.vgrow="ALWAYS">
+                     <graphic>
+                        <ImageView fitHeight="25.0" fitWidth="25.0">
+                           <image>
+                              <Image url="@../images/goback.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </VBox.margin>
+                  </Button>
+                  <Button minHeight="40.0" minWidth="100.0" mnemonicParsing="false" onAction="#onStartWave" text="Start wave" VBox.vgrow="ALWAYS">
+                     <graphic>
+                        <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/oleada.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </VBox.margin>
+                  </Button>
+               </children>
+            </VBox>
+            <HBox alignment="CENTER" GridPane.rowIndex="3">
+               <children>
+                  <Label text="Oleada: " />
+                  <Label fx:id="oleadaLabel" text="0" />
+               </children>
+               <GridPane.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </GridPane.margin>
+            </HBox>
+         </children>
+      </GridPane>
+   </children>
+</HBox>

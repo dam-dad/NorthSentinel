@@ -20,6 +20,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -33,6 +34,8 @@ public class PlayController implements Initializable {
 	private static int vida = 15;
 
 	private static int monedas = 500;
+	
+    private static boolean alertaMostrada = false;
 
 	// actions
 
@@ -41,7 +44,7 @@ public class PlayController implements Initializable {
 	// view
 
 	@FXML
-	private BorderPane view;
+	private HBox view;
 
 	@FXML
 	private BorderPane viewPlay;
@@ -102,41 +105,55 @@ public class PlayController implements Initializable {
 
 	// reducir vida por cada enemigo que llegue al final
 	public static void reducirVida(int cantidad) {
-		vida -= cantidad;
-		if (vida <= 0) {
-			vida = 0;
-			Platform.runLater(() -> {
-				if (instance != null && instance.vidaLabel != null) {
-					instance.vidaLabel.setText("0");
-				}
+	    if (vida > 0) {
+	        vida -= cantidad;
+	        if (vida <= 0 && !alertaMostrada) {
+	            vida = 0;
+	            alertaMostrada = true;
+	            Platform.runLater(() -> {
+	                if (instance != null && instance.vidaLabel != null) {
+	                    instance.vidaLabel.setText("0");
+	                }
 
-				boolean confirmado = mostrarDialogoPerdiste(App.primarySatge);
-				if (confirmado) {
-					juego.getMapa().reiniciarJuego();
-					vida = 15;
-					if (instance != null && instance.vidaLabel != null) {
-						Platform.runLater(() -> instance.vidaLabel.setText(String.valueOf(vida)));
-					}
-					monedas = 500;
-					if (instance != null && instance.monedaLabel != null) {
-						Platform.runLater(() -> instance.monedaLabel.setText(String.valueOf(monedas)));
-					}
-					juego.getMapa().setOleada(0);
-					if (instance != null && instance.oleadaLabel != null) {
-						Platform.runLater(
-								() -> instance.oleadaLabel.setText(String.valueOf(juego.getMapa().getOleada())));
-					}
-				} else {
-					
-				}
-			});
-		} else {
-			Platform.runLater(() -> {
-				if (instance != null && instance.vidaLabel != null) {
-					instance.vidaLabel.setText(String.valueOf(vida));
-				}
-			});
-		}
+	                boolean confirmado = mostrarDialogoPerdiste(App.primarySatge);
+	                if (confirmado) {
+	                    juego.getMapa().reiniciarJuego();
+	                    vida = 15;
+	                    if (instance != null && instance.vidaLabel != null) {
+	                        Platform.runLater(() -> instance.vidaLabel.setText(String.valueOf(vida)));
+	                    }
+	                    monedas = 500;
+	                    if (instance != null && instance.monedaLabel != null) {
+	                        Platform.runLater(() -> instance.monedaLabel.setText(String.valueOf(monedas)));
+	                    }
+	                    juego.getMapa().setOleada(0);
+	                    if (instance != null && instance.oleadaLabel != null) {
+	                        Platform.runLater(() -> instance.oleadaLabel.setText(String.valueOf(juego.getMapa().getOleada())));
+	                    }
+	                } else {
+	                	juego.getMapa().reiniciarJuego();
+	                    vida = 15;
+	                    if (instance != null && instance.vidaLabel != null) {
+	                        Platform.runLater(() -> instance.vidaLabel.setText(String.valueOf(vida)));
+	                    }
+	                    monedas = 500;
+	                    if (instance != null && instance.monedaLabel != null) {
+	                        Platform.runLater(() -> instance.monedaLabel.setText(String.valueOf(monedas)));
+	                    }
+	                    juego.getMapa().setOleada(0);
+	                    if (instance != null && instance.oleadaLabel != null) {
+	                        Platform.runLater(() -> instance.oleadaLabel.setText(String.valueOf(juego.getMapa().getOleada())));
+	                    }	                }
+	            });
+	        } else if (vida > 0) {
+	            alertaMostrada = false; // Reiniciamos el marcador de alerta mostrada si la vida vuelve a ser mayor que 0
+	        }
+	        Platform.runLater(() -> {
+	            if (instance != null && instance.vidaLabel != null) {
+	                instance.vidaLabel.setText(String.valueOf(vida));
+	            }
+	        });
+	    }
 	}
 
 	// sumar moneda por cada enemigo muerto
@@ -179,7 +196,7 @@ public class PlayController implements Initializable {
 		return monedas;
 	}
 
-	public BorderPane getView() {
+	public HBox getView() {
 		return view;
 	}
 

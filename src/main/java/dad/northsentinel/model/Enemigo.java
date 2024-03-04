@@ -21,9 +21,10 @@ import javafx.util.Duration;
 
 public class Enemigo extends Entidad {
 
-	private int vida;
+	private double vida;
 	private boolean haSidoDestruidoPorDaño = false;
-
+	private int velocidad;
+	
 	private int daño;
 	private Point2D destino;
 	private Point2D origen;
@@ -31,8 +32,9 @@ public class Enemigo extends Entidad {
 
 	public Enemigo() {
 		super("/assets/enemigos/enemigo1.png");
-		this.vida = 100;
+		this.vida = 150;
 		this.daño = 1;
+		this.velocidad = 11;
 		setFitWidth(100);
 		setFitHeight(100);
 	}
@@ -45,7 +47,7 @@ public class Enemigo extends Entidad {
 	public void iniciarMovimiento(int delay) {
 		transition = new PathTransition();
 		transition.setNode(this);
-		transition.setDuration(Duration.seconds(10)); // Ajusta según la duración deseada
+		transition.setDuration(Duration.seconds(velocidad)); // Ajusta según la duración deseada
 		transition.setPath(Mapa.supermapa.getPath());
 		transition.setOrientation(PathTransition.OrientationType.ORTHOGONAL_TO_TANGENT);
 		transition.setInterpolator(Interpolator.LINEAR);
@@ -136,11 +138,11 @@ public class Enemigo extends Entidad {
 	}
 
 	// getters y setters
-	public int getVida() {
+	public double getVida() {
 		return vida;
 	}
 
-	public void setVida(int vida) {
+	public void setVida(double vida) {
 		this.vida = vida;
 	}
 
@@ -184,4 +186,12 @@ public class Enemigo extends Entidad {
 		this.transition = transition;
 	}
 
+	public int getVelocidad() {
+		return velocidad;
+	}
+
+	public void setVelocidad(int velocidad) {
+		this.velocidad = velocidad;
+	}
+	
 }

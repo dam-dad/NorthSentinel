@@ -10,23 +10,25 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 
 <BorderPane fx:id="view" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" stylesheets="/css/howtoplayview.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
    <center>
       <GridPane BorderPane.alignment="CENTER">
         <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
         </columnConstraints>
         <rowConstraints>
           <RowConstraints />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" />
+          <RowConstraints />
+            <RowConstraints />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
           <RowConstraints vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button maxWidth="150.0" mnemonicParsing="false" onAction="#onGoBack" prefHeight="50.0" text="Go back" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="3">
+            <Button maxWidth="150.0" mnemonicParsing="false" onAction="#onGoBack" prefHeight="50.0" text="Go back" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="4">
                <graphic>
                   <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -38,32 +40,29 @@
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </GridPane.margin>
             </Button>
-            <ComboBox fx:id="enemiesCombo" maxWidth="1.7976931348623157E308" GridPane.rowIndex="1">
+            <ComboBox fx:id="howToPlayCombo" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <GridPane.margin>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </GridPane.margin></ComboBox>
-            <ComboBox fx:id="defensesCombo" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="1">
-               <GridPane.margin>
-                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-               </GridPane.margin></ComboBox>
-            <TextArea fx:id="enemiesTextArea" editable="false" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2">
-               <GridPane.margin>
-                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-               </GridPane.margin></TextArea>
-            <TextArea fx:id="defensesTextArea" editable="false" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
-               <GridPane.margin>
-                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-               </GridPane.margin></TextArea>
-            <Label alignment="CENTER" text="ENEMIES" GridPane.halignment="CENTER">
+            <Label alignment="CENTER" text="¿Cual es el objetivo?" GridPane.halignment="CENTER" GridPane.rowIndex="1">
                <GridPane.margin>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </GridPane.margin>
             </Label>
-            <Label text="DEFENSES" GridPane.columnIndex="1" GridPane.halignment="CENTER">
+            <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+               <image>
+                  <Image url="@../assets/enemigos/enemigo1.png" />
+               </image>
                <GridPane.margin>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </GridPane.margin>
-            </Label>
+            </ImageView>
+            <TextArea fx:id="howToPlayTextArea" GridPane.columnIndex="1" GridPane.rowIndex="3">
+               <GridPane.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </GridPane.margin>
+            </TextArea>
+            <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
          </children>
       </GridPane>
    </center>

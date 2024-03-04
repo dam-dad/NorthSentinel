@@ -10,8 +10,8 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
 
 <BorderPane fx:id="view" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" stylesheets="/css/howtoplayview.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
    <center>
@@ -49,7 +49,7 @@
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </GridPane.margin>
             </Label>
-            <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+            <ImageView fx:id="howToPlayImage" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2">
                <image>
                   <Image url="@../assets/enemigos/enemigo1.png" />
                </image>
@@ -57,12 +57,14 @@
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </GridPane.margin>
             </ImageView>
-            <TextArea fx:id="howToPlayTextArea" GridPane.columnIndex="1" GridPane.rowIndex="3">
+            <TextArea fx:id="howToPlayTextArea" editable="false" text="Vida: 100 y por cada oleada se incrementa 50 &#10;mas de vida.&#10;Daño: quita 1 de vida si llegan al final del &#10;camino.&#10;Velocidad: 10 segundos tardan en llegar al final&#10; del camino, que se va disminuyendo el tiempo &#10;por cada oleada que pasa.&#10;Cantidad: la primera oleada son 5, y por cada &#10;oleada se incrememtan 5 mas.&#10;&#10;&#10;" GridPane.columnIndex="1" GridPane.rowIndex="3">
                <GridPane.margin>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </GridPane.margin>
+               <font>
+                  <Font size="18.0" />
+               </font>
             </TextArea>
-            <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
          </children>
       </GridPane>
    </center>

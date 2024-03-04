@@ -13,6 +13,11 @@ import javafx.fxml.Initializable;
 
 public class MainController implements Initializable {
 
+	/**
+	 *  aqui se inicializan todos los 
+	 *  controles para cada vista del menu
+	 */
+	
 	private MenuController menuController;
 	private SettingsController settingsController;
 	private HowToPlayController howToPlayController;

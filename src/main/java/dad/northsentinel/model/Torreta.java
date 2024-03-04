@@ -5,6 +5,8 @@ import javafx.scene.layout.Pane;
 import javafx.scene.shape.Shape;
 
 public class Torreta extends Entidad {
+	
+	private static int disparosRealizados = 0;
 
 	public static final int COSTO_TORRETA = 500;
 	private Point2D pos;
@@ -42,6 +44,9 @@ public class Torreta extends Entidad {
 		bala.disparar(target);
 		area.getChildren().add(bala);
 		Mapa.supermapa.getEntidades().add(bala);
+		
+		//Variable para reports
+		disparosRealizados++;
 
 		if (target != null) {
 			// Calcular el ángulo entre la posición actual de la torreta y el destino de la
@@ -68,5 +73,9 @@ public class Torreta extends Entidad {
 	public Point2D getPos() {
 		return pos;
 	}
+	
+	public static int getDisparosRealizados() {
+        return disparosRealizados;
+    }
 	
 }

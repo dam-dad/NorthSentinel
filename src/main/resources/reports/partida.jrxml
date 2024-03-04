@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="InformePartida" language="java" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="123e4567-e89b-12d3-a456-426614174000">
+    <parameter name="totalEnemigos" class="java.lang.Integer"/>
+    <parameter name="numTorretas" class="java.lang.Integer"/>
+    <parameter name="disparosRealizados" class="java.lang.Integer"/>
+    
+    <title>
+        <band height="50" splitType="Stretch">
+            <staticText>
+                <reportElement x="0" y="10" width="555" height="30"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle"/>
+                <text><![CDATA[Informe de Partida]]></text>
+            </staticText>
+        </band>
+    </title>
+    <detail>
+        <band height="150" splitType="Stretch">
+            <staticText>
+                <reportElement x="0" y="0" width="180" height="20"/>
+                <textElement/>
+                <text><![CDATA[Número total de enemigos:]]></text>
+            </staticText>
+            <textField>
+                <reportElement x="200" y="0" width="200" height="20"/>
+                <textFieldExpression><![CDATA[$P{totalEnemigos}]]></textFieldExpression>
+            </textField>
+            
+            <staticText>
+                <reportElement x="0" y="40" width="180" height="20"/>
+                <textElement/>
+                <text><![CDATA[Número de torretas:]]></text>
+            </staticText>
+            <textField>
+                <reportElement x="200" y="40" width="200" height="20"/>
+                <textFieldExpression><![CDATA[$P{numTorretas}]]></textFieldExpression>
+            </textField>
+            
+            <staticText>
+                <reportElement x="0" y="80" width="180" height="20"/>
+                <textElement/>
+                <text><![CDATA[Cantidad de disparos realizados:]]></text>
+            </staticText>
+            <textField>
+                <reportElement x="200" y="80" width="200" height="20"/>
+                <textFieldExpression><![CDATA[$P{disparosRealizados}]]></textFieldExpression>
+            </textField>
+        </band>
+    </detail>
+</jasperReport>
+

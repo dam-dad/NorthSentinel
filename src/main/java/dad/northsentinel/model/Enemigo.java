@@ -21,6 +21,7 @@ import javafx.util.Duration;
 
 public class Enemigo extends Entidad {
 
+	private static int totalEnemigos = 0;
 	private double vida;
 	private boolean haSidoDestruidoPorDaño = false;
 	private int velocidad;
@@ -37,6 +38,7 @@ public class Enemigo extends Entidad {
 		this.velocidad = 11;
 		setFitWidth(100);
 		setFitHeight(100);
+		totalEnemigos++;
 	}
 
 	@Override
@@ -193,5 +195,9 @@ public class Enemigo extends Entidad {
 	public void setVelocidad(int velocidad) {
 		this.velocidad = velocidad;
 	}
+	
+	public static int getTotalEnemigos() {
+        return totalEnemigos;
+    }
 	
 }

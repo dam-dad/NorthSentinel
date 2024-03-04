@@ -26,7 +26,7 @@ import javafx.stage.Stage;
 
 public class Mapa extends StackPane {
 
-	private List<Torreta> torretas = new ArrayList<>();
+	private static List<Torreta> torretas = new ArrayList<>();
 
 	private List<Entidad> entidades = new ArrayList<>();
 
@@ -345,5 +345,9 @@ public class Mapa extends StackPane {
 		return Mapa.supermapa.getEntidades().stream().filter(e -> (e instanceof Enemigo)).map(e -> (Enemigo) e)
 				.collect(Collectors.toList());
 	}
+	
+	public static int obtenerNumeroTorretas() {
+        return torretas.size();
+    }
 
 }

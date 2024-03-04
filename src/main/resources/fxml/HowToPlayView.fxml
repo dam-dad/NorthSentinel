@@ -50,14 +50,14 @@
                </GridPane.margin>
             </Label>
             <ImageView fx:id="howToPlayImage" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2">
-               <image>
-                  <Image url="@../assets/enemigos/enemigo1.png" />
-               </image>
                <GridPane.margin>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </GridPane.margin>
+               <image>
+                  <Image url="@../assets/enemigos/enemigo1.png" />
+               </image>
             </ImageView>
-            <TextArea fx:id="howToPlayTextArea" editable="false" text="Vida: 100 y por cada oleada se incrementa 50 &#10;mas de vida.&#10;Daño: quita 1 de vida si llegan al final del &#10;camino.&#10;Velocidad: 10 segundos tardan en llegar al final&#10; del camino, que se va disminuyendo el tiempo &#10;por cada oleada que pasa.&#10;Cantidad: la primera oleada son 5, y por cada &#10;oleada se incrememtan 5 mas.&#10;&#10;&#10;" GridPane.columnIndex="1" GridPane.rowIndex="3">
+            <TextArea fx:id="howToPlayTextArea" editable="false" text="Vida: 100 y por cada oleada se incrementa 50 más de vida.&#10;Daño: quita 1 de vida si llegan al final del camino.&#10;Velocidad: 10 segundos tardan en llegar al final del camino, que se va disminuyendo el tiempo.&#10;por cada oleada que pasa.&#10;Cantidad: la primera oleada son 5, y por cada oleada se incrementan 5 más." GridPane.columnIndex="1" GridPane.rowIndex="3">
                <GridPane.margin>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </GridPane.margin>

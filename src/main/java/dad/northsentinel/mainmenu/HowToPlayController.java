@@ -62,17 +62,39 @@ public class HowToPlayController implements Initializable {
         
         howToPlayCombo.getSelectionModel().select("Enemigo");
 
+        howToPlayTextArea.setText("Vida: 100 y por cada oleada se incrementa 50 mas de vida.\r\n"
+                		+ "Daño: quita 1 de vida si llegan al final del camino.\r\n"
+                		+ "Velocidad: 10 segundos tardan en llegar al final del camino, que \r\n"
+                		+ "se va disminuyendo el tiempo por cada oleada que pasa.\r\n"
+                		+ "Cantidad: la primera oleada son 5, y por cada oleada se incrememtan 5 mas.\r\n"
+                		+ "\r\n"
+                		+ "\r\n");
+        
         // Configurar listener para el cambio de selección en el ComboBox
         howToPlayCombo.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue != null) {
                 // Cambiar la imagen dependiendo de la selección
-            	String imageName = newValue.equals("Enemigo") ? "assets/enemigos/enemigo1.png" : "assets/torretas/torreta1.png";
+            	String imageName = newValue.equals("Enemigo") ? "/assets/enemigos/enemigo1.png" : "/assets/torretas/torreta1.png";
             	Image image = new Image(getClass().getResourceAsStream(imageName));
+
 
                 howToPlayImage.setImage(image);
 
                 // Cambiar el texto del TextArea
-                String text = newValue.equals("Enemigo") ? "Instrucciones para el Enemigo..." : "Instrucciones para la Torreta...";
+                String text = newValue.equals("Enemigo") ? "Vida: 100 y por cada oleada se incrementa 50 mas de vida.\r\n"
+                		+ "Daño: quita 1 de vida si llegan al final del camino.\r\n"
+                		+ "Velocidad: 10 segundos tardan en llegar al final del camino, que \r\n"
+                		+ "se va disminuyendo el tiempo por cada oleada que pasa.\r\n"
+                		+ "Cantidad: la primera oleada son 5, y por cada oleada se incrememtan 5 mas.\r\n"
+                		+ "\r\n"
+                		+ "\r\n"
+                		+ "" : "Las torretas se colocan por el mapa, y solo se pueden colocar en las zonas con \r\n"
+                				+ "cruces grises. \r\n"
+                		+ "El objetivo de las torretas es eliminar a los enemigos que te vengan dando click, \r\n"
+                		+ "para evitar que estos lleguen alfinal del camino y te quiten vida. Cada bala \r\n "
+                		+ "que dispare la torreta e impacte en el enemigo le quitara 25 de vida. \r\n"
+                		+ "El coste de cada torreta es de 500 monedas, que deberas tener para que \r\n"
+                		+ "te permita colocar la torreta.";
                 howToPlayTextArea.setText(text);
             }
         });

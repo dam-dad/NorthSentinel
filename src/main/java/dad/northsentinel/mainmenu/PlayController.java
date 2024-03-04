@@ -6,7 +6,11 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 
 import dad.northsentinel.main.App;
+import dad.northsentinel.model.Enemigo;
 import dad.northsentinel.model.Juego;
+import dad.northsentinel.model.Mapa;
+import dad.northsentinel.model.ReportGenerator;
+import dad.northsentinel.model.Torreta;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -116,6 +120,7 @@ public class PlayController implements Initializable {
 	                }
 
 	                boolean confirmado = mostrarDialogoPerdiste(App.primarySatge);
+	                finalizarPartida();
 	                if (confirmado) {
 	                    juego.getMapa().reiniciarJuego();
 	                    vida = 15;
@@ -187,6 +192,14 @@ public class PlayController implements Initializable {
 
 		return resultado.isPresent() && resultado.get() == botonSi;
 	}
+	
+	public static void finalizarPartida() {
+        int totalEnemigos = Enemigo.getTotalEnemigos();
+        int numTorretas = Mapa.obtenerNumeroTorretas();
+        int disparosRealizados = Torreta.getDisparosRealizados();
+
+        ReportGenerator.generateReport(totalEnemigos, numTorretas, disparosRealizados);
+    }
 
 	public static int getVida() {
 		return vida;

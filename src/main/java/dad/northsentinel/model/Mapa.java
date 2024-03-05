@@ -31,9 +31,9 @@ public class Mapa extends StackPane {
 	private List<Entidad> entidades = new ArrayList<>();
 
 	public static Mapa supermapa;
-	
-    private int oleada = 1;
-    
+
+	private int oleada = 1;
+
 	private static final int VACIO = 10;
 
 	int[][] capa1 = { { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
@@ -81,30 +81,30 @@ public class Mapa extends StackPane {
 	int[][] capa3 = {
 			{ 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10 },
 			{ 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10 },
+			{ 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 9, 7, 10, 10, 10, 10 },
+			{ 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 9, 10, 10, 10, 10 },
+			{ 10, 10, 9, 7, 10, 10, 10, 10, 10, 10, 10, 10, 10, 6, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10 },
+			{ 10, 10, 7, 8, 7, 10, 10, 10, 10, 5, 0, 0, 0, 0, 0, 0, 0, 3, 10, 10, 10, 10, 10, 10, 10, 10 },
+			{ 10, 10, 10, 10, 10, 10, 10, 10, 10, 1, 10, 10, 10, 10, 10, 10, 10, 1, 10, 10, 10, 10, 10, 10, 10, 10 },
+			{ 10, 6, 10, 10, 10, 10, 10, 6, 10, 1, 10, 6, 10, 10, 10, 6, 10, 1, 10, 10, 10, 9, 10, 10, 10, 10 },
+			{ 10, 10, 10, 10, 10, 10, 10, 10, 10, 1, 10, 10, 10, 10, 10, 10, 10, 1, 10, 6, 10, 10, 10, 10, 10, 10 },
+			{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 10, 10, 8, 7, 8, 10, 10, 1, 10, 10, 10, 10, 10, 10, 10, 10 },
+			{ 10, 10, 10, 10, 10, 6, 10, 10, 10, 10, 10, 10, 10, 8, 10, 6, 10, 4, 0, 0, 0, 0, 0, 0, 0, 0 },
+			{ 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 6, 10, 10, 10 },
+			{ 10, 10, 10, 10, 10, 10, 10, 10, 9, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10 },
 			{ 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10 },
-			{ 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10 },
-			{ 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10,  6, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10 },
-			{ 10, 10, 10, 10, 10, 10, 10, 10, 10,  5,  0,  0,  0,  0,  0,  0,  0,  3, 10, 10, 10, 10, 10, 10, 10, 10 },
-			{ 10, 10, 10, 10, 10, 10, 10, 10, 10,  1, 10, 10, 10, 10, 10, 10, 10,  1, 10, 10, 10, 10, 10, 10, 10, 10 },
-			{ 10,  6, 10, 10, 10, 10, 10,  6, 10,  1, 10,  6, 10, 10, 10,  6, 10,  1, 10, 10, 10, 10, 10, 10, 10, 10 },
-			{ 10, 10, 10, 10, 10, 10, 10, 10, 10,  1, 10, 10, 10, 10, 10, 10, 10,  1, 10,  6, 10, 10, 10, 10, 10, 10 },
-			{  0,  0,  0,  0,  0,  0,  0,  0,  0,  2, 10, 10, 10, 10, 10, 10, 10,  1, 10, 10, 10, 10, 10, 10, 10, 10 },
-			{ 10, 10, 10, 10, 10,  6, 10, 10, 10, 10, 10, 10, 10, 10, 10,  6, 10,  4,  0,  0,  0,  0,  0,  0,  0,  0 },
-			{ 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10,  6, 10, 10, 10 },
-			{ 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10 },
-			{ 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10 },
-			{ 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10 }, 
-	};
+			{ 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10,
+					10 }, };
 
-	private static final Image[] assets_camino = { 
-			new Image("assets/camino/camino_central.png"), // 0
+	private static final Image[] assets_camino = { new Image("assets/camino/camino_central.png"), // 0
 			new Image("assets/camino/camino_arriba.png"), // 1
 			new Image("assets/camino/esquina_1.png"), // 2
 			new Image("assets/camino/esquina_2.png"), // 3
 			new Image("assets/camino/esquina_3.png"), // 4
 			new Image("assets/camino/esquina_4.png"), // 5
 			new Image("assets/camino/suelo_torreta.png"), // 6
-	};
+			new Image("assets/decoracion/palmera.png"), new Image("assets/decoracion/arbusto.png"),
+			new Image("assets/decoracion/roca_grande.png"), };
 
 	private GridPane fondo;
 	private GridPane mapa;
@@ -130,23 +130,23 @@ public class Mapa extends StackPane {
 			Point2D target = new Point2D(e.getX(), e.getY());
 
 			if (esPosicionValida(target)) {
-		        if (PlayController.getMonedas() >= Torreta.COSTO_TORRETA) { // Verificar si tienes suficientes monedas
-		            boolean confirmado = mostrarDialogoColocarTorreta(App.primarySatge,
-		                    "¿Estás seguro de realizar esta acción? Te costará " + Torreta.COSTO_TORRETA + " monedas.");
-		            if (confirmado) {
-		                Torreta torretaExistente = obtenerTorretaEnPosicion(target);
-		                if (torretaExistente == null) {
-		                    Torreta nuevaTorreta = new Torreta(target);
-		                    colocarTorreta(target, nuevaTorreta, area);
-		                    PlayController.restarMonedas(Torreta.COSTO_TORRETA);
-		                }
-		            }
-		        } else {
-		            System.out.println("No tienes suficientes monedas para colocar una torreta.");
-		        }
-		    } else {
+				if (PlayController.getMonedas() >= Torreta.COSTO_TORRETA) { // Verificar si tienes suficientes monedas
+					boolean confirmado = mostrarDialogoColocarTorreta(App.primarySatge,
+							"¿Estás seguro de realizar esta acción? Te costará " + Torreta.COSTO_TORRETA + " monedas.");
+					if (confirmado) {
+						Torreta torretaExistente = obtenerTorretaEnPosicion(target);
+						if (torretaExistente == null) {
+							Torreta nuevaTorreta = new Torreta(target);
+							colocarTorreta(target, nuevaTorreta, area);
+							PlayController.restarMonedas(Torreta.COSTO_TORRETA);
+						}
+					}
+				} else {
+					System.out.println("No tienes suficientes monedas para colocar una torreta.");
+				}
+			} else {
 
-		    }
+			}
 		});
 
 		supermapa = this;
@@ -188,21 +188,21 @@ public class Mapa extends StackPane {
 
 	// crear la oleada de enemigos
 	public void generarOleada() {
-        int cantidadEnemigos = oleada * 5; // Aumentar la cantidad de enemigos según el nivel de dificultad
+		int cantidadEnemigos = oleada * 5; // Aumentar la cantidad de enemigos según el nivel de dificultad
 		Path path = getPath();
 		if (!path.getElements().isEmpty() && path.getElements().get(0) instanceof MoveTo) {
 			MoveTo primerPunto = (MoveTo) path.getElements().get(0);
 			for (int i = 0; i < cantidadEnemigos; i++) {
 				Enemigo enemigo = new Enemigo();
-				enemigo.setVida(enemigo.getVida()*(oleada*0.50));
-				
-				if(oleada < 5) {
-					enemigo.setVelocidad(enemigo.getVelocidad()-oleada);
+				enemigo.setVida(enemigo.getVida() * (oleada * 0.50));
+
+				if (oleada < 5) {
+					enemigo.setVelocidad(enemigo.getVelocidad() - oleada);
 				} else {
 					enemigo.setVelocidad(6);
 				}
 				System.out.println(enemigo.getVelocidad());
-				
+
 				enemigo.setPos(new Point2D(primerPunto.getX(), primerPunto.getY()));
 				getArea().getChildren().add(enemigo);
 				Mapa.supermapa.getEntidades().add(enemigo);
@@ -262,14 +262,14 @@ public class Mapa extends StackPane {
 
 		return path;
 	}
-	
-	public void reiniciarJuego() {
-        area.getChildren().removeAll(torretas);
-        torretas.clear();
 
-        area.getChildren().removeAll(entidades);
-        entidades.clear();
-    }
+	public void reiniciarJuego() {
+		area.getChildren().removeAll(torretas);
+		torretas.clear();
+
+		area.getChildren().removeAll(entidades);
+		entidades.clear();
+	}
 
 	// dialogo colocar torreta
 	public static boolean mostrarDialogoColocarTorreta(Stage stage, String mensaje) {
@@ -287,10 +287,8 @@ public class Mapa extends StackPane {
 		return resultado.isPresent() && resultado.get() == botonSi;
 	}
 
-	//getters y setters
-	
-	
-	
+	// getters y setters
+
 	public GridPane getFondo() {
 		return fondo;
 	}
@@ -311,7 +309,7 @@ public class Mapa extends StackPane {
 	public Path getPath() {
 		return path;
 	}
-	
+
 	public int getOleada() {
 		return oleada;
 	}
@@ -345,9 +343,9 @@ public class Mapa extends StackPane {
 		return Mapa.supermapa.getEntidades().stream().filter(e -> (e instanceof Enemigo)).map(e -> (Enemigo) e)
 				.collect(Collectors.toList());
 	}
-	
+
 	public static int obtenerNumeroTorretas() {
-        return torretas.size();
-    }
+		return torretas.size();
+	}
 
 }

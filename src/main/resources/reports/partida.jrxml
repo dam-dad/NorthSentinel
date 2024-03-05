@@ -3,7 +3,7 @@
     <parameter name="totalEnemigos" class="java.lang.Integer"/>
     <parameter name="numTorretas" class="java.lang.Integer"/>
     <parameter name="disparosRealizados" class="java.lang.Integer"/>
-    
+
     <title>
         <band height="50" splitType="Stretch">
             <staticText>
@@ -24,7 +24,7 @@
                 <reportElement x="200" y="0" width="200" height="20"/>
                 <textFieldExpression><![CDATA[$P{totalEnemigos}]]></textFieldExpression>
             </textField>
-            
+
             <staticText>
                 <reportElement x="0" y="40" width="180" height="20"/>
                 <textElement/>
@@ -34,7 +34,7 @@
                 <reportElement x="200" y="40" width="200" height="20"/>
                 <textFieldExpression><![CDATA[$P{numTorretas}]]></textFieldExpression>
             </textField>
-            
+
             <staticText>
                 <reportElement x="0" y="80" width="180" height="20"/>
                 <textElement/>
@@ -46,5 +46,15 @@
             </textField>
         </band>
     </detail>
+    <pageFooter>
+        <band height="50" splitType="Stretch">
+            <textField>
+                <reportElement x="0" y="0" width="555" height="30" />
+                <textElement textAlignment="Center" verticalAlignment="Middle"/>
+                <textFieldExpression><![CDATA["Fecha y hora de generación: " + new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date())]]></textFieldExpression>
+            </textField>
+        </band>
+    </pageFooter>
 </jasperReport>
+
 

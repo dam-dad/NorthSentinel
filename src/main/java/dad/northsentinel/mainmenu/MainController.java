@@ -12,15 +12,16 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 
 /**
- * Controlador principal que gestiona la navegación entre las diferentes vistas del menú.
+ * Controlador principal que gestiona la navegación entre las diferentes vistas
+ * del menú.
  */
 
 public class MainController implements Initializable {
 
 	/**
-     * Se inicializan todos los controles para cada vista del menú.
-     */
-	
+	 * Se inicializan todos los controles para cada vista del menú.
+	 */
+
 	private MenuController menuController;
 	private SettingsController settingsController;
 	private HowToPlayController howToPlayController;
@@ -44,7 +45,7 @@ public class MainController implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 
-		String menuMusicPath = new File("src/main/resources/soundTrack/musicamenu.mp3").toURI().toString();
+		String menuMusicPath = getClass().getResource("/soundTrack/musicamenu.mp3").toString();
 		Media mediaMenu = new Media(menuMusicPath);
 		mediaPlayerMenu = new MediaPlayer(mediaMenu);
 		mediaPlayerMenu.setCycleCount(MediaPlayer.INDEFINITE);
@@ -61,7 +62,7 @@ public class MainController implements Initializable {
 
 		menuController.setOnPlay(e -> {
 			mediaPlayerMenu.stop();
-			String juegoMusicPath = new File("src/main/resources/soundTrack/musicajuego.mp3").toURI().toString();
+			String juegoMusicPath = getClass().getResource("/soundTrack/musicajuego.mp3").toString();
 			Media mediaJuego = new Media(juegoMusicPath);
 			mediaPlayerJuego = new MediaPlayer(mediaJuego);
 			mediaPlayerJuego.play();
@@ -100,11 +101,12 @@ public class MainController implements Initializable {
 
 		view.setCenter(menuController.getView());
 	}
-	
+
 	/**
-     * Obtiene el reproductor de música para el menú.
-     * @return El reproductor de música para el menú.
-     */
+	 * Obtiene el reproductor de música para el menú.
+	 * 
+	 * @return El reproductor de música para el menú.
+	 */
 
 	public MediaPlayer getMediaPlayerMenu() {
 		return mediaPlayerMenu;

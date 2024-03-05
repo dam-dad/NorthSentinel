@@ -1,6 +1,4 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-	xmlns:xsi="https://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="https://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>dad</groupId>
 	<artifactId>NorthSentinel</artifactId>
@@ -9,7 +7,7 @@
 		<maven.compiler.target>17</maven.compiler.target>
 		<maven.compiler.source>17</maven.compiler.source>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<exec.mainClass>dad.northsentinel.Main</exec.mainClass>
+		<exec.mainClass>dad.northsentinel.main.Main</exec.mainClass>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -39,7 +37,6 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
-
 	<build>
 		<plugins>
 			<plugin>
@@ -53,13 +50,14 @@
 							<goal>package</goal>
 						</goals>
 						<configuration>
-							<mainClass>dad.northsentinel.Main</mainClass>
+							<mainClass>dad.northsentinel.main.Main</mainClass>
 							<bundleJre>true</bundleJre>
 							<customizedJre>false</customizedJre>
 							<generateInstaller>true</generateInstaller>
 							<administratorRequired>false</administratorRequired>
 							<platform>windows</platform>
 							<winConfig>
+								<headerType>console</headerType>
 								<generateSetup>true</generateSetup>
 								<wrapJar>true</wrapJar>
 							</winConfig>

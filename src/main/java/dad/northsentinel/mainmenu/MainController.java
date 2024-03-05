@@ -11,12 +11,15 @@ import javafx.scene.media.MediaPlayer;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 
+/**
+ * Controlador principal que gestiona la navegación entre las diferentes vistas del menú.
+ */
+
 public class MainController implements Initializable {
 
 	/**
-	 *  aqui se inicializan todos los 
-	 *  controles para cada vista del menu
-	 */
+     * Se inicializan todos los controles para cada vista del menú.
+     */
 	
 	private MenuController menuController;
 	private SettingsController settingsController;
@@ -97,6 +100,11 @@ public class MainController implements Initializable {
 
 		view.setCenter(menuController.getView());
 	}
+	
+	/**
+     * Obtiene el reproductor de música para el menú.
+     * @return El reproductor de música para el menú.
+     */
 
 	public MediaPlayer getMediaPlayerMenu() {
 		return mediaPlayerMenu;

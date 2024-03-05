@@ -18,6 +18,10 @@ import javafx.scene.layout.BorderPane;
 
 import javafx.fxml.Initializable;
 
+/**
+ * Controlador para la vista de "Cómo Jugar".
+ */
+
 public class HowToPlayController implements Initializable {
 
     private EventHandler<ActionEvent> onGoBack;
@@ -44,6 +48,11 @@ public class HowToPlayController implements Initializable {
 		}
 	}
 
+	/**
+     * Establece el manejador de eventos para volver atrás.
+     * @param onGoBack El manejador de eventos para volver atrás.
+     */
+	
     @FXML
     void onGoBack(ActionEvent event) {
         if (onGoBack != null) {
@@ -70,17 +79,14 @@ public class HowToPlayController implements Initializable {
                 		+ "\r\n"
                 		+ "\r\n");
         
-        // Configurar listener para el cambio de selección en el ComboBox
         howToPlayCombo.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue != null) {
-                // Cambiar la imagen dependiendo de la selección
             	String imageName = newValue.equals("Enemigo") ? "/assets/enemigos/enemigo1.png" : "/assets/torretas/torreta1.png";
             	Image image = new Image(getClass().getResourceAsStream(imageName));
 
 
                 howToPlayImage.setImage(image);
 
-                // Cambiar el texto del TextArea
                 String text = newValue.equals("Enemigo") ? "Vida: 100 y por cada oleada se incrementa 50 mas de vida.\r\n"
                 		+ "Daño: quita 1 de vida si llegan al final del camino.\r\n"
                 		+ "Velocidad: 10 segundos tardan en llegar al final del camino, que \r\n"

@@ -28,6 +28,10 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+/**
+ * Controlador para la vista de juego.
+ */
+
 public class PlayController implements Initializable {
 
 	// model
@@ -73,6 +77,11 @@ public class PlayController implements Initializable {
 		}
 	}
 
+	/**
+     * Establece el manejador de eventos para volver atrás.
+     * @param onGoBack El manejador de eventos para volver atrás.
+     */
+	
 	@FXML
 	void onGoBack(ActionEvent event) {
 		if (onGoBack != null) {
@@ -107,7 +116,12 @@ public class PlayController implements Initializable {
 
 	}
 
-	// reducir vida por cada enemigo que llegue al final
+	
+	/**
+     * Reduce la vida por cada enemigo que llegue al final.
+     * @param cantidad La cantidad de vida a reducir.
+     */
+
 	public static void reducirVida(int cantidad) {
 	    if (vida > 0) {
 	        vida -= cantidad;
@@ -151,7 +165,7 @@ public class PlayController implements Initializable {
 	                    }	                }
 	            });
 	        } else if (vida > 0) {
-	            alertaMostrada = false; // Reiniciamos el marcador de alerta mostrada si la vida vuelve a ser mayor que 0
+	            alertaMostrada = false;
 	        }
 	        Platform.runLater(() -> {
 	            if (instance != null && instance.vidaLabel != null) {
@@ -161,7 +175,11 @@ public class PlayController implements Initializable {
 	    }
 	}
 
-	// sumar moneda por cada enemigo muerto
+	/**
+     * Suma monedas por cada enemigo muerto.
+     * @param cantidad La cantidad de monedas a sumar.
+     */
+	
 	public static void sumarMonedas(int cantidad) {
 		monedas += cantidad;
 		if (instance != null && instance.monedaLabel != null) {
@@ -169,6 +187,11 @@ public class PlayController implements Initializable {
 		}
 	}
 
+	 /**
+     * Resta monedas.
+     * @param cantidad La cantidad de monedas a restar.
+     */
+	
 	public static void restarMonedas(int cantidad) {
 		monedas -= cantidad;
 		// Actualiza el label de monedas
@@ -177,6 +200,12 @@ public class PlayController implements Initializable {
 		}
 	}
 
+	/**
+     * Muestra el diálogo de pérdida.
+     * @param stage La ventana en la que se mostrará el diálogo.
+     * @return true si se elige reiniciar la partida, false en caso contrario.
+     */
+	
 	public static boolean mostrarDialogoPerdiste(Stage stage) {
 		Alert alert = new Alert(Alert.AlertType.NONE);
 		alert.setTitle("");
@@ -192,6 +221,10 @@ public class PlayController implements Initializable {
 
 		return resultado.isPresent() && resultado.get() == botonSi;
 	}
+	
+	/**
+     * Finaliza la partida y genera un informe.
+     */
 	
 	public static void finalizarPartida() {
         int totalEnemigos = Enemigo.getTotalEnemigos();

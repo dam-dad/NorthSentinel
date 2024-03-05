@@ -11,6 +11,10 @@ import javafx.scene.layout.BorderPane;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 
+/**
+ * Controlador para la vista del menú principal.
+ */
+
 public class MenuController implements Initializable {
 
 	private EventHandler<ActionEvent> onPlay;
@@ -60,14 +64,29 @@ public class MenuController implements Initializable {
 
 	}
 
+	/**
+     * Establece el manejador de eventos para la opción de jugar.
+     * @param onPlay El manejador de eventos para la opción de jugar.
+     */
+	
 	public void setOnPlay(EventHandler<ActionEvent> onPlay) {
 		this.onPlay = onPlay;
 	}
 
+	/**
+     * Establece el manejador de eventos para la opción de ajustes.
+     * @param onSettings El manejador de eventos para la opción de ajustes.
+     */
+	
 	public void setOnSettings(EventHandler<ActionEvent> onSettings) {
 		this.onSettings = onSettings;
 	}
 
+	/**
+     * Establece el manejador de eventos para la opción de cómo jugar.
+     * @param onHowToPlay El manejador de eventos para la opción de cómo jugar.
+     */
+	
 	public void setOnHowToPlay(EventHandler<ActionEvent> onHowToPlay) {
 		this.onHowToPlay = onHowToPlay;
 	}

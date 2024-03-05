@@ -294,7 +294,7 @@ public class Mapa extends StackPane {
      * @return true si el usuario confirma, false en caso contrario.
      */
 	public static boolean mostrarDialogoColocarTorreta(Stage stage, String mensaje) {
-		Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+		Alert alert = new Alert(Alert.AlertType.NONE);
 		alert.setTitle("");
 		alert.setHeaderText("¿Colocar torreta aquí?");
 		alert.setContentText(mensaje);

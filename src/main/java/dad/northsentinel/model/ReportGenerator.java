@@ -1,6 +1,7 @@
 package dad.northsentinel.model;
 
 import net.sf.jasperreports.engine.JRException;
+
 import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
@@ -14,8 +15,20 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Clase para generar informes de las partidas jugadas, utilizando JasperReports.
+ */
 public class ReportGenerator {
-
+	
+	
+	/**
+     * Genera un informe PDF con las estadísticas de la partida, incluyendo el número total de enemigos,
+     * el número de torretas y el número de disparos realizados.
+     *
+     * @param totalEnemigos El número total de enemigos durante la partida.
+     * @param numTorretas El número de torretas utilizadas durante la partida.
+     * @param disparosRealizados El número total de disparos realizados durante la partida.
+     */
     public static void generateReport(int totalEnemigos, int numTorretas, int disparosRealizados) {
         try {
             // Cargar el diseño del informe desde un archivo .jrxml

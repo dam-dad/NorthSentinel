@@ -1,6 +1,7 @@
 package dad.northsentinel.model;
 
 import java.util.ArrayList;
+
 import java.util.List;
 
 import dad.northsentinel.mainmenu.PlayController;
@@ -19,6 +20,11 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
 import javafx.util.Duration;
 
+/**
+ * Representa un enemigo en el juego, heredando de la clase Entidad.
+ * Gestiona el movimiento, la vida, el daño y la destrucción de los enemigos.
+ */
+
 public class Enemigo extends Entidad {
 
 	private static int totalEnemigos = 0;
@@ -30,7 +36,10 @@ public class Enemigo extends Entidad {
 	private Point2D destino;
 	private Point2D origen;
 	private PathTransition transition; // Para manejar el movimiento a lo largo del camino
-
+	
+	/**
+	 * Crea un nuevo enemigo con propiedades predeterminadas y aumenta el contador de enemigos totales.
+	 */
 	public Enemigo() {
 		super("/assets/enemigos/enemigo1.png");
 		this.vida = 150;
@@ -45,6 +54,12 @@ public class Enemigo extends Entidad {
 	public void actualizar(double seconds) {
 
 	}
+	
+	/**
+	 * Inicia el movimiento del enemigo hacia su destino con un posible retraso.
+	 * 
+	 * @param delay El retraso antes de comenzar el movimiento, en segundos.
+	 */
 
 	public void iniciarMovimiento(int delay) {
 		transition = new PathTransition();

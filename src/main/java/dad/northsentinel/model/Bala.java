@@ -11,10 +11,22 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
 import javafx.util.Duration;
 
+
+/**
+ * Representa una bala en el juego, extendiendo la funcionalidad de una Entidad.
+ * Gestiona la creación de balas, su ruta, velocidad y daño al impactar.
+ */
 public class Bala extends Entidad {
 
 	private int daño;
 	private double velocidad;
+	
+	
+	/**
+	 * Crea una nueva instancia de Bala con posición inicial, velocidad y daño predeterminados.
+	 * 
+	 * @param origen La posición inicial de la bala como un {@link Point2D}.
+	 */
 
 	public Bala(Point2D origen) {
 		super("/assets/balas/bala1.png");
@@ -24,6 +36,13 @@ public class Bala extends Entidad {
 		setFitWidth(25);
 		setFitHeight(25);
 	}
+	
+	/**
+	 * Genera la ruta que la bala debe seguir desde su posición actual hasta el destino especificado.
+	 * 
+	 * @param destino El destino de la bala como un {@link Point2D}.
+	 * @return La {@link Path} que la bala debe seguir.
+	 */
 
 	public Path getRuta(Point2D destino) {
 		Path rutaBala = new Path();
@@ -36,6 +55,13 @@ public class Bala extends Entidad {
 	public void actualizar(double segundos) {
 
 	}
+	
+	/**
+	 * Dispara la bala hacia el objetivo especificado, creando una animación de movimiento
+	 * y gestionando la colisión con el objetivo.
+	 * 
+	 * @param target El objetivo hacia el cual la bala es disparada como un {@link Point2D}.
+	 */
 
 	public void disparar(Point2D target) {
 		if (target == null) {

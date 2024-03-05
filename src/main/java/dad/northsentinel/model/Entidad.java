@@ -4,6 +4,12 @@ import javafx.geometry.Point2D;
 import javafx.scene.image.ImageView;
 import javafx.scene.shape.Shape;
 
+
+/**
+ * Clase abstracta que representa una entidad genérica en el juego. 
+ * Extiende de {@link ImageView} para permitir representar visualmente la entidad en la interfaz de usuario.
+ * Define métodos comunes a todas las entidades como posicionamiento, actualización y detección de colisiones.
+ */
 public abstract class Entidad extends ImageView {
 
 	public Entidad(String url) {
@@ -26,12 +32,25 @@ public abstract class Entidad extends ImageView {
 	public abstract void actualizar(double seconds);
 
 	public abstract Shape getCollisionShape();
-
+	
+	
+	  /**
+     * Comprueba si esta entidad está colisionando con otra entidad dada.
+     * 
+     * @param entidad La entidad con la que se está comprobando la colisión.
+     * @return {@code true} si hay colisión, {@code false} en caso contrario.
+     */
 	public boolean comprobarColision(Entidad entidad) {
 		return (getCollisionShape() != null && 
 				entidad.getCollisionShape() != null && 
 				getCollisionShape().intersects(entidad.getCollisionShape().getLayoutBounds()));
 	}
+	
+	 /**
+     * Proporciona una representación en cadena de la entidad, incluyendo su posición, ancho y alto.
+     * 
+     * @return Una cadena que representa a la entidad.
+     */
 	
 	@Override
 	public String toString() {

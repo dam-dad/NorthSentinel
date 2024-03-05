@@ -14,7 +14,7 @@
 
 <HBox fx:id="view" alignment="CENTER" stylesheets="/css/playview.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <BorderPane fx:id="viewPlay" />
+      <BorderPane fx:id="viewPlay" HBox.hgrow="ALWAYS" />
       <GridPane id="viewMenu" alignment="CENTER" HBox.hgrow="ALWAYS">
         <columnConstraints>
           <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" />

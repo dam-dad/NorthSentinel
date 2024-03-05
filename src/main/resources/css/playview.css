@@ -1,5 +1,5 @@
-#viewMenu {
-    -fx-background-image: url('/images/fondo_menu.png'); /* Imagen de fondo */
+#view {
+    -fx-background-color: black; /* Imagen de fondo */
     -fx-background-size: cover; /* Ajusta el tamaño de la imagen para cubrir completamente el contenedor */
 }
 

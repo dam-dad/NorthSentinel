@@ -1,60 +1,82 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="InformePartida" language="java" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="123e4567-e89b-12d3-a456-426614174000">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="InformePartida" language="java" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="12345678-1234-1234-1234-123456789012">
     <parameter name="totalEnemigos" class="java.lang.Integer"/>
     <parameter name="numTorretas" class="java.lang.Integer"/>
     <parameter name="disparosRealizados" class="java.lang.Integer"/>
 
     <title>
-        <band height="50" splitType="Stretch">
-            <staticText>
-                <reportElement x="0" y="10" width="555" height="30"/>
-                <textElement textAlignment="Center" verticalAlignment="Middle"/>
-                <text><![CDATA[Informe de Partida]]></text>
-            </staticText>
+        <band height="80" splitType="Stretch">
+            <image>
+                <!-- Asegúrate de que la ruta al logo es accesible en tiempo de ejecución -->
+                <reportElement x="0" y="0" width="50" height="50" uuid="11111111-1111-1111-1111-111111111111"/>
+                <imageExpression><![CDATA["src/main/resources/readme/logo.png"]]></imageExpression>
+            </image>
+            <textField>
+                <reportElement x="405" y="0" width="150" height="30" uuid="22222222-2222-2222-2222-222222222222"/>
+                <textElement textAlignment="Right" verticalAlignment="Middle">
+                    <font isBold="true"/>
+                </textElement>
+                <textFieldExpression><![CDATA["Fecha de generación: " + new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date())]]></textFieldExpression>
+            </textField>
         </band>
     </title>
     <detail>
         <band height="150" splitType="Stretch">
-            <staticText>
-                <reportElement x="0" y="0" width="180" height="20"/>
-                <textElement/>
-                <text><![CDATA[Número total de enemigos:]]></text>
-            </staticText>
-            <textField>
-                <reportElement x="200" y="0" width="200" height="20"/>
-                <textFieldExpression><![CDATA[$P{totalEnemigos}]]></textFieldExpression>
-            </textField>
-
-            <staticText>
-                <reportElement x="0" y="40" width="180" height="20"/>
-                <textElement/>
-                <text><![CDATA[Número de torretas:]]></text>
-            </staticText>
-            <textField>
-                <reportElement x="200" y="40" width="200" height="20"/>
-                <textFieldExpression><![CDATA[$P{numTorretas}]]></textFieldExpression>
-            </textField>
-
-            <staticText>
-                <reportElement x="0" y="80" width="180" height="20"/>
-                <textElement/>
-                <text><![CDATA[Cantidad de disparos realizados:]]></text>
-            </staticText>
-            <textField>
-                <reportElement x="200" y="80" width="200" height="20"/>
-                <textFieldExpression><![CDATA[$P{disparosRealizados}]]></textFieldExpression>
-            </textField>
+            <frame>
+                <reportElement x="0" y="10" width="555" height="100" uuid="33333333-3333-3333-3333-333333333333"/>
+                <box>
+                    <pen lineWidth="1.0" lineColor="#000000"/>
+                </box>
+                <staticText>
+                    <reportElement x="0" y="0" width="180" height="20" uuid="44444444-4444-4444-4444-444444444444"/>
+                    <textElement/>
+                    <text><![CDATA[Número total de enemigos:]]></text>
+                </staticText>
+                <textField>
+                    <reportElement x="200" y="0" width="355" height="20" uuid="55555555-5555-5555-5555-555555555555"/>
+                    <textFieldExpression><![CDATA[$P{totalEnemigos}]]></textFieldExpression>
+                </textField>
+                
+                <staticText>
+                    <reportElement x="0" y="40" width="180" height="20" uuid="66666666-6666-6666-6666-666666666666"/>
+                    <textElement/>
+                    <text><![CDATA[Número de torretas:]]></text>
+                </staticText>
+                <textField>
+                    <reportElement x="200" y="40" width="355" height="20" uuid="77777777-7777-7777-7777-777777777777"/>
+                    <textFieldExpression><![CDATA[$P{numTorretas}]]></textFieldExpression>
+                </textField>
+                
+                <staticText>
+                    <reportElement x="0" y="80" width="180" height="20" uuid="88888888-8888-8888-8888-888888888888"/>
+                    <textElement/>
+                    <text><![CDATA[Cantidad de disparos realizados:]]></text>
+                </staticText>
+                <textField>
+                    <reportElement x="200" y="80" width="355" height="20" uuid="99999999-9999-9999-9999-999999999999"/>
+                    <textFieldExpression><![CDATA[$P{disparosRealizados}]]></textFieldExpression>
+                </textField>
+            </frame>
         </band>
     </detail>
     <pageFooter>
         <band height="50" splitType="Stretch">
             <textField>
-                <reportElement x="0" y="0" width="555" height="30" />
+                <reportElement x="0" y="15" width="555" height="30" uuid="aaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee"/>
                 <textElement textAlignment="Center" verticalAlignment="Middle"/>
-                <textFieldExpression><![CDATA["Fecha y hora de generación: " + new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date())]]></textFieldExpression>
+                <textFieldExpression><![CDATA["Página " + $V{PAGE_NUMBER}]]></textFieldExpression>
             </textField>
         </band>
     </pageFooter>
 </jasperReport>
+
+
+
+
+
+
+
+
+
 
 

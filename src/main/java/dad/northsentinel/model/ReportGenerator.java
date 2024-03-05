@@ -1,17 +1,13 @@
 package dad.northsentinel.model;
 
 import net.sf.jasperreports.engine.JRException;
-
 import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
-import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import net.sf.jasperreports.engine.JREmptyDataSource;
-
 import java.io.InputStream;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -19,9 +15,8 @@ import java.util.Map;
  * Clase para generar informes de las partidas jugadas, utilizando JasperReports.
  */
 public class ReportGenerator {
-	
-	
-	/**
+
+    /**
      * Genera un informe PDF con las estadísticas de la partida, incluyendo el número total de enemigos,
      * el número de torretas y el número de disparos realizados.
      *
@@ -46,9 +41,8 @@ public class ReportGenerator {
             // Llenar y generar el informe con parámetros y utilizando un JREmptyDataSource para evitar ambigüedades
             JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, new JREmptyDataSource());
 
-            // Definir la ruta del archivo PDF en el escritorio
-            String userHome = System.getProperty("user.home");
-            String pathToFile = userHome + "/Desktop/resultados.pdf";
+            // Definir la ruta completa al archivo PDF, incluyendo el nombre del archivo y su extensión
+            String pathToFile = "NorthSentinel/src/main/resources/reports/reportePartida.pdf";
 
             // Exportar el informe a un archivo PDF
             JasperExportManager.exportReportToPdfFile(jasperPrint, pathToFile);
@@ -58,4 +52,5 @@ public class ReportGenerator {
         }
     }
 }
+
 

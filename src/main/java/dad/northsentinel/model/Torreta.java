@@ -13,7 +13,7 @@ public class Torreta extends Entidad {
 	
 	private static int disparosRealizados = 0;
 
-	public static final int COSTO_TORRETA = 500;
+	public static final int COSTO_TORRETA = 100;
 	private Point2D pos;
 
 	

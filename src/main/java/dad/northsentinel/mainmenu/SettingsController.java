@@ -73,10 +73,16 @@ public class SettingsController implements Initializable {
         volumeLabel.textProperty().bind(Bindings.format("%.0f", volumeSlider.valueProperty()));
         
         volumeSlider.valueProperty().addListener((observable, oldValue, newValue) -> {
+        	double volume = newValue.doubleValue() / 100;
             if (mainController != null) {
-                double volume = newValue.doubleValue() / 100;
-                mainController.getMediaPlayerMenu().setVolume(volume);
-                mainController.getMediaPlayerJuego().setVolume(volume);
+                // Controlar el volumen del menú
+                if (mainController.getMediaPlayerMenu() != null) {
+                    mainController.getMediaPlayerMenu().setVolume(volume);
+                }
+                // Controlar el volumen del juego
+                if (mainController.getMediaPlayerJuego() != null) {
+                    mainController.getMediaPlayerJuego().setVolume(volume);
+                }
                 
                 if (newValue.doubleValue() > 75) {
                     volumeImage.setImage(new Image(getClass().getResource("/images/musica.png").toExternalForm()));
@@ -90,7 +96,7 @@ public class SettingsController implements Initializable {
             }
         });
     }
-
+    
     public BorderPane getView() {
         return view;
     }

@@ -24,6 +24,10 @@ import javafx.scene.shape.MoveTo;
 import javafx.scene.shape.Path;
 import javafx.stage.Stage;
 
+
+/**
+ * Clase Mapa que representa el área de juego, incluyendo la gestión de torretas, entidades, y la generación de oleadas de enemigos.
+ */
 public class Mapa extends StackPane {
 
 	private static List<Torreta> torretas = new ArrayList<>();
@@ -168,7 +172,13 @@ public class Mapa extends StackPane {
 		}
 		return false;
 	}
-
+	
+	
+	 /**
+     * Obtiene una torreta existente en la posición especificada.
+     * @param posicion La posición en la que se busca la torreta.
+     * @return La torreta en la posición especificada o null si no hay ninguna.
+     */
 	private Torreta obtenerTorretaEnPosicion(Point2D posicion) {
 		for (Torreta torreta : torretas) {
 			if (torreta.getPos().equals(posicion)) {
@@ -177,7 +187,14 @@ public class Mapa extends StackPane {
 		}
 		return null;
 	}
-
+	
+	
+	 /**
+     * Coloca una torreta en la posición especificada dentro del área de juego.
+     * @param pos La posición en la que se colocará la torreta.
+     * @param nuevaTorreta La torreta a colocar.
+     * @param area El área de juego donde se colocará la torreta.
+     */
 	public void colocarTorreta(Point2D pos, Torreta nuevaTorreta, Pane area) {
 		nuevaTorreta.setPos(pos);
 		// Agrega la torreta al área de juego y añadirla a la lista
@@ -271,7 +288,12 @@ public class Mapa extends StackPane {
 		entidades.clear();
 	}
 
-	// dialogo colocar torreta
+	/**
+     * Muestra un diálogo de confirmación para colocar una torreta.
+     * @param stage El Stage principal.
+     * @param mensaje El mensaje a mostrar en el diálogo.
+     * @return true si el usuario confirma, false en caso contrario.
+     */
 	public static boolean mostrarDialogoColocarTorreta(Stage stage, String mensaje) {
 		Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
 		alert.setTitle("");

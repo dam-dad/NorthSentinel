@@ -4,6 +4,11 @@ import javafx.geometry.Point2D;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Shape;
 
+
+/**
+ * Clase que representa una torreta en el juego. 
+ * Gestiona la ubicación de la torreta, el disparo de balas y la actualización de su estado.
+ */
 public class Torreta extends Entidad {
 	
 	private static int disparosRealizados = 0;
@@ -11,6 +16,12 @@ public class Torreta extends Entidad {
 	public static final int COSTO_TORRETA = 500;
 	private Point2D pos;
 
+	
+	/**
+     * Construye una nueva Torreta y la inicializa en una posición específica.
+     * 
+     * @param pos La posición inicial de la torreta como un objeto {@link Point2D}.
+     */
 	public Torreta(Point2D pos) {
 		super("/assets/torretas/torreta1.png");
 		this.setPos(pos);
@@ -21,7 +32,11 @@ public class Torreta extends Entidad {
 		
 	}
 
-	// Método para obtener la posición de la torreta
+	/**
+     * Establece la posición de la torreta y ajusta su tamaño y orientación.
+     * 
+     * @param pos La nueva posición de la torreta como un objeto {@link Point2D}.
+     */
 	public void setPos(Point2D pos) {
 		double anchoDeseado = 50;
 		double altoDeseado = 50;

@@ -5,6 +5,11 @@ import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.geometry.Point2D;
 
+
+/**
+ * Clase principal del juego que extiende AnimationTimer para proporcionar un bucle de juego.
+ * Gestiona la actualización del estado del juego, incluyendo entidades y colisiones.
+ */
 public class Juego extends AnimationTimer {
 
 	private static final double NANO_A_SEGUNDOS = 1e-9;
@@ -15,6 +20,9 @@ public class Juego extends AnimationTimer {
 	
 	private Mapa mapa = new Mapa();
 
+	/**
+	 * Inicia el bucle del juego. Establece la marca de tiempo inicial y añade un manejador de clics al mapa.
+	 */
 	@Override
 	public void start() {
 		ultimoTiempo = System.nanoTime();
@@ -39,6 +47,11 @@ public class Juego extends AnimationTimer {
 		Mapa.supermapa.getEntidades().forEach(entidad -> entidad.actualizar(segundos));
 	}
 
+	/**
+	 * Comprueba y maneja las colisiones entre entidades.
+	 * 
+	 * @param segundos El tiempo transcurrido desde el último frame en segundos.
+	 */
 	private void comprobarColisiones(double segundos) {
 		fps.set(1 / segundos);
 		Mapa.supermapa.getBalas().forEach(bala -> {

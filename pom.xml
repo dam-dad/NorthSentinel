@@ -26,10 +26,10 @@
 			<version>11.0.1</version>
 		</dependency>
 		<dependency>
-            <groupId>net.sf.jasperreports</groupId>
-            <artifactId>jasperreports</artifactId>
-            <version>6.20.0</version>
-        </dependency>
+			<groupId>net.sf.jasperreports</groupId>
+			<artifactId>jasperreports</artifactId>
+			<version>6.20.0</version>
+		</dependency>
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
@@ -37,4 +37,36 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>io.github.fvarrui</groupId>
+				<artifactId>javapackager</artifactId>
+				<version>1.7.5</version>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>package</goal>
+						</goals>
+						<configuration>
+							<!-- mandatory -->
+							<mainClass>
+								./src/main/java/dad/northsentinel/main/Main</mainClass>
+							<!-- optional -->
+							<bundleJre>false</bundleJre>
+							<generateInstaller>true</generateInstaller>
+							<administratorRequired>false</administratorRequired>
+							<platform>windows</platform>
+							<winConfig>
+								<headerType>gui</headerType>
+								<generateMsi>false</generateMsi>
+							</winConfig>
+							<assetsDir>${basedir}/assets</assetsDir>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
 </project>

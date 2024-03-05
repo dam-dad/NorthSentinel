@@ -28,7 +28,7 @@ public class App extends Application {
 		primaryStage.setTitle("NorthSentinel");
 		primaryStage.setScene(scene);
 
-		primaryStage.setFullScreen(true);
+		primaryStage.setFullScreen(false);
 
 		primaryStage.show();
 

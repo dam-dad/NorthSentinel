@@ -218,7 +218,6 @@ public class Mapa extends StackPane {
 				} else {
 					enemigo.setVelocidad(6);
 				}
-				System.out.println(enemigo.getVelocidad());
 
 				enemigo.setPos(new Point2D(primerPunto.getX(), primerPunto.getY()));
 				getArea().getChildren().add(enemigo);

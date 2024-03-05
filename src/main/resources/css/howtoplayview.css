@@ -34,7 +34,7 @@
 .label {
     -fx-font-size: 20pt;
     -fx-font-family: "Comic Sans MS", cursive, sans-serif;
-    -fx-text-fill: #F7B922; /* Color de texto que resalte sobre tu fondo */
+    -fx-text-fill: black; /* Color de texto que resalte sobre tu fondo */
     
 }
 /*Autores: Iván Garrido, Feliciano Pérez y Samuel Padrón*/

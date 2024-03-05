@@ -65,6 +65,14 @@
                   <Font size="18.0" />
                </font>
             </TextArea>
+            <TextArea editable="false" text="Este juego es un Tower Defense, y el objetivo  es evitar que los enemigos &#10;lleguen al final del camino, ya que cada vez que llegue te restara uno de &#10;vida menos, te pueden entrar un total de 15 enemigos. &#10;Cada vez que se pasa una oleada se le suma 5 enemigos mas, ademas&#10;tambien se incrementa la vida de cada enemigo a 50 puntos mas, y por &#10;ultimo se le sube la velocidad, es decir en la primera ronda tarda 10 segundos&#10;y se va disminuyendo por cada ronda pasada un segundo menos, lo menos&#10;pueden tardar son 6 segundos.&#10;" GridPane.rowIndex="2" GridPane.rowSpan="2">
+               <GridPane.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </GridPane.margin>
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </TextArea>
          </children>
       </GridPane>
    </center>
